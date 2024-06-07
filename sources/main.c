@@ -6,18 +6,36 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/07 17:33:54 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:28:18 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	*ft_free_array(char **arr)
+{
+	int	i;
+
+	i = -1;
+	if (arr)
+	{
+		while (arr[++i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+		}
+		free(arr);
+		arr = NULL;
+	}
+	return (NULL);
+}
 
 void	ft_print_struct(t_map *map)
 {
 	printf("---------------------\n");
 	printf("T_MAP %p\n", map);
 	printf("FILE : [%s]\n", map->file);
-	printf("FLOOR : [%i][%i][%i]\n", map->floor.s_rgb.r, map->floor.s_rgb.g, map->floor.s_rgb.b);
+	printf("FLOOR : [%i][%i][%i] [%x]\n", map->floor.s_rgb.r, map->floor.s_rgb.g, map->floor.s_rgb.b, map->floor.s_value);
 	printf("CEILING : [%i][%i][%i]\n", map->ceiling.s_rgb.r, map->ceiling.s_rgb.g, map->ceiling.s_rgb.b);
 	printf("---------------------\n");
 	
@@ -50,6 +68,7 @@ void	ft_get_floor_color(t_map *map)
 	// a voir si error si +de 2 lines F ?
 	char	*line;
 	char	**rgb;
+	// int		i;
 	
 	while (map->fd)
 	{
@@ -64,10 +83,17 @@ void	ft_get_floor_color(t_map *map)
 	{
 		// si ligne -> split pour avoir les 3 valeurs rgb / error si plus ?
 		rgb = ft_split(line, ',');
-		for(int i = 0 ; rgb[i]; i++)
-			printf("[%i] [%s]\n", i, rgb[i]);
+		for(int j = 0 ; rgb[j]; j++)
+			printf("[%i] [%s]\n", j, rgb[j]);
+		// i = 0;
+		map->floor.s_rgb.r = ft_atoi(rgb[0] + 1);
+		map->floor.s_rgb.g = ft_atoi(rgb[1]);
+		map->floor.s_rgb.b = ft_atoi(rgb[2]);
+		ft_free_array(rgb);
+		
 	}
-	printf("la line sol color = [%s]\n", line);
+	free(line);
+	// printf("la line sol color = [%s]\n", line);
 }
 
 void	ft_setup_map(char *file)
@@ -94,3 +120,5 @@ int	main(int argc, char **argv)
 	ft_setup_map(MAP);
 	
 }
+
+// pour la longueur -> calculer chaque ligne avec un buff qui sauve la +longue et change si >*
