@@ -6,29 +6,11 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/07 18:28:18 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:40:38 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	*ft_free_array(char **arr)
-{
-	int	i;
-
-	i = -1;
-	if (arr)
-	{
-		while (arr[++i])
-		{
-			free(arr[i]);
-			arr[i] = NULL;
-		}
-		free(arr);
-		arr = NULL;
-	}
-	return (NULL);
-}
 
 void	ft_print_struct(t_map *map)
 {
@@ -37,15 +19,20 @@ void	ft_print_struct(t_map *map)
 	printf("FILE : [%s]\n", map->file);
 	printf("FLOOR : [%i][%i][%i] [%x]\n", map->floor.s_rgb.r, map->floor.s_rgb.g, map->floor.s_rgb.b, map->floor.s_value);
 	printf("CEILING : [%i][%i][%i]\n", map->ceiling.s_rgb.r, map->ceiling.s_rgb.g, map->ceiling.s_rgb.b);
+	printf("TEST : [%x]\n", map->ceiling.s_value);
+	printf("TEXTURE NORTH : [%s]\n", map->texture_north);
+	printf("TEXTURE SOUTH : [%s]\n", map->texture_south);
+	printf("TEXTURE WEST : [%s]\n", map->texture_west);
+	printf("TEXTURE EAST : [%s]\n", map->texture_east);
 	printf("---------------------\n");
 	
 }
 
 void	ft_init_color(u_color *color)
 {
-	color->s_rgb.r = 255;
+	color->s_rgb.r = 254;
 	color->s_rgb.g = 255;
-	color->s_rgb.b = 255;
+	color->s_rgb.b = 250;
 }
 
 void	ft_init_map(t_map *map, char *file)
@@ -62,40 +49,6 @@ void	ft_init_map(t_map *map, char *file)
 	map->fd = -1;
 }
 
-void	ft_get_floor_color(t_map *map)
-{
-	// recuperer la ligne commencant par l'id F dans le file pour avoir la couleur du sol
-	// a voir si error si +de 2 lines F ?
-	char	*line;
-	char	**rgb;
-	// int		i;
-	
-	while (map->fd)
-	{
-		line = get_next_line(map->fd);
-		if (!line)
-			break ;
-		if (!ft_strncmp(line, "F ", ft_strlen("F ")))
-			break ;
-		free(line);
-	}
-	if (line)
-	{
-		// si ligne -> split pour avoir les 3 valeurs rgb / error si plus ?
-		rgb = ft_split(line, ',');
-		for(int j = 0 ; rgb[j]; j++)
-			printf("[%i] [%s]\n", j, rgb[j]);
-		// i = 0;
-		map->floor.s_rgb.r = ft_atoi(rgb[0] + 1);
-		map->floor.s_rgb.g = ft_atoi(rgb[1]);
-		map->floor.s_rgb.b = ft_atoi(rgb[2]);
-		ft_free_array(rgb);
-		
-	}
-	free(line);
-	// printf("la line sol color = [%s]\n", line);
-}
-
 void	ft_setup_map(char *file)
 {
 	t_map	map;
@@ -107,7 +60,7 @@ void	ft_setup_map(char *file)
 	if (map.fd == -1)
 		ft_errno(ERR_FD, &map);
 	// commencons par les textures / couleurs
-	ft_get_floor_color(&map);
+	ft_get_info(&map);
 	
 	
 	ft_print_struct(&map);
