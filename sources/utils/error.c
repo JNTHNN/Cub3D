@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/07 17:04:37 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:26:26 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_WRONG_EXT, STDERR_FILENO);
 	else if (err_code == ERR_FD)
 		perror("Error\n");
+	else if (err_code == DUP_INFO)
+		ft_putendl_fd(STR_DUP_INFO, STDERR_FILENO);
+	else if (err_code == ERR_COLOR)
+		ft_putendl_fd(STR_ERR_COLOR, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_map *map)

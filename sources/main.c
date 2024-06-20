@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/17 15:40:38 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:30:46 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_print_struct(t_map *map)
 	printf("T_MAP %p\n", map);
 	printf("FILE : [%s]\n", map->file);
 	printf("FLOOR : [%i][%i][%i] [%x]\n", map->floor.s_rgb.r, map->floor.s_rgb.g, map->floor.s_rgb.b, map->floor.s_value);
-	printf("CEILING : [%i][%i][%i]\n", map->ceiling.s_rgb.r, map->ceiling.s_rgb.g, map->ceiling.s_rgb.b);
-	printf("TEST : [%x]\n", map->ceiling.s_value);
+	printf("CEILING : [%i][%i][%i] [%x]\n", map->ceiling.s_rgb.r, map->ceiling.s_rgb.g, map->ceiling.s_rgb.b, map->ceiling.s_value);
 	printf("TEXTURE NORTH : [%s]\n", map->texture_north);
 	printf("TEXTURE SOUTH : [%s]\n", map->texture_south);
 	printf("TEXTURE WEST : [%s]\n", map->texture_west);

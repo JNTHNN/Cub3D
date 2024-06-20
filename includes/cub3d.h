@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:09:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/17 15:29:22 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:25:32 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include <stdio.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "error.h"
@@ -85,7 +86,9 @@ enum e_err_code
 	TOO_MANY = -2,
 	NO_MAP = -3,
 	WRONG_EXT = -4,
-	ERR_FD = -5
+	ERR_FD = -5,
+	DUP_INFO = -6,
+	ERR_COLOR = -7
 };
 
 

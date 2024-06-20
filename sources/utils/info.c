@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/17 15:59:12 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:53:35 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,48 @@ void	ft_init_info(t_info *info)
 
 void	ft_check_data(char *line, t_info *info)
 {
-	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR)) && !info->floor)
-		info->floor = ft_strdup(line);
-	else if (!ft_strncmp(line, CEILING, ft_strlen(CEILING)) && !info->ceiling)
-		info->ceiling = ft_strdup(line);
-	else if (!ft_strncmp(line, NORTH, ft_strlen(NORTH)) && !info->texture_north)
-		info->texture_north = ft_strdup(line);
-	else if (!ft_strncmp(line, SOUTH, ft_strlen(SOUTH)) && !info->texture_south)
-		info->texture_south = ft_strdup(line);
-	else if (!ft_strncmp(line, WEST, ft_strlen(WEST)) && !info->texture_west)
-		info->texture_west = ft_strdup(line);
-	else if (!ft_strncmp(line, EAST, ft_strlen(EAST)) && !info->texture_east)
-		info->texture_east = ft_strdup(line);
+	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR)))
+	{
+		if (!info->floor)
+			info->floor = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
+	else if (!ft_strncmp(line, CEILING, ft_strlen(CEILING)))
+	{
+		if (!info->ceiling)
+			info->ceiling = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
+	else if (!ft_strncmp(line, NORTH, ft_strlen(NORTH)))
+	{
+		if (!info->texture_north)
+			info->texture_north = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
+	else if (!ft_strncmp(line, SOUTH, ft_strlen(SOUTH)))
+	{
+		if (!info->texture_south)
+			info->texture_south = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
+	else if (!ft_strncmp(line, WEST, ft_strlen(WEST)))
+	{
+		if (!info->texture_west)
+			info->texture_west = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
+	else if (!ft_strncmp(line, EAST, ft_strlen(EAST)))
+	{
+		if (!info->texture_east)
+			info->texture_east = ft_strdup(line);
+		else
+			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+	}
 }
 
 void	ft_get_info(t_map *map)
@@ -85,19 +115,24 @@ void	ft_get_info(t_map *map)
 	if (info.floor || info.ceiling)
 	{
 		// si ligne -> split pour avoir les 3 valeurs rgb / error si plus ?
-		printf("FLOOR [%s]\nCEILING [%s]\n", info.floor, info.ceiling);
-		printf("TEXTURE NORTH [%s] SOUTH [%s]\nWEST [%s] EAST [%s]\n", info.texture_north, info.texture_south, info.texture_west, info.texture_east);
+		// printf("FLOOR [%s]\nCEILING [%s]\n", info.floor, info.ceiling);
+		// printf("TEXTURE NORTH [%s] SOUTH [%s]\nWEST [%s] EAST [%s]\n", info.texture_north, info.texture_south, info.texture_west, info.texture_east);
 		// setup les split pour chaque data
 		// floor
 		rgb = ft_split(info.floor, ',');
+		if (!rgb || ft_arrlen(rgb) != 3)
+			ft_errno(ERR_COLOR, map);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
 		map->floor.s_rgb.r = ft_atoi(rgb[0] + 1);
 		map->floor.s_rgb.g = ft_atoi(rgb[1]);
 		map->floor.s_rgb.b = ft_atoi(rgb[2]);
+		// checker les datas -> error | soit refaire un atoi qui va introduire les datas suivant le flag (R|G|B) + nombre compris entre 0 et 255
 		ft_free_array(rgb);
 		// ceiling
 		rgb = ft_split(info.ceiling, ',');
+		if (!rgb || ft_arrlen(rgb) != 3)
+			ft_errno(ERR_COLOR, map);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
 		map->ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);

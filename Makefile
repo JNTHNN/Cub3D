@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/17 15:41:53 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/06/20 15:21:05 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIBFT 			:= libft.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
-UTILS_SRC			:= error free info
+UTILS_SRC			:= error free info size
 PARSER_SRC			:= 
 PARSER_UTILS_SRC	:= 
 
@@ -65,7 +65,7 @@ CC 				:= cc -g -O0
 CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
 READL			:=	-L/usr/local/lib -I/usr/local/include #AJOUTER MINILIBX
-DEBUG			:= #-fsanitize=address
+DEBUG			:= -fsanitize=address
 
 # **************************************************************************** #
 # 							  	   Colors	    							   #

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   size.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/20 15:28:02 by jgasparo         ###   ########.fr       */
+/*   Created: 2024/06/20 15:20:46 by jgasparo          #+#    #+#             */
+/*   Updated: 2024/06/20 15:27:44 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "cub3d.h"
 
-typedef struct s_map	t_map; // a regler - déjà typee dabs cub3d.h
+int	ft_arrlen(char **tab)
+{
+	int	i;
 
-/*	free.c	*/
-void	*ft_free_array(char **arr);
-
-/*	info.c	*/
-void	ft_get_info(t_map *map);
-
-/*	size.c	*/
-int	ft_arrlen(char **tab);
-
-#endif
+	i = 0;
+	while (tab && tab[i])
+		i++;
+	return (i);
+}
