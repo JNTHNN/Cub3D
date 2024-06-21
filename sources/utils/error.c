@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/20 15:26:26 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:59:37 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_DUP_INFO, STDERR_FILENO);
 	else if (err_code == ERR_COLOR)
 		ft_putendl_fd(STR_ERR_COLOR, STDERR_FILENO);
+	else if (err_code == MLX)
+		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
+	else if (err_code == WIN)
+		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
 }
 
-void	ft_errno(int err_code, t_map *map)
+void	ft_errno(int err_code, t_data *data)
 {
-	(void)map;
 	ft_print_error(err_code);
-	// free map
+	if (data)
+		free(data);
 	exit(err_code); // EXIT_FAILURE 
 }

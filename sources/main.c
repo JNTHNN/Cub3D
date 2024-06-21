@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/20 15:30:46 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:53:08 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_init_color(u_color *color)
 	color->s_rgb.b = 250;
 }
 
-void	ft_init_map(t_map *map, char *file)
+void	ft_fill_map(t_map *map, char *file)
 {
 	u_color	color;
 
@@ -48,29 +48,90 @@ void	ft_init_map(t_map *map, char *file)
 	map->fd = -1;
 }
 
-void	ft_setup_map(char *file)
+void	ft_setup_map(t_data *data, char *file)
 {
-	t_map	map;
 
 	//struct init
-	ft_init_map(&map, file);
+	ft_fill_map(&data->map, file);
 	// maintenant ouverture de la map
-	map.fd = open(map.file, O_RDONLY);
-	if (map.fd == -1)
-		ft_errno(ERR_FD, &map);
+	data->map.fd = open(data->map.file, O_RDONLY);
+	if (data->map.fd == -1)
+		ft_errno(ERR_FD, data);
 	// commencons par les textures / couleurs
-	ft_get_info(&map);
+	ft_get_info(data);
 	
 	
-	ft_print_struct(&map);
+	ft_print_struct(&data->map);
+}
+
+void	ft_init_map(t_map *map)
+{
+	map->file = NULL;
+	map->fd = 0;
+	map->floor.s_value = 0;
+	map->floor.s_rgb.b = 0;
+	map->floor.s_rgb.g = 0;
+	map->floor.s_rgb.r = 0;
+	map->texture_north = NULL;
+    map->texture_south = NULL;
+    map->texture_west = NULL;
+    map->texture_east = NULL;
+	map->ceiling.s_value = 0;
+	map->ceiling.s_rgb.b = 0;
+	map->ceiling.s_rgb.g = 0;
+	map->ceiling.s_rgb.r = 0;
+}
+
+t_data	*ft_init_data()
+{
+	t_data *data;
+	
+	data = (t_data *)malloc(sizeof(t_data));
+    if (data == NULL)
+		ft_errno(MEM, data);
+	data->mlx = NULL;
+    data->win = NULL;
+    data->img.mlx_img = NULL;
+    data->img.addr = NULL;
+    data->img.bpp = 0;
+    data->img.line_len = 0;
+    data->img.endian = 0;
+	ft_init_map(&data->map);
+	return (data);
+}
+
+void	ft_init_mlx(t_data *data)
+{
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)
+		ft_errno(MLX, data);
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, TITLE);
+	if (data->win == NULL)
+		ft_errno(WIN, data);
+}
+
+int	ft_mlx_settings(t_data *data)
+{
+	mlx_hook(data->win, ON_KEYDOWN, 0, ft_handle_key_events, data);
+	mlx_hook(data->win, ON_MOUSEDOWN, 0, ft_handle_mouse_events, data);
+	mlx_hook(data->win, ON_DESTROY, 0, ft_close_window, data);
+	if (mlx_loop_hook(data->mlx, &ft_play, data))
+		return (ft_close_window(data));
+	mlx_loop(data->mlx);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
 {
+	t_data *data;
+	
+	data = ft_init_data();
 	ft_check_arg(argc, argv);
 	// now la map est bonne
-	ft_setup_map(MAP);
-	
+	ft_setup_map(data, MAP);
+	ft_init_mlx(data);
+	ft_mlx_settings(data);
+	return (EXIT_SUCCESS);
 }
 
 // pour la longueur -> calculer chaque ligne avec un buff qui sauve la +longue et change si >*

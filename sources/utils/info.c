@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/20 15:53:35 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:27:12 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_check_data(char *line, t_info *info)
 	}
 }
 
-void	ft_get_info(t_map *map)
+void	ft_get_info(t_data *data)
 {
 	// recuperer la ligne commencant par l'id F dans le file pour avoir la couleur du sol
 	// a voir si error si +de 2 lines F ?
@@ -103,9 +103,9 @@ void	ft_get_info(t_map *map)
 	// checker pour plusieurs lignes -> increment un flag et si >1 == error
 	// si 1 data de info not init -> error
 	ft_init_info(&info);
-	while (map->fd)
+	while (data->map.fd)
 	{
-		line = get_next_line(map->fd);
+		line = get_next_line(data->map.fd);
 		if (!line || !ft_strncmp(line, "1", ft_strlen(line)))
 			break ;
 		ft_check_data(line, &info);
@@ -121,26 +121,26 @@ void	ft_get_info(t_map *map)
 		// floor
 		rgb = ft_split(info.floor, ',');
 		if (!rgb || ft_arrlen(rgb) != 3)
-			ft_errno(ERR_COLOR, map);
+			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		map->floor.s_rgb.r = ft_atoi(rgb[0] + 1);
-		map->floor.s_rgb.g = ft_atoi(rgb[1]);
-		map->floor.s_rgb.b = ft_atoi(rgb[2]);
+		data->map.floor.s_rgb.r = ft_atoi(rgb[0] + 1);
+		data->map.floor.s_rgb.g = ft_atoi(rgb[1]);
+		data->map.floor.s_rgb.b = ft_atoi(rgb[2]);
 		// checker les datas -> error | soit refaire un atoi qui va introduire les datas suivant le flag (R|G|B) + nombre compris entre 0 et 255
 		ft_free_array(rgb);
 		// ceiling
 		rgb = ft_split(info.ceiling, ',');
 		if (!rgb || ft_arrlen(rgb) != 3)
-			ft_errno(ERR_COLOR, map);
+			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		map->ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);
-		map->ceiling.s_rgb.g = ft_atoi(rgb[1]);
-		map->ceiling.s_rgb.b = ft_atoi(rgb[2]);
+		data->map.ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);
+		data->map.ceiling.s_rgb.g = ft_atoi(rgb[1]);
+		data->map.ceiling.s_rgb.b = ft_atoi(rgb[2]);
 		ft_free_array(rgb);
 	}
-	ft_get_info_texture(map, &info);
+	ft_get_info_texture(&data->map, &info);
 	free(line);
 	// printf("la line sol color = [%s]\n", line);
 }

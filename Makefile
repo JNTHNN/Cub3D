@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/21 10:47:58 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/06/21 13:30:50 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MLX   			:= libmlx.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
-UTILS_SRC			:= error free info size
+UTILS_SRC			:= error free info size controls
 PARSER_SRC			:= 
 PARSER_UTILS_SRC	:= 
 

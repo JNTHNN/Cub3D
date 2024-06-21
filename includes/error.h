@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/20 15:26:12 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:01:51 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define STR_WRONG_EXT "Error\nWrong file extension"
 # define STR_DUP_INFO "Error\nDuplicate info in map"
 # define STR_ERR_COLOR "Error\nWrong color's value"
+# define STR_ERR_MLX "Error\nUnable to initialize graphics. Please try again."
+# define STR_ERR_WIN "Error\nUnable to open graphic window. Please try again."
 # define CUB ".cub"
 # define DOT 46
 # define MAP argv[1]
