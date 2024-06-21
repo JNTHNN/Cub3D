@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
+#    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/20 15:21:05 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/06/21 10:47:58 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ NAME			:= cub3d
 LIBFT_BUILD 	:= ./libft/.build/
 LIBFT_DIR		:= ./libft/
 INC_DIR 		:= ./includes/
+MLX_DIR			:= ./minilibx/
 SRC_DIR			:= ./sources/
 BUILD_DIR  		:= ./.build/
 
@@ -32,6 +33,7 @@ BUILD_DIR  		:= ./.build/
 # **************************************************************************** #
 
 LIBFT 			:= libft.a
+MLX   			:= libmlx.a
 
 # **************************************************************************** #
 # 							  	Source files								   #
@@ -64,7 +66,8 @@ DEPS        	:= $(OBJS:.o=.d)
 CC 				:= cc -g -O0
 CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
-READL			:=	-L/usr/local/lib -I/usr/local/include #AJOUTER MINILIBX
+READL			:= -L/usr/local/lib -I/usr/local/include
+MLX_FLAGS		:= -lm -lft -lmlx -framework OpenGL -framework AppKit
 DEBUG			:= -fsanitize=address
 
 # **************************************************************************** #
@@ -93,21 +96,28 @@ $(LIBFT_BUILD)$(LIBFT):
 	@make -C $(LIBFT_DIR)
 	@echo "$(GREEN)Libft created!$(WHITE)\n"
 
-$(NAME): $(OBJS) $(LIBFT_BUILD)$(LIBFT)
-	@echo "${CYAN}Generating minishell.${WHITE}"
-	@$(CC) $(DEBUG) $(CFLAGS) $(OBJS) $(LIBFT_BUILD)$(LIBFT) $(READL) -o $(NAME)
-	@echo "${GREEN}Compilation successful ! Let's play 😏${WHITE}"
+$(MLX_DIR)$(MLX):
+	@echo "$(CYAN)Generating MiniLibX...$(WHITE)"
+	@make -C $(MLX_DIR)
+	@echo "$(GREEN)MiniLibX created!$(WHITE)\n"
 
+$(NAME): $(OBJS) $(LIBFT_BUILD)$(LIBFT) $(MLX_DIR)$(MLX)
+	@echo "${CYAN}Generating game...${WHITE}"
+	@$(CC) $(DEBUG) $(CFLAGS) $(MLX_FLAGS) $(OBJS) -L $(LIBFT_BUILD) -L $(MLX_DIR) $(READL) -o $(NAME)
+	@echo "${GREEN}Compilation successful ! Let's play 😏${WHITE}"
 
 clean :
 	@echo "\n${CYAN}Deleting object files...${WHITE}"
 	@$(RM) -r $(BUILD_DIR)
 	@make clean -C $(LIBFT_DIR)
+	@find $(MLX_DIR) -name "*.o" -type f -delete
 	@echo "$(GREEN)Object files were deleted.$(WHITE)\n"
 	
 fclean : clean
-	@echo "$(CYAN)Cleaning all...$(WHITE)\n"
+	@echo "$(CYAN)Cleaning all...$(WHITE)"
 	@make fclean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
+	@echo "$(GREEN)$(MLX) was deleted.$(WHITE)"
 	@echo "$(GREEN)$(LIBFT) was deleted.$(WHITE)"
 	@$(RM) $(NAME)
 	@echo "$(GREEN)$(NAME) was deleted.$(WHITE)"
