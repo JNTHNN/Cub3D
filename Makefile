@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
+#    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/21 13:30:50 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/06/22 20:22:22 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MLX   			:= libmlx.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
-UTILS_SRC			:= error free info size controls
+UTILS_SRC			:= error free info size controls atoi
 PARSER_SRC			:= 
 PARSER_UTILS_SRC	:= 
 

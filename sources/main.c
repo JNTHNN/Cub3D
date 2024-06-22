@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/21 14:53:08 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:52:44 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_init_map(t_map *map)
 	map->ceiling.s_rgb.r = 0;
 }
 
-t_data	*ft_init_data()
+t_data	*ft_init_data(void)
 {
 	t_data *data;
 	
@@ -129,8 +129,8 @@ int	main(int argc, char **argv)
 	ft_check_arg(argc, argv);
 	// now la map est bonne
 	ft_setup_map(data, MAP);
-	ft_init_mlx(data);
-	ft_mlx_settings(data);
+	// ft_init_mlx(data);
+	// ft_mlx_settings(data);
 	return (EXIT_SUCCESS);
 }
 

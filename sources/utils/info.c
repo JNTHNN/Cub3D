@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/21 12:27:12 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/22 23:21:34 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ void	ft_init_info(t_info *info)
 	info->texture_east = NULL;
 }
 
-void	ft_check_data(char *line, t_info *info)
+void	ft_check_data(char *line, t_info *info, int *flag)
 {
+
 	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR)))
 	{
 		if (!info->floor)
 			info->floor = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 	else if (!ft_strncmp(line, CEILING, ft_strlen(CEILING)))
 	{
@@ -60,6 +62,7 @@ void	ft_check_data(char *line, t_info *info)
 			info->ceiling = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 	else if (!ft_strncmp(line, NORTH, ft_strlen(NORTH)))
 	{
@@ -67,6 +70,7 @@ void	ft_check_data(char *line, t_info *info)
 			info->texture_north = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 	else if (!ft_strncmp(line, SOUTH, ft_strlen(SOUTH)))
 	{
@@ -74,6 +78,7 @@ void	ft_check_data(char *line, t_info *info)
 			info->texture_south = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 	else if (!ft_strncmp(line, WEST, ft_strlen(WEST)))
 	{
@@ -81,6 +86,7 @@ void	ft_check_data(char *line, t_info *info)
 			info->texture_west = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 	else if (!ft_strncmp(line, EAST, ft_strlen(EAST)))
 	{
@@ -88,6 +94,7 @@ void	ft_check_data(char *line, t_info *info)
 			info->texture_east = ft_strdup(line);
 		else
 			ft_errno(DUP_INFO, NULL); // ajouter map a clean
+		(*flag)++;
 	}
 }
 
@@ -99,6 +106,7 @@ void	ft_get_info(t_data *data)
 	char	*line;
 	char	**rgb;
 	t_info	info;
+	int		flag = 0;
 	
 	// checker pour plusieurs lignes -> increment un flag et si >1 == error
 	// si 1 data de info not init -> error
@@ -108,10 +116,12 @@ void	ft_get_info(t_data *data)
 		line = get_next_line(data->map.fd);
 		if (!line || !ft_strncmp(line, "1", ft_strlen(line)))
 			break ;
-		ft_check_data(line, &info);
+		ft_check_data(line, &info, &flag);
 		free(line);
 	}
 	// checker si toutes les data de info sont init sinon error
+	if (flag != 6)
+		ft_errno(MISSING, data); // a voir si je detaille l'erreur data
 	if (info.floor || info.ceiling)
 	{
 		// si ligne -> split pour avoir les 3 valeurs rgb / error si plus ?
@@ -124,9 +134,17 @@ void	ft_get_info(t_data *data)
 			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		data->map.floor.s_rgb.r = ft_atoi(rgb[0] + 1);
-		data->map.floor.s_rgb.g = ft_atoi(rgb[1]);
-		data->map.floor.s_rgb.b = ft_atoi(rgb[2]);
+		flag = 0;
+		printf("res = %d\n", ft_atoi_color(rgb[0] + 1, &flag));
+		data->map.floor.s_rgb.r = ft_atoi_color(rgb[0] + 1, &flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
+		data->map.floor.s_rgb.g = ft_atoi_color(rgb[1], &flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
+		data->map.floor.s_rgb.b = ft_atoi_color(rgb[2], &flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
 		// checker les datas -> error | soit refaire un atoi qui va introduire les datas suivant le flag (R|G|B) + nombre compris entre 0 et 255
 		ft_free_array(rgb);
 		// ceiling
@@ -135,9 +153,16 @@ void	ft_get_info(t_data *data)
 			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		data->map.ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);
-		data->map.ceiling.s_rgb.g = ft_atoi(rgb[1]);
-		data->map.ceiling.s_rgb.b = ft_atoi(rgb[2]);
+		data->map.ceiling.s_rgb.r = ft_atoi_color(rgb[0] + 1, &flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
+		data->map.ceiling.s_rgb.g = ft_atoi_color(rgb[1], &flag);
+		printf("ici flag = %d\n", flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
+		data->map.ceiling.s_rgb.b = ft_atoi_color(rgb[2], &flag);
+		if (flag)
+			ft_errno(NOT_NB, data);
 		ft_free_array(rgb);
 	}
 	ft_get_info_texture(&data->map, &info);

@@ -62,3 +62,9 @@ MinilibX
 y = ordonée / x = abscisse -> map[y][x]
 Bug traduction ou de la mer*e -> "error\n" puis msg
 A voir si error si plusieurs lignes de la meme info
+
+## TO-DO
+
+atoi uint8_t pour les couleurs + check wrong input
+erreur si une donnee en trop quand le reste est init ?
+atoi actuellement accepte les negatifs et les refacto entre 0 et 255

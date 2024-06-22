@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/21 12:59:37 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:25:36 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
 	else if (err_code == WIN)
 		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
+	else if (err_code == MISSING)
+		ft_putendl_fd(STR_MISSING, STDERR_FILENO);
+	else if (err_code == NOT_NB)
+		ft_putendl_fd(STR_NOT_NB, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_data *data)
