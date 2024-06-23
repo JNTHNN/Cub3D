@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/22 20:25:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:10:25 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ struct	s_map
 	int		y_size;
 	// longueur / abscisse / x
 	int		x_size;
+	// map brute
+	char	**map;
+	int		start;
 
 };
 
@@ -95,7 +98,8 @@ enum e_err_code
 	MLX = -8,
 	WIN = -9,
 	MISSING = -10,
-	NOT_NB = -11
+	NOT_NB = -11,
+	NO_MAP_CONTENT = -12
 };
 
 #endif

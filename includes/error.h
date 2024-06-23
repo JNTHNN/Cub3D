@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/22 20:24:47 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:09:10 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define STR_ERR_WIN "Error\nUnable to open graphic window. Please try again."
 # define STR_MISSING "Error\nMissing data"
 # define STR_NOT_NB "Error\nNot a number in color"
+# define STR_NO_MAP_CONTENT "Error\nNo Map Content, No Party"
 # define CUB ".cub"
 # define DOT 46
 # define MAP argv[1]

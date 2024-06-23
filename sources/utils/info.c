@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/22 23:21:34 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:03:36 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,10 @@ void	ft_get_info(t_data *data)
 	ft_init_info(&info);
 	while (data->map.fd)
 	{
+		// mettre un compteur pour le start de la map
+		data->map.start++;
 		line = get_next_line(data->map.fd);
-		if (!line || !ft_strncmp(line, "1", ft_strlen(line)))
+		if (!line || !ft_strncmp(line, "1", 1))
 			break ;
 		ft_check_data(line, &info, &flag);
 		free(line);
@@ -167,5 +169,78 @@ void	ft_get_info(t_data *data)
 	}
 	ft_get_info_texture(&data->map, &info);
 	free(line);
+	// close(data->map.fd);
+	printf("la map start ligne %d\n", data->map.start);
 	// printf("la line sol color = [%s]\n", line);
+}
+
+// void	ft_save_line(t_data *data, char *line)
+// {
+// 	data->map.map =
+// }
+
+// void	ft_get_info_map(t_data *data, char *line)
+// {
+	
+// }
+
+// void	ft_parse_map(t_data *data)
+// {
+// 	char	*line;
+
+// 	// data->map.map = (char **)malloc(sizeof(char *) * )
+// 	while (data->map.fd)
+// 	{
+// 		line = get_next_line(data->map.fd);
+// 		if (!line)
+// 			break ;
+// 		ft_save_map(data, line);
+// 		free(line);
+// 	}
+
+// }
+
+void	ft_get_map(t_data *data)
+{
+	char	*line;
+	int		size = 0;
+	int		i = 0;
+	int		j = 0;
+
+	while (data->map.fd)
+	{
+		line = get_next_line(data->map.fd);
+		if (!line)
+		{
+			if (!line && !size)
+				ft_errno(NO_MAP_CONTENT, data);
+			break ;
+		}
+		// printf("la reprise [%s]\n", line);
+		// break ;
+		size++;
+		free(line);
+	}
+	printf("la size est de %d\n", size);
+	close(data->map.fd); // a voir si je re-init le fd a -1 car il va etre a 3 la
+	data->map.map = (char **)malloc(sizeof(char *) * (size + 1));
+	data->map.fd = open(data->map.file, O_RDONLY);
+	while (data->map.fd)
+	{
+		line = get_next_line(data->map.fd);
+		if (!line)
+			break ;
+		if (i++ < data->map.start - 1)
+		{
+			free(line);
+			continue ;
+		}
+		// if (line[0] == '\n')
+		// 	continue;
+		data->map.map[j++] = ft_strdup(line);
+		// j++;
+	}
+	data->map.map[j] = NULL;
+	for (int z = 0; data->map.map[z]; z++)
+		printf("la line [%d] [%s]\n", z, data->map.map[z]);
 }

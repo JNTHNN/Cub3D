@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/22 11:52:44 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 19:51:06 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_print_struct(t_map *map)
 	printf("TEXTURE SOUTH : [%s]\n", map->texture_south);
 	printf("TEXTURE WEST : [%s]\n", map->texture_west);
 	printf("TEXTURE EAST : [%s]\n", map->texture_east);
+	// printf("DEBUT DE LA MAP : [%p]\n", map->start);
 	printf("---------------------\n");
 	
 }
@@ -46,6 +47,7 @@ void	ft_fill_map(t_map *map, char *file)
 	map->floor = color;
 	map->ceiling = color;
 	map->fd = -1;
+	map->start = 0;
 }
 
 void	ft_setup_map(t_data *data, char *file)
@@ -59,6 +61,10 @@ void	ft_setup_map(t_data *data, char *file)
 		ft_errno(ERR_FD, data);
 	// commencons par les textures / couleurs
 	ft_get_info(data);
+	// maintenant on save la map
+	ft_get_map(data);
+	// on a la map, on va checker si elle est valide
+	
 	
 	
 	ft_print_struct(&data->map);
@@ -67,8 +73,8 @@ void	ft_setup_map(t_data *data, char *file)
 void	ft_init_map(t_map *map)
 {
 	map->file = NULL;
-	map->fd = 0;
-	map->floor.s_value = 0;
+	map->fd = 0;	// a checker car mauvais init
+	map->floor.s_value = 0; // a checker car color deja init ailleurs
 	map->floor.s_rgb.b = 0;
 	map->floor.s_rgb.g = 0;
 	map->floor.s_rgb.r = 0;

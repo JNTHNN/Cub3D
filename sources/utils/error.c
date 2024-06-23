@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/22 20:25:36 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:10:46 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_MISSING, STDERR_FILENO);
 	else if (err_code == NOT_NB)
 		ft_putendl_fd(STR_NOT_NB, STDERR_FILENO);
+	else if (err_code == NO_MAP_CONTENT)
+		ft_putendl_fd(STR_NO_MAP_CONTENT, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_data *data)
