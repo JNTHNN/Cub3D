@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/23 20:10:25 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 23:41:11 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_img	t_img;
 typedef struct s_map	t_map;
 typedef struct s_info	t_info;
 typedef enum e_err_code	t_err_code;
+typedef enum e_wall		t_wall;
 
 struct s_img
 {
@@ -99,7 +100,16 @@ enum e_err_code
 	WIN = -9,
 	MISSING = -10,
 	NOT_NB = -11,
-	NO_MAP_CONTENT = -12
+	NO_MAP_CONTENT = -12,
+	MAP_NOT_CLOSE = -13
+};
+
+enum e_wall
+{
+	TOP,
+	BOT,
+	LEFT,
+	RIGHT
 };
 
 #endif

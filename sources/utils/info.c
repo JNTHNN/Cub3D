@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/23 20:03:36 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:46:59 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,10 +237,42 @@ void	ft_get_map(t_data *data)
 		}
 		// if (line[0] == '\n')
 		// 	continue;
-		data->map.map[j++] = ft_strdup(line);
-		// j++;
+		data->map.map[j] = ft_strdup(line);
+		ft_memset(data->map.map[j] + (ft_strlen(data->map.map[j]) - 1), 0, 1); // remove le \n
+		j++;
 	}
 	data->map.map[j] = NULL;
 	for (int z = 0; data->map.map[z]; z++)
 		printf("la line [%d] [%s]\n", z, data->map.map[z]);
+}
+
+int	ft_wall(char c, int flag)
+{
+	if ((flag == TOP || flag == BOT) && c != 49 && c != 32)
+		return (1);
+	return (0);
+}
+
+void	ft_check_map(t_data *data)
+{
+	// data->map.map
+	int		i;
+	char	**map;
+
+	i = 0;
+	map = data->map.map;
+	while (map[0][i] && map[0][++i])
+	{
+		// printf("le char est [%d][%d]\n", ft_wall(map[0][i], TOP), i);
+		if (ft_wall(map[0][i], TOP))
+				ft_errno(MAP_NOT_CLOSE, data);
+	}
+	i = 0;
+	while (map[ft_arrlen(map) - 1][i] && map[ft_arrlen(map) - 1][++i])
+	{
+		printf("le char est [%c][%d][%d]\n", map[ft_arrlen(map) - 1][i], ft_wall(map[ft_arrlen(map) - 1][i], BOT), i);
+		if (ft_wall(map[ft_arrlen(map) - 1][i], BOT))
+				ft_errno(MAP_NOT_CLOSE, data);
+	}
+	// probleme avec la derniere ligne avec le pre;ier/dernier caractere
 }

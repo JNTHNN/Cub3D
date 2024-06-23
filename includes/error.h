@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/23 20:09:10 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/23 23:09:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define STR_MISSING "Error\nMissing data"
 # define STR_NOT_NB "Error\nNot a number in color"
 # define STR_NO_MAP_CONTENT "Error\nNo Map Content, No Party"
+# define STR_MAP_NOT_CLOSE "Error\nMap not closed/surronded by walls"
 # define CUB ".cub"
 # define DOT 46
 # define MAP argv[1]
