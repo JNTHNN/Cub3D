@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 14:04:21 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:41:14 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,58 @@ int	ft_wall(char c, int flag)
 	return (0);
 }
 
+int	ft_position_player(char c)
+{
+	return (c == N || c == S || c == W || c == E);
+}
+
+void	ft_check_player(t_data *data)
+{
+	int		x;
+	int		y;
+	char	**map;
+	
+	map = data->map.map;
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (ft_position_player(map[y][x]))
+			{
+				if (data->map.player != NONE)
+					ft_errno(MANY_PLAYERS, data);
+				else
+					data->map.player = map[y][x];
+			}
+		}
+	}
+	if (data->map.player == NONE)
+		ft_errno(NO_PLAYER, data);
+	else
+		printf("PLAYER IS %c\n", data->map.player);
+}
+
+void	ft_basic_check(t_data *data)
+{
+	int		y;
+	int		x;
+	char	**map;
+	
+	y = -1;
+	map = data->map.map;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] != WALL && map[y][x] != GROUND && map[y][x] != SPACE && map[y][x] != N && map[y][x] != S && map[y][x] != W && map[y][x] != E)
+				ft_errno(WRONG_CHAR, data);
+		}
+	}
+}
+
 void	ft_check_map(t_data *data)
 {
 	// data->map.map
@@ -264,6 +316,7 @@ void	ft_check_map(t_data *data)
 	char	**map;
 
 	x = 0;
+	ft_basic_check(data);
 	map = data->map.map;
 	while (map[0][x] && map[0][++x])
 	{
@@ -278,7 +331,7 @@ void	ft_check_map(t_data *data)
 		if (ft_wall(map[ft_arrlen(map) - 1][x], BOT))
 				ft_errno(MAP_NOT_CLOSE, data);
 	}
-	// probleme avec la derniere ligne avec le pre;ier/dernier caractere
+	// probleme avec la derniere ligne avec le premier/dernier caractere -> DONE
 	y = 0;
 	while (map[y] && map[++y])
 	{
@@ -286,9 +339,7 @@ void	ft_check_map(t_data *data)
 		// printf("le char checker est [%c][%c]\n", map[y][0], map[y][ft_strlen(map[y]) - 1]);
 		printf("checker res [%d][%d] line [%d] strlen [%zu]\n", ft_wall(map[y][0], LEFT), ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT), y, ft_strlen(map[y]));
 		if (ft_wall(map[y][0], LEFT) || ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT))
-		{
 			ft_errno(MAP_NOT_CLOSE, data);
-		}
 	}
 	//	les contours/murs sont checker -> il faut checker les murs dessus/dessous
 	//	trouver la ligne la plus grande -> reverse parcourt la ligne dessus/dessous checker murs si pos actuelle est 0 ou PERSO(N,S,W,E)

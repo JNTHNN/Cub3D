@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/23 23:04:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:43:03 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_NO_MAP_CONTENT, STDERR_FILENO);
 	else if (err_code == MAP_NOT_CLOSE)
 		ft_putendl_fd(STR_MAP_NOT_CLOSE, STDERR_FILENO);
+	else if (err_code == NO_PLAYER)
+		ft_putendl_fd(STR_NO_PLAYER, STDERR_FILENO);
+	else if (err_code == MANY_PLAYERS)
+		ft_putendl_fd(STR_MANY_PLAYERS, STDERR_FILENO);
+	else if (err_code == WRONG_CHAR)
+		ft_putendl_fd(STR_WRONG_CHAR, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_data *data)

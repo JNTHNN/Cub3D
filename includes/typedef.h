@@ -6,12 +6,17 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/23 23:41:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:41:04 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
+
+# define WALL 49
+# define GROUND 48
+# define EMPTY 50
+# define SPACE 32
 
 # include <stdio.h>
 
@@ -21,6 +26,16 @@ typedef struct s_map	t_map;
 typedef struct s_info	t_info;
 typedef enum e_err_code	t_err_code;
 typedef enum e_wall		t_wall;
+typedef enum e_position	t_position;
+
+enum e_position
+{
+	N = 78,
+	E = 69,
+	S = 83,
+	W = 87,
+	NONE = -1
+};
 
 struct s_img
 {
@@ -76,6 +91,7 @@ struct	s_map
 	// map brute
 	char	**map;
 	int		start;
+	t_position	player; // TEST: position du player
 
 };
 
@@ -101,7 +117,10 @@ enum e_err_code
 	MISSING = -10,
 	NOT_NB = -11,
 	NO_MAP_CONTENT = -12,
-	MAP_NOT_CLOSE = -13
+	MAP_NOT_CLOSE = -13,
+	NO_PLAYER = -14,
+	MANY_PLAYERS = -15,
+	WRONG_CHAR = -16
 };
 
 enum e_wall
