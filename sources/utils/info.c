@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 00:46:59 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:04:21 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,8 @@ void	ft_get_map(t_data *data)
 		// if (line[0] == '\n')
 		// 	continue;
 		data->map.map[j] = ft_strdup(line);
-		ft_memset(data->map.map[j] + (ft_strlen(data->map.map[j]) - 1), 0, 1); // remove le \n
+		if (data->map.map[j][(ft_strlen(data->map.map[j]) - 1)] == 10)
+			ft_memset(data->map.map[j] + (ft_strlen(data->map.map[j]) - 1), 0, 1); // remove le \n
 		j++;
 	}
 	data->map.map[j] = NULL;
@@ -250,29 +251,49 @@ int	ft_wall(char c, int flag)
 {
 	if ((flag == TOP || flag == BOT) && c != 49 && c != 32)
 		return (1);
+	if ((flag == LEFT || flag == RIGHT) && c != 49)
+		return (1);
 	return (0);
 }
 
 void	ft_check_map(t_data *data)
 {
 	// data->map.map
-	int		i;
+	int		x;
+	int		y;
 	char	**map;
 
-	i = 0;
+	x = 0;
 	map = data->map.map;
-	while (map[0][i] && map[0][++i])
+	while (map[0][x] && map[0][++x])
 	{
-		// printf("le char est [%d][%d]\n", ft_wall(map[0][i], TOP), i);
-		if (ft_wall(map[0][i], TOP))
+		// printf("le char est [%d][%d]\n", ft_wall(map[0][x], TOP), x);
+		if (ft_wall(map[0][x], TOP))
 				ft_errno(MAP_NOT_CLOSE, data);
 	}
-	i = 0;
-	while (map[ft_arrlen(map) - 1][i] && map[ft_arrlen(map) - 1][++i])
+	x = 0;
+	while (map[ft_arrlen(map) - 1][x] && map[ft_arrlen(map) - 1][++x])
 	{
-		printf("le char est [%c][%d][%d]\n", map[ft_arrlen(map) - 1][i], ft_wall(map[ft_arrlen(map) - 1][i], BOT), i);
-		if (ft_wall(map[ft_arrlen(map) - 1][i], BOT))
+		// printf("le char est [%c][%d][%d]\n", map[ft_arrlen(map) - 1][x], ft_wall(map[ft_arrlen(map) - 1][x], BOT), x);
+		if (ft_wall(map[ft_arrlen(map) - 1][x], BOT))
 				ft_errno(MAP_NOT_CLOSE, data);
 	}
 	// probleme avec la derniere ligne avec le pre;ier/dernier caractere
+	y = 0;
+	while (map[y] && map[++y])
+	{
+		// printf("le char est [%s][%d][%d]\n", map[y], ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT), x);
+		// printf("le char checker est [%c][%c]\n", map[y][0], map[y][ft_strlen(map[y]) - 1]);
+		printf("checker res [%d][%d] line [%d] strlen [%zu]\n", ft_wall(map[y][0], LEFT), ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT), y, ft_strlen(map[y]));
+		if (ft_wall(map[y][0], LEFT) || ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT))
+		{
+			ft_errno(MAP_NOT_CLOSE, data);
+		}
+	}
+	//	les contours/murs sont checker -> il faut checker les murs dessus/dessous
+	//	trouver la ligne la plus grande -> reverse parcourt la ligne dessus/dessous checker murs si pos actuelle est 0 ou PERSO(N,S,W,E)
+	//	pour cela, je dois trouver la ligne la + grande -> reallouer toutes les lignes - grandes && remplacer les espaces par 2
+	//	ligne 3 = 24 - ligne 4 = 30 - ligne 5 = 28 -> ligne [4][30] = 1 OK / ligne [4][29] = 0 ERROR
+	//	faire pareil pour le dbut de ligne (flag LEFT RIGHT)
 }
+

@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:53:43 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/22 20:53:31 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:32:10 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ u_int8_t ft_atoi_color(char *s, int *flag)
 
 	i = 0;
 	sign = 1;
-	// if (ft_space_letter(s[0], 1))
-	// 	i++;
 	nb = 0;
+	if (ft_strlen(s) == 1 && !ft_isdigit(s[0]))
+		return ((*flag)++);
 	while (ft_space_letter(s[i]))
 		i++;
 	if (s[i] == '-' || s[i] == '+')
