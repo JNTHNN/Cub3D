@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 11:26:29 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:22:41 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,24 @@ void	ft_print_struct(t_map *map)
 	
 }
 
-void	ft_init_color(u_color *color)
-{
-	color->s_rgb.r = 254;
-	color->s_rgb.g = 255;
-	color->s_rgb.b = 250;
-}
+// void	ft_init_color(u_color *color)
+// {
+// 	color->s_rgb.r = 254;
+// 	color->s_rgb.g = 255;
+// 	color->s_rgb.b = 250;
+// }
 
 void	ft_fill_map(t_map *map, char *file)
 {
-	u_color	color;
+	// u_color	color;
 
 	// map = (t_map *)malloc(sizeof(t_map)); // quand j'alloue, les valeurs de color deviennent folles ???
 	// if (!map)
 	// 	ft_errno(MEM, NULL);
-	ft_init_color(&color);
+	// ft_init_color(&color);
 	map->file = file;
-	map->floor = color;
-	map->ceiling = color;
+	// map->floor = color;
+	// map->ceiling = color;
 	map->fd = -1;
 	map->start = 0;
 }

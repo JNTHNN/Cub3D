@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 15:43:03 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:32:29 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_check_arg(int argc, char **argv)
 			|| (ft_strlen(file_extension) != 4
 				|| ft_strncmp(file_extension, CUB, ft_strlen(CUB))))
 			ft_errno(WRONG_EXT, NULL);
-		else
-			printf("good = %s\n", file_extension);
+		// else
+		// 	printf("good = %s\n", file_extension); // checker l.extension
 	}
 }
 
