@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/24 15:41:04 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:26:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ struct	s_map
 	char	**map;
 	int		start;
 	t_position	player; // TEST: position du player
-
 };
 
 struct s_data

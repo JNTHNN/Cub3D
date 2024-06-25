@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 15:41:14 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:51:09 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,32 +174,6 @@ void	ft_get_info(t_data *data)
 	// printf("la line sol color = [%s]\n", line);
 }
 
-// void	ft_save_line(t_data *data, char *line)
-// {
-// 	data->map.map =
-// }
-
-// void	ft_get_info_map(t_data *data, char *line)
-// {
-	
-// }
-
-// void	ft_parse_map(t_data *data)
-// {
-// 	char	*line;
-
-// 	// data->map.map = (char **)malloc(sizeof(char *) * )
-// 	while (data->map.fd)
-// 	{
-// 		line = get_next_line(data->map.fd);
-// 		if (!line)
-// 			break ;
-// 		ft_save_map(data, line);
-// 		free(line);
-// 	}
-
-// }
-
 void	ft_get_map(t_data *data)
 {
 	char	*line;
@@ -308,6 +282,23 @@ void	ft_basic_check(t_data *data)
 	}
 }
 
+void	ft_info_size_map(t_data *data, char **map)
+{
+	int	y;
+
+	// ligne la plus longue -> x_size
+	y = -1;
+	while (map[++y])
+	{
+		if (ft_strlen(map[y]) > (size_t)data->map.x_size)
+			data->map.x_size = ft_strlen(map[y]);
+	}
+	printf("laligne ici est [%s]\n", map[y]);
+	while (!map[y] || (!ft_strchr(map[y], WALL) && !ft_strchr(map[y], GROUND)))
+		y--;
+	data->map.y_size = y;
+}
+
 void	ft_check_map(t_data *data)
 {
 	// data->map.map
@@ -318,6 +309,8 @@ void	ft_check_map(t_data *data)
 	x = 0;
 	ft_basic_check(data);
 	map = data->map.map;
+	ft_info_size_map(data, map);
+	printf("le y_size [%d] et x_size [%d]\n", data->map.y_size, data->map.x_size);
 	while (map[0][x] && map[0][++x])
 	{
 		// printf("le char est [%d][%d]\n", ft_wall(map[0][x], TOP), x);
@@ -346,5 +339,9 @@ void	ft_check_map(t_data *data)
 	//	pour cela, je dois trouver la ligne la + grande -> reallouer toutes les lignes - grandes && remplacer les espaces par 2
 	//	ligne 3 = 24 - ligne 4 = 30 - ligne 5 = 28 -> ligne [4][30] = 1 OK / ligne [4][29] = 0 ERROR
 	//	faire pareil pour le dbut de ligne (flag LEFT RIGHT)
+	//		1		2		0
+	//	   101	   101     100
+
+	// connaitre la + grande ligne map->x_size a faire en amont
 }
 

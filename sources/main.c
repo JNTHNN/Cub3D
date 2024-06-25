@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 15:22:26 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:26:29 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_setup_map(t_data *data, char *file)
 	// maintenant on save la map
 	ft_get_map(data);
 	// on a la map, on va checker si elle est valide
-	ft_check_map(data); // pensez a checker si mauvais char dans la map
+	ft_check_map(data); // pensez a checker si mauvais char dans la map -> DONE ft_basic_check
 	ft_check_player(data);
 	
 	
@@ -89,6 +89,7 @@ void	ft_init_map(t_map *map)
 	map->ceiling.s_rgb.g = 0;
 	map->ceiling.s_rgb.r = 0;
 	map->player = NONE;
+	map->x_size = 0;
 }
 
 t_data	*ft_init_data(void)
