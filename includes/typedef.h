@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/25 11:26:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:30:27 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ struct s_data
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
-	t_map	map;
+	t_info	*info;
+	t_img	*img;
+	t_map	*map;
 };
 
 enum e_err_code

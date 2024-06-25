@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:09:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/21 13:24:35 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:15:16 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include "typedef.h"
 # include "error.h"
 # include "utils.h"
-# include "controls.h"
+# include "graphics.h"
+# include "parser.h"
+# include "graphics.h"
 
 // Title of the graphic window
 # define TITLE "Cub3D - By Jojo & Gigi"

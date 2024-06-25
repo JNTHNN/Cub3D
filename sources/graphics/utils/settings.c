@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:22:11 by jgasparo         ###   ########.fr       */
+/*   Created: 2024/06/25 22:10:03 by jgasparo          #+#    #+#             */
+/*   Updated: 2024/06/25 22:11:07 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	ft_mlx_settings(t_data *data)
 {
-	t_data *data;
-	
-	ft_check_arg(argc, argv);
-	data = ft_init_data(MAP);
-	// now le fichier cub est bon
-	ft_setup_map(data);
-	// ft_init_mlx(data);
-	// ft_mlx_settings(data);
+	mlx_hook(data->win, ON_KEYDOWN, 0, ft_handle_key_events, data);
+	mlx_hook(data->win, ON_MOUSEDOWN, 0, ft_handle_mouse_events, data);
+	mlx_hook(data->win, ON_DESTROY, 0, ft_close_window, data);
+	if (mlx_loop_hook(data->mlx, &ft_play, data))
+		return (ft_close_window(data));
+	mlx_loop(data->mlx);
 	return (EXIT_SUCCESS);
 }
-
-// pour la longueur -> calculer chaque ligne avec un buff qui sauve la +longue et change si >*
