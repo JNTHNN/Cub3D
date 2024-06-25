@@ -38,11 +38,8 @@ void	ft_fill_map(t_map *map, char *file)
 {
 	u_color	color;
 
-	// map = (t_map *)malloc(sizeof(t_map)); // quand j'alloue, les valeurs de color deviennent folles ???
-	// if (!map)
-	// 	ft_errno(MEM, NULL);
 	ft_init_color(&color);
-	map->file = file;
+	map->file = ft_strdup(file);
 	map->floor = color;
 	map->ceiling = color;
 	map->fd = -1;
@@ -52,34 +49,37 @@ void	ft_setup_map(t_data *data, char *file)
 {
 
 	//struct init
-	ft_fill_map(&data->map, file);
+	ft_fill_map(data->map, file);
 	// maintenant ouverture de la map
-	data->map.fd = open(data->map.file, O_RDONLY);
-	if (data->map.fd == -1)
+	data->map->fd = open(data->map->file, O_RDONLY);
+	if (data->map->fd == -1)
 		ft_errno(ERR_FD, data);
 	// commencons par les textures / couleurs
 	ft_get_info(data);
 	
 	
-	ft_print_struct(&data->map);
+	ft_print_struct(data->map);
 }
 
-void	ft_init_map(t_map *map)
+void	ft_init_map(t_map **map)
 {
-	map->file = NULL;
-	map->fd = 0;
-	map->floor.s_value = 0;
-	map->floor.s_rgb.b = 0;
-	map->floor.s_rgb.g = 0;
-	map->floor.s_rgb.r = 0;
-	map->texture_north = NULL;
-    map->texture_south = NULL;
-    map->texture_west = NULL;
-    map->texture_east = NULL;
-	map->ceiling.s_value = 0;
-	map->ceiling.s_rgb.b = 0;
-	map->ceiling.s_rgb.g = 0;
-	map->ceiling.s_rgb.r = 0;
+	*map = (t_map *)malloc(sizeof(t_map));
+	if (!*map)
+		ft_errno(MEM, NULL);
+	(*map)->file = NULL;
+	(*map)->fd = 0;
+	(*map)->floor.s_value = 0;
+	(*map)->floor.s_rgb.b = 0;
+	(*map)->floor.s_rgb.g = 0;
+	(*map)->floor.s_rgb.r = 0;
+	(*map)->texture_north = NULL;
+    (*map)->texture_south = NULL;
+    (*map)->texture_west = NULL;
+    (*map)->texture_east = NULL;
+	(*map)->ceiling.s_value = 0;
+	(*map)->ceiling.s_rgb.b = 0;
+	(*map)->ceiling.s_rgb.g = 0;
+	(*map)->ceiling.s_rgb.r = 0;
 }
 
 t_data	*ft_init_data()
@@ -91,11 +91,7 @@ t_data	*ft_init_data()
 		ft_errno(MEM, data);
 	data->mlx = NULL;
     data->win = NULL;
-    data->img.mlx_img = NULL;
-    data->img.addr = NULL;
-    data->img.bpp = 0;
-    data->img.line_len = 0;
-    data->img.endian = 0;
+	data->img = NULL;
 	ft_init_map(&data->map);
 	return (data);
 }

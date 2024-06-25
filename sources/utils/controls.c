@@ -34,7 +34,8 @@ int	ft_handle_mouse_events(int button, int x, int y, t_data *data)
 /* Closes the MLX window and frees all allocated resources */
 int	ft_close_window(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img.mlx_img);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img->mlx_img);
 	mlx_destroy_window(data->mlx, data->win);
 	//free_map(&data->map);
 	free(data->mlx);

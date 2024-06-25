@@ -103,9 +103,9 @@ void	ft_get_info(t_data *data)
 	// checker pour plusieurs lignes -> increment un flag et si >1 == error
 	// si 1 data de info not init -> error
 	ft_init_info(&info);
-	while (data->map.fd)
+	while (data->map->fd)
 	{
-		line = get_next_line(data->map.fd);
+		line = get_next_line(data->map->fd);
 		if (!line || !ft_strncmp(line, "1", ft_strlen(line)))
 			break ;
 		ft_check_data(line, &info);
@@ -124,9 +124,9 @@ void	ft_get_info(t_data *data)
 			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		data->map.floor.s_rgb.r = ft_atoi(rgb[0] + 1);
-		data->map.floor.s_rgb.g = ft_atoi(rgb[1]);
-		data->map.floor.s_rgb.b = ft_atoi(rgb[2]);
+		data->map->floor.s_rgb.r = ft_atoi(rgb[0] + 1);
+		data->map->floor.s_rgb.g = ft_atoi(rgb[1]);
+		data->map->floor.s_rgb.b = ft_atoi(rgb[2]);
 		// checker les datas -> error | soit refaire un atoi qui va introduire les datas suivant le flag (R|G|B) + nombre compris entre 0 et 255
 		ft_free_array(rgb);
 		// ceiling
@@ -135,12 +135,12 @@ void	ft_get_info(t_data *data)
 			ft_errno(ERR_COLOR, data);
 		for(int j = 0 ; rgb[j]; j++)
 			printf("[%i] [%s]\n", j, rgb[j]);
-		data->map.ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);
-		data->map.ceiling.s_rgb.g = ft_atoi(rgb[1]);
-		data->map.ceiling.s_rgb.b = ft_atoi(rgb[2]);
+		data->map->ceiling.s_rgb.r = ft_atoi(rgb[0] + 1);
+		data->map->ceiling.s_rgb.g = ft_atoi(rgb[1]);
+		data->map->ceiling.s_rgb.b = ft_atoi(rgb[2]);
 		ft_free_array(rgb);
 	}
-	ft_get_info_texture(&data->map, &info);
+	ft_get_info_texture(data->map, &info);
 	free(line);
 	// printf("la line sol color = [%s]\n", line);
 }

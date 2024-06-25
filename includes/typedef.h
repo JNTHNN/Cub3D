@@ -79,8 +79,8 @@ struct s_data
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
-	t_map	map;
+	t_img	*img;
+	t_map	*map;
 };
 
 enum e_err_code
