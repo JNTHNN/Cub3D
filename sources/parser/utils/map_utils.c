@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 00:30:38 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:30:15 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_wall(char c, int flag)
 	return (0);
 }
 
-int	ft_position_player(char c)
+int	ft_orientation_player(char c)
 {
 	return (c == N || c == S || c == W || c == E);
 }

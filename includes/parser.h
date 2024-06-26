@@ -35,7 +35,7 @@ void	ft_check_data(char *line, t_data *data, int *flag);
 
 /*  utils/map_utils.c   */
 int	    ft_wall(char c, int flag);
-int	    ft_position_player(char c);
+int	    ft_orientation_player(char c);
 void	ft_get_size_map(t_data *data, char **map);
 void	ft_basic_check(t_data *data);
 void	ft_search_map_content(t_data *data);

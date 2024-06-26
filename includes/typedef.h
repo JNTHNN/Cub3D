@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/25 22:30:27 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:37:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,27 @@ typedef struct s_data	t_data;
 typedef struct s_img	t_img;
 typedef struct s_map	t_map;
 typedef struct s_info	t_info;
+typedef struct s_player	t_player;
 typedef enum e_err_code	t_err_code;
 typedef enum e_wall		t_wall;
-typedef enum e_position	t_position;
+typedef enum e_orientation	t_orientation;
 
-enum e_position
+
+
+
+enum e_orientation
 {
 	N = 78,
 	E = 69,
 	S = 83,
 	W = 87,
 	NONE = -1
+};
+
+struct s_player
+{
+	int				position[2];
+	t_orientation	orientation;
 };
 
 struct s_img
@@ -91,7 +101,7 @@ struct	s_map
 	// map brute
 	char	**map;
 	int		start;
-	t_position	player; // TEST: position du player
+	t_player	player; // TEST: position du player
 };
 
 struct s_data

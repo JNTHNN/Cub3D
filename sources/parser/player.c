@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 00:34:17 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:40:30 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,21 @@ void	ft_check_player(t_data *data)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (ft_position_player(map[y][x]))
+			if (ft_orientation_player(map[y][x]))
 			{
-				if (data->map->player != NONE)
+				if (data->map->player.orientation != NONE)
 					ft_errno(MANY_PLAYERS, data);
 				else
-					data->map->player = map[y][x];
+				{
+					data->map->player.orientation = map[y][x];
+					data->map->player.position[0] = y;
+					data->map->player.position[1] = x;
+				}
 			}
 		}
 	}
-	if (data->map->player == NONE)
+	if (data->map->player.orientation == NONE)
 		ft_errno(NO_PLAYER, data);
 	else
-		printf("PLAYER IS %c\n", data->map->player);
+		printf("PLAYER IS %c\n", data->map->player.orientation);
 }

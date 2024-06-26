@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:32:27 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:41:20 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ t_map	*ft_init_map(t_data *data, char *file)
 	map->ceiling.s_rgb.b = 0;
 	map->ceiling.s_rgb.g = 0;
 	map->ceiling.s_rgb.r = 0;
-	map->player = NONE;
+	map->player.orientation = NONE;
+    map->player.position[0] = -1;
+    map->player.position[1] = -1;
 	map->x_size = 0;
     map->start = 0;
     map->file = file;
