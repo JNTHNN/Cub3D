@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/26 10:37:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:22:22 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ typedef enum e_err_code	t_err_code;
 typedef enum e_wall		t_wall;
 typedef enum e_orientation	t_orientation;
 
-
-
-
 enum e_orientation
 {
 	N = 78,
@@ -43,7 +40,7 @@ enum e_orientation
 
 struct s_player
 {
-	int				position[2];
+	double			position[2];
 	t_orientation	orientation;
 };
 
@@ -122,8 +119,6 @@ enum e_err_code
 	ERR_FD = -5,
 	DUP_INFO = -6,
 	ERR_COLOR = -7,
-	MLX = -8,
-	WIN = -9,
 	MISSING = -10,
 	NOT_NB = -11,
 	NO_MAP_CONTENT = -12,
@@ -131,6 +126,13 @@ enum e_err_code
 	NO_PLAYER = -14,
 	MANY_PLAYERS = -15,
 	WRONG_CHAR = -16
+};
+
+enum e_mlx_err_code
+{
+	MLX = -400,
+	WIN = -401,
+	IMG = -402
 };
 
 enum e_wall

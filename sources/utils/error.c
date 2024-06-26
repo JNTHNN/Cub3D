@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 19:32:29 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:32:15 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,21 @@ void	ft_check_arg(int argc, char **argv)
 	}
 }
 
+static void ft_print_mlx_error(int err_code)
+{
+	if (err_code == MLX)
+		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
+	else if (err_code == WIN)
+		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
+	else if (err_code == IMG)
+		ft_putendl_fd(STR_ERR_IMG, STDERR_FILENO);
+}
+
 static void	ft_print_error(int err_code)
 {
-	if (err_code == MEM)
+	if (err_code <= MLX)
+		ft_print_mlx_error(err_code);
+	else if (err_code == MEM)
 		ft_putendl_fd(STR_MEM, STDERR_FILENO);
 	else if (err_code == TOO_MANY)
 		ft_putendl_fd(STR_TOO_MANY, STDERR_FILENO);
@@ -48,10 +60,6 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_DUP_INFO, STDERR_FILENO);
 	else if (err_code == ERR_COLOR)
 		ft_putendl_fd(STR_ERR_COLOR, STDERR_FILENO);
-	else if (err_code == MLX)
-		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
-	else if (err_code == WIN)
-		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
 	else if (err_code == MISSING)
 		ft_putendl_fd(STR_MISSING, STDERR_FILENO);
 	else if (err_code == NOT_NB)

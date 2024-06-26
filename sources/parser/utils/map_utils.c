@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:30:15 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:57:42 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_get_size_map(t_data *data, char **map)
 	printf("laligne ici est [%s]\n", map[y]);
 	while (!map[y] || (!ft_strchr(map[y], WALL) && !ft_strchr(map[y], GROUND)))
 		y--;
-	data->map->y_size = y;
+	data->map->y_size = y + 1;
 }
 
 void	ft_basic_check(t_data *data)

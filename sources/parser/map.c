@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:05:49 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:51:44 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_get_map(t_data *data)
 {
 	char	*line;
-	int		size = 0;
+	int		size = 1;
 	int		i = 0;
 	int		j = 0;
 
@@ -37,7 +37,7 @@ void	ft_get_map(t_data *data)
 	close(data->map->fd); // a voir si je re-init le fd a -1 car il va etre a 3 la
 	data->map->map = (char **)malloc(sizeof(char *) * (size + 1));
 	data->map->fd = open(data->map->file, O_RDONLY);
-	while (data->map->fd)
+	while (j < size)
 	{
 		line = get_next_line(data->map->fd);
 		if (!line)

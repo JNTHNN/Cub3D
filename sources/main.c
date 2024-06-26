@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:22:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:36:55 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int argc, char **argv)
 	data = ft_init_data(MAP);
 	// now le fichier cub est bon
 	ft_setup_map(data);
-	// ft_init_mlx(data);
-	// ft_mlx_settings(data);
+	ft_init_mlx(data);
+	ft_mlx_settings(data);
 	return (EXIT_SUCCESS);
 }
 

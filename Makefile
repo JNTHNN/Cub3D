@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
+#    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/26 00:34:24 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/06/26 16:50:56 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_FILES			:= main
 UTILS_SRC			:= error free  size  atoi init temp
 PARSER_SRC			:= parsing info colors textures map player
 PARSER_UTILS_SRC	:= map_utils
-GRAPHICS_SRC		:= windows controls 
+GRAPHICS_SRC		:= windows controls blur
 GRAPHICS_UTILS_SRC	:= init settings
 
 
