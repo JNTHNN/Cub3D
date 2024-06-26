@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:05:49 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:33:52 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,21 @@ void	ft_get_map(t_data *data)
 	int		i = 0;
 	int		j = 0;
 
+	// ici je dois skipper les lignes vides du fichier cub pour atteindre le debut de la map
 	while (data->map->fd)
 	{
 		line = get_next_line(data->map->fd);
+		if (!ft_strchr(line, WALL) && !ft_strchr(line, GROUND))
+			continue;
+		if (!line || size < 2)
+			printf("ICI line [%s]\n", line);
 		if (!line)
 		{
 			if (!line && !size)
 				ft_errno(NO_MAP_CONTENT, data);
 			break ;
 		}
+		// printf("strlen [%zu] size [%d] str [%s]\n", ft_strlen(line), size, line);
 		// printf("la reprise [%s]\n", line);
 		// break ;
 		size++;

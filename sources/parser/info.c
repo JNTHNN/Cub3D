@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 00:34:01 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:24:06 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ void	ft_get_info(t_data *data)
 // 	int		y;
 // 	int		x;
 	
-// 	printf("LA SIZE = y[%d] x[%d]\n", data->map.y_size, data->map.x_size);
-// 	map = data->map.map;
-// 	new_map = (char **)malloc(sizeof(char *) * (data->map.y_size + 1));
+// 	printf("LA SIZE = y[%d] x[%d]\n", data->map->y_size, data->map->x_size);
+// 	map = data->map->map;
+// 	new_map = (char **)malloc(sizeof(char *) * (data->map->y_size + 1));
 // 	if (!new_map)
 // 		printf("error\n");
 // 	y = -1;
-// 	while (++y < data->map.y_size)
+// 	while (++y < data->map->y_size)
 // 	{
 // 		x = -1;
-// 		new_map[y] = (char *)malloc(sizeof(char) * (data->map.x_size + 1));
-// 		ft_memset(new_map[y], '2', data->map.x_size + 1);
-// 		new_map[y][data->map.x_size + 1] = '\0';
+// 		new_map[y] = (char *)malloc(sizeof(char) * (data->map->x_size + 1));
+// 		ft_memset(new_map[y], '2', data->map->x_size + 1);
+// 		new_map[y][data->map->x_size + 1] = '\0';
 // 		// ft_memcpy(new_map[y], map[y], data->map.y_size + 1);
 // 		printf("NEW AV [%c]\n", new_map[y][34]);
-// 		while (++x < data->map.x_size)
+// 		while (++x < data->map->x_size)
 // 		{
 
 // 			if (map[y][x] == SPACE || !map[y][x])
@@ -93,7 +93,7 @@ void	ft_get_info(t_data *data)
 // 	for(int u = 0; new_map[u]; u++)
 // 		printf("%s\n", new_map[u]);
 // 	// ft_free_array(data->map.map);
-// 	data->map.map = new_map;
+// 	data->map->map = new_map;
 // }
 
 void	ft_check_map(t_data *data)
@@ -106,15 +106,11 @@ void	ft_check_map(t_data *data)
 	x = 0;
 	ft_basic_check(data);
 	map = data->map->map;
-	ft_get_size_map(data, map);
+	ft_get_size_map(data);
 	printf("le y_size [%d] et x_size [%d]\n", data->map->y_size, data->map->x_size);
-	while (map[0][x] && map[0][++x])
-	{
-		// printf("le char est [%d][%d]\n", ft_wall(map[0][x], TOP), x);
-		if (ft_wall(map[0][x], TOP))
-				ft_errno(MAP_NOT_CLOSE, data);
-	}
+	ft_check_walls(data);
 	x = 0;
+	printf("la ligne en question [%s]\n", map[ft_arrlen(map) - 1]);
 	while (map[ft_arrlen(map) - 1][x] && map[ft_arrlen(map) - 1][++x])
 	{
 		// printf("le char est [%c][%d][%d]\n", map[ft_arrlen(map) - 1][x], ft_wall(map[ft_arrlen(map) - 1][x], BOT), x);

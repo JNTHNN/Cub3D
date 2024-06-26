@@ -78,4 +78,7 @@ les lignes suivantes doivent commencer/finir par 1
 Si la ligne est plus grande que prev et suiv -> verifier aux niveaux des 0 si au dessus/dessous il y a des murs ou 0
 Remplacer les vides par 2 pour differencier avec les murs
 
+
+## Liens utiles
 https://harm-smits.github.io/42docs/projects/cub3d
+http://www.proftnj.com/RGB3.htm

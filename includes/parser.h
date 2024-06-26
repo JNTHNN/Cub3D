@@ -33,10 +33,13 @@ void	ft_check_player(t_data *data);
 /*  info.c  */
 void	ft_check_data(char *line, t_data *data, int *flag);
 
+/*	wall.c	*/
+void	ft_check_walls(t_data *data);
+
 /*  utils/map_utils.c   */
 int	    ft_wall(char c, int flag);
 int	    ft_orientation_player(char c);
-void	ft_get_size_map(t_data *data, char **map);
+void	ft_get_size_map(t_data *data);
 void	ft_basic_check(t_data *data);
 void	ft_search_map_content(t_data *data);
 

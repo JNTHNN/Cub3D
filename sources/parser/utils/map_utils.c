@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:30:15 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:36:07 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,23 @@ int	ft_orientation_player(char c)
 	return (c == N || c == S || c == W || c == E);
 }
 
-void	ft_get_size_map(t_data *data, char **map)
+void	ft_get_size_map(t_data *data)
 {
-	int	y;
+	int		y;
+	char	**map;
 
 	// ligne la plus longue -> x_size
 	y = -1;
+	map = data->map->map;
 	while (map[++y])
 	{
 		if (ft_strlen(map[y]) > (size_t)data->map->x_size)
-			data->map->x_size = ft_strlen(map[y]);
+			data->map->x_size = ft_strlen(map[y]) + 1; // a corriger
 	}
 	printf("laligne ici est [%s]\n", map[y]);
 	while (!map[y] || (!ft_strchr(map[y], WALL) && !ft_strchr(map[y], GROUND)))
 		y--;
-	data->map->y_size = y;
+	data->map->y_size = y + 1; // a corriger
 }
 
 void	ft_basic_check(t_data *data)
@@ -73,7 +75,7 @@ void	ft_search_map_content(t_data *data)
 		// mettre un compteur pour le start de la map | A REFAIRE
 		data->map->start++;
 		line = get_next_line(data->map->fd);
-		if (!line || !ft_strncmp(line, "1", 1)) // pb si la 1ere ligne de la map commence par " 1"
+		if (!line || !ft_strncmp(line, "1", 1) || flag == 6) // pb si la 1ere ligne de la map commence par " 1" | delire condition avec le flag pour 
 			break ;
 		ft_check_data(line, data, &flag);
 		free(line);
