@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 17:24:07 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:34:22 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_print_struct(t_map *map)
 	printf("TEXTURE SOUTH : [%s]\n", map->texture_south);
 	printf("TEXTURE WEST : [%s]\n", map->texture_west);
 	printf("TEXTURE EAST : [%s]\n", map->texture_east);
-	printf("PLAYER POSITION [%f][%f] ORIENTATION [%c]\n", map->player.position[0], map->player.position[1], map->player.orientation);
+	printf("PLAYER POSITION [%f][%f] ORIENTATION [%c] AND DIRECTION [%f][%f]\n", map->player.position[0], map->player.position[1], map->player.orientation, map->player.direction[0], map->player.direction[1]);
 	// printf("DEBUT DE LA MAP : [%p]\n", map->start);
 	// printf("C'EST QUOI [%s]\n", "�");
 	printf("---------------------\n");

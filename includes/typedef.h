@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/26 17:22:22 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:12:12 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ enum e_orientation
 	E = 69,
 	S = 83,
 	W = 87,
-	NONE = -1
+	NONE = -1,
+	UNSET = 2
 };
 
 struct s_player
 {
 	double			position[2];
+	double			direction[2];
+	double			pov[2];
 	t_orientation	orientation;
 };
 

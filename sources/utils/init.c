@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 12:17:25 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:12:58 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ t_data	*ft_init_data(char *file)
 	return (data);
 }
 
+void	ft_init_player(t_player *player)
+{
+	player->position[0] = NONE;
+	player->position[1] = NONE;
+	player->direction[0] = UNSET;
+	player->direction[1] = UNSET;
+	player->pov[0] = UNSET;
+	player->pov[1] = UNSET;
+	player->orientation = NONE;
+}
+
 t_map	*ft_init_map(t_data *data, char *file)
 {
     t_map   *map;
@@ -71,9 +82,7 @@ t_map	*ft_init_map(t_data *data, char *file)
 	map->ceiling.s_rgb.b = 0;
 	map->ceiling.s_rgb.g = 0;
 	map->ceiling.s_rgb.r = 0;
-	map->player.orientation = NONE;
-    map->player.position[0] = -1;
-    map->player.position[1] = -1;
+	ft_init_player(&map->player);
 	map->x_size = 0;
     map->start = 0;
     map->file = file;

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 13:57:42 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:01:21 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int	ft_wall(char c, int flag)
 	if ((flag == LEFT || flag == RIGHT) && c != 49)
 		return (1);
 	return (0);
-}
-
-int	ft_orientation_player(char c)
-{
-	return (c == N || c == S || c == W || c == E);
 }
 
 void	ft_get_size_map(t_data *data, char **map)

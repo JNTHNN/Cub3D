@@ -3,14 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:40:30 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:16:36 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	ft_orientation_player(char c, t_player *player)
+{
+	if (c == N)
+	{
+		player->direction[0] = 0;
+		player->direction[1] = -1;
+		player->pov[0] = 0.66;
+		player->pov[1] = 0;
+	}
+	else if (c == S)
+	{
+		player->direction[0] = 0;
+		player->direction[1] = 1;
+		player->pov[0] = -0.66;
+		player->pov[1] = 0;
+	}
+	else if (c == E)
+	{
+		player->direction[0] = 1;
+		player->direction[1] = 0;
+		player->pov[0] = 0;
+		player->pov[1] = -0.66;
+	}
+	else if (c == W)
+	{
+		player->direction[0] = -1;
+		player->direction[1] = 0;
+		player->pov[0] = 0;
+		player->pov[1] = 0.66;
+	}
+	else 
+		return (false);
+	return (true);
+}
 
 void	ft_check_player(t_data *data)
 {
@@ -25,7 +60,7 @@ void	ft_check_player(t_data *data)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (ft_orientation_player(map[y][x]))
+			if (ft_orientation_player(map[y][x], &data->map->player))
 			{
 				if (data->map->player.orientation != NONE)
 					ft_errno(MANY_PLAYERS, data);
