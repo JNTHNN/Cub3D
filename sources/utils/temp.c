@@ -6,11 +6,36 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/27 07:58:48 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:10:07 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void ft_raw_map_to_mtx(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->mtx = (int **)malloc(data->map->y_size * sizeof(int *));
+	if (!data->mtx)
+		ft_errno(MEM, data);
+	i = 0;
+	while (data->map->map[i])
+	{
+		data->mtx[i] = (int *)malloc(data->map->x_size * sizeof(int));
+		j = 0;
+		while (data->map->map[i][j])
+		{
+			if (ft_isdigit(data->map->map[i][j]))
+				data->mtx[i][j] = data->map->map[i][j] - '0';
+			else
+				data->mtx[i][j] = 9;
+			j++;
+		}
+		i++;
+	}
+}	
 
 
 void	ft_print_struct(t_map *map)
@@ -36,5 +61,7 @@ void	ft_print_struct(t_map *map)
 		i++;
 		printf("\n");
 	}
+	printf("X_SIZE %i, Y_SIZE %i\n", map->x_size, map->y_size);
+	
 	printf("---------------------\n");
 }

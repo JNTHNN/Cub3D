@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 17:00:44 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:28:48 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,10 @@ void	ft_raycasting(t_data *data)
 				side = 1;
 			}
 			// Le rayon a-t-il touché un mur ?
-			printf("VALEUR = %c", data->map->map[cell[Y]][cell[X]]);
-			if (ft_atoi(&data->map->map[cell[Y]][cell[X]]) > 0)
+			if (data->mtx[cell[Y]][cell[X]] > 0)
 			{
 				hit = 1;
+				printf("VALEUR = %i et HIT == %i\n", data->mtx[cell[Y]][cell[X]], hit);
 			}
 		}
 		// Correction de la distance perpendiculaire pour corriger la perspective
@@ -177,7 +177,7 @@ int	ft_create_img(t_data *data)
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 		&img->line_len, &img->endian);
 	ft_draw_frame(img);
-	//ft_raycasting(data);
+	ft_raycasting(data);
 	//ft_apply_blur(img, 5);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->mlx_img, 0, 0);
 	return (EXIT_SUCCESS);

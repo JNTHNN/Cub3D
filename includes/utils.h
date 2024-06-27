@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:17:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:03:02 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_data	    *ft_init_data(char *file);
 
 /*  temp.c  */
 void	    ft_print_struct(t_map *map);
+void		ft_raw_map_to_mtx(t_data *data);
 
 #endif
