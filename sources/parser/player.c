@@ -6,42 +6,30 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 22:16:36 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:01:23 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	ft_set_player_attributes(t_player *player, double dirX, double dirY, double povX, double povY)
+{
+		player->direction[0] = dirX;
+		player->direction[1] = dirY;
+		player->pov[0] = povX;
+		player->pov[1] = povY;
+}
+
 bool	ft_orientation_player(char c, t_player *player)
 {
 	if (c == N)
-	{
-		player->direction[0] = 0;
-		player->direction[1] = -1;
-		player->pov[0] = 0.66;
-		player->pov[1] = 0;
-	}
+		ft_set_player_attributes(player, 0, -1, 0.66, 0);
 	else if (c == S)
-	{
-		player->direction[0] = 0;
-		player->direction[1] = 1;
-		player->pov[0] = -0.66;
-		player->pov[1] = 0;
-	}
+		ft_set_player_attributes(player, 0, 1, -0.66, 0);
 	else if (c == E)
-	{
-		player->direction[0] = 1;
-		player->direction[1] = 0;
-		player->pov[0] = 0;
-		player->pov[1] = -0.66;
-	}
+		ft_set_player_attributes(player, 1, 0, 0, -0.66);
 	else if (c == W)
-	{
-		player->direction[0] = -1;
-		player->direction[1] = 0;
-		player->pov[0] = 0;
-		player->pov[1] = 0.66;
-	}
+		ft_set_player_attributes(player, -1, 0, 0, 0.66);
 	else 
 		return (false);
 	return (true);

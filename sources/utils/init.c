@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 22:12:58 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/27 07:44:57 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_info	*ft_init_info(t_data *data)
 {
-    t_info  *info;
+    t_info 	*info;
 
     info = (t_info *)malloc(sizeof(t_info));
     if (info == NULL)
