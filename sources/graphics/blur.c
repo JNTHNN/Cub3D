@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   blur.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 11:36:55 by gdelvign         ###   ########.fr       */
+/*   Created: 2024/06/26 16:48:43 by gdelvign          #+#    #+#             */
+/*   Updated: 2024/06/26 17:04:36 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	ft_img_pix_get(t_img *img, int x, int y)
 {
-	t_data *data;
-	
-	ft_check_arg(argc, argv);
-	data = ft_init_data(MAP);
-	// now le fichier cub est bon
-	ft_setup_map(data);
-	ft_init_mlx(data);
-	ft_mlx_settings(data);
-	return (EXIT_SUCCESS);
+	char	*pixel;
+	int		color;
+
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	color = *(unsigned int*)pixel;
+	return (color);
 }
 
-// pour la longueur -> calculer chaque ligne avec un buff qui sauve la +longue et change si >*
+// void	ft_apply_blur(t_img *img, int radius)
+// {
+
+// }

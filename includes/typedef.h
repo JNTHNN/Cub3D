@@ -6,12 +6,17 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/21 13:23:14 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:12:12 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
+
+# define WALL 49
+# define GROUND 48
+# define EMPTY 50
+# define SPACE 32
 
 # include <stdio.h>
 
@@ -19,7 +24,28 @@ typedef struct s_data	t_data;
 typedef struct s_img	t_img;
 typedef struct s_map	t_map;
 typedef struct s_info	t_info;
+typedef struct s_player	t_player;
 typedef enum e_err_code	t_err_code;
+typedef enum e_wall		t_wall;
+typedef enum e_orientation	t_orientation;
+
+enum e_orientation
+{
+	N = 78,
+	E = 69,
+	S = 83,
+	W = 87,
+	NONE = -1,
+	UNSET = 2
+};
+
+struct s_player
+{
+	double			position[2];
+	double			direction[2];
+	double			pov[2];
+	t_orientation	orientation;
+};
 
 struct s_img
 {
@@ -72,13 +98,17 @@ struct	s_map
 	int		y_size;
 	// longueur / abscisse / x
 	int		x_size;
-
+	// map brute
+	char	**map;
+	int		start;
+	t_player	player; // TEST: position du player
 };
 
 struct s_data
 {
 	void	*mlx;
 	void	*win;
+	t_info	*info;
 	t_img	*img;
 	t_map	*map;
 };
@@ -92,8 +122,28 @@ enum e_err_code
 	ERR_FD = -5,
 	DUP_INFO = -6,
 	ERR_COLOR = -7,
-	MLX = -8,
-	WIN = -9,
+	MISSING = -10,
+	NOT_NB = -11,
+	NO_MAP_CONTENT = -12,
+	MAP_NOT_CLOSE = -13,
+	NO_PLAYER = -14,
+	MANY_PLAYERS = -15,
+	WRONG_CHAR = -16
+};
+
+enum e_mlx_err_code
+{
+	MLX = -400,
+	WIN = -401,
+	IMG = -402
+};
+
+enum e_wall
+{
+	TOP,
+	BOT,
+	LEFT,
+	RIGHT
 };
 
 #endif

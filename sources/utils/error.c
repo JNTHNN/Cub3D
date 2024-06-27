@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/21 12:59:37 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:32:15 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,26 @@ void	ft_check_arg(int argc, char **argv)
 			|| (ft_strlen(file_extension) != 4
 				|| ft_strncmp(file_extension, CUB, ft_strlen(CUB))))
 			ft_errno(WRONG_EXT, NULL);
-		else
-			printf("good = %s\n", file_extension);
+		// else
+		// 	printf("good = %s\n", file_extension); // checker l.extension
 	}
+}
+
+static void ft_print_mlx_error(int err_code)
+{
+	if (err_code == MLX)
+		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
+	else if (err_code == WIN)
+		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
+	else if (err_code == IMG)
+		ft_putendl_fd(STR_ERR_IMG, STDERR_FILENO);
 }
 
 static void	ft_print_error(int err_code)
 {
-	if (err_code == MEM)
+	if (err_code <= MLX)
+		ft_print_mlx_error(err_code);
+	else if (err_code == MEM)
 		ft_putendl_fd(STR_MEM, STDERR_FILENO);
 	else if (err_code == TOO_MANY)
 		ft_putendl_fd(STR_TOO_MANY, STDERR_FILENO);
@@ -48,10 +60,20 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_DUP_INFO, STDERR_FILENO);
 	else if (err_code == ERR_COLOR)
 		ft_putendl_fd(STR_ERR_COLOR, STDERR_FILENO);
-	else if (err_code == MLX)
-		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
-	else if (err_code == WIN)
-		ft_putendl_fd(STR_ERR_WIN, STDERR_FILENO);
+	else if (err_code == MISSING)
+		ft_putendl_fd(STR_MISSING, STDERR_FILENO);
+	else if (err_code == NOT_NB)
+		ft_putendl_fd(STR_NOT_NB, STDERR_FILENO);
+	else if (err_code == NO_MAP_CONTENT)
+		ft_putendl_fd(STR_NO_MAP_CONTENT, STDERR_FILENO);
+	else if (err_code == MAP_NOT_CLOSE)
+		ft_putendl_fd(STR_MAP_NOT_CLOSE, STDERR_FILENO);
+	else if (err_code == NO_PLAYER)
+		ft_putendl_fd(STR_NO_PLAYER, STDERR_FILENO);
+	else if (err_code == MANY_PLAYERS)
+		ft_putendl_fd(STR_MANY_PLAYERS, STDERR_FILENO);
+	else if (err_code == WRONG_CHAR)
+		ft_putendl_fd(STR_WRONG_CHAR, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_data *data)

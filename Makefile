@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/21 13:30:50 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/06/26 16:50:56 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,19 @@ MLX   			:= libmlx.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
-UTILS_SRC			:= error free info size controls
-PARSER_SRC			:= 
-PARSER_UTILS_SRC	:= 
+UTILS_SRC			:= error free  size  atoi init temp
+PARSER_SRC			:= parsing info colors textures map player
+PARSER_UTILS_SRC	:= map_utils
+GRAPHICS_SRC		:= windows controls blur
+GRAPHICS_UTILS_SRC	:= init settings
 
 
 SRC				:= $(addprefix $(SRC_DIR),$(addsuffix .c, $(SRC_FILES)))
 SRC 			+= $(addprefix $(SRC_DIR)parser/, $(addsuffix .c, $(PARSER_SRC)))
-SRC				+= $(addprefix $(SRC_DIR)parser/parser_utils/, $(addsuffix .c, $(PARSER_UTILS_SRC)))
+SRC				+= $(addprefix $(SRC_DIR)parser/utils/, $(addsuffix .c, $(PARSER_UTILS_SRC)))
 SRC				+= $(addprefix $(SRC_DIR)utils/, $(addsuffix .c, $(UTILS_SRC)))
+SRC				+= $(addprefix $(SRC_DIR)graphics/, $(addsuffix .c, $(GRAPHICS_SRC)))
+SRC				+= $(addprefix $(SRC_DIR)graphics/utils/, $(addsuffix .c, $(GRAPHICS_UTILS_SRC)))
 
 
 
