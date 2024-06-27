@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
-	
+	t_data	*data;
+
 	ft_check_arg(argc, argv);
 	data = ft_init_data(MAP);
 	// now le fichier cub est bon

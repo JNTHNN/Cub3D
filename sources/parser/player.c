@@ -12,35 +12,53 @@
 
 #include "cub3d.h"
 
-void	ft_set_player_attributes(t_player *player, double dirX, double dirY, double povX, double povY)
+
+void	ft_cpy_attr(double dest[2], double src[2])
 {
-		player->direction[0] = dirX;
-		player->direction[1] = dirY;
-		player->pov[0] = povX;
-		player->pov[1] = povY;
+	dest[0] = src[0];
+	dest[1] = src[1];
 }
 
-bool	ft_orientation_player(char c, t_player *player)
+void	ft_set_player_attributes(t_data *data, char orientation, int x, int y)
 {
-	if (c == N)
-		ft_set_player_attributes(player, 0, -1, 0.66, 0);
-	else if (c == S)
-		ft_set_player_attributes(player, 0, 1, -0.66, 0);
-	else if (c == E)
-		ft_set_player_attributes(player, 1, 0, 0, -0.66);
-	else if (c == W)
-		ft_set_player_attributes(player, -1, 0, 0, 0.66);
-	else 
-		return (false);
-	return (true);
+	data->map->player.orientation = orientation;
+	data->map->player.position[Y] = y;
+	data->map->player.position[X] = x;
+	if (orientation == N)
+	{
+		ft_cpy_attr(data->map->player.direction, data->o_attributes.north.dir);
+		ft_cpy_attr(data->map->player.pov, data->o_attributes.north.pov);
+	}
+	else if (orientation == S)
+	{
+		ft_cpy_attr(data->map->player.direction, data->o_attributes.south.dir);
+		ft_cpy_attr(data->map->player.pov, data->o_attributes.south.pov);
+	}
+	else if (orientation == E)
+	{
+		ft_cpy_attr(data->map->player.direction, data->o_attributes.east.dir);
+		ft_cpy_attr(data->map->player.pov, data->o_attributes.east.pov);
+	}
+	else
+	{
+		ft_cpy_attr(data->map->player.direction, data->o_attributes.west.dir);
+		ft_cpy_attr(data->map->player.pov, data->o_attributes.west.pov);
+	}
+}
+
+bool	ft_check_orientation(char c)
+{
+	if (c == N || c == S || c == E || c == W)
+		return (true);
+	return (false);
 }
 
 void	ft_check_player(t_data *data)
 {
-	int		x;
-	int		y;
-	char	**map;
-	
+	int			x;
+	int			y;
+	char		**map;
+
 	map = data->map->map;
 	y = -1;
 	while (map[++y])
@@ -48,21 +66,16 @@ void	ft_check_player(t_data *data)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (ft_orientation_player(map[y][x], &data->map->player))
+			if (ft_check_orientation(map[y][x]))
 			{
 				if (data->map->player.orientation != NONE)
 					ft_errno(MANY_PLAYERS, data);
 				else
-				{
-					data->map->player.orientation = map[y][x];
-					data->map->player.position[0] = y;
-					data->map->player.position[1] = x;
-				}
+					ft_set_player_attributes(data, map[y][x], x, y);
 			}
 		}
 	}
 	if (data->map->player.orientation == NONE)
 		ft_errno(NO_PLAYER, data);
-	else
-		printf("PLAYER IS %c\n", data->map->player.orientation);
+	printf("PLAYER IS %c\n", data->map->player.orientation);
 }

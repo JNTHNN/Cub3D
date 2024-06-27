@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <fcntl.h>
+# include <math.h> 
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include "typedef.h"

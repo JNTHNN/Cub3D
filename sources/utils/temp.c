@@ -27,5 +27,14 @@ void	ft_print_struct(t_map *map)
 	printf("PLAYER POSITION [%f][%f] ORIENTATION [%c] \n AND DIRECTION [%f][%f] AND POV [%f][%f]\n", map->player.position[0], map->player.position[1], map->player.orientation, map->player.direction[0], map->player.direction[1], map->player.pov[0], map->player.pov[1]);
 	// printf("DEBUT DE LA MAP : [%p]\n", map->start);
 	// printf("C'EST QUOI [%s]\n", "�");
+	printf("LA MAP\n");
+	int i = 0;
+	while (map->map[i])
+	{
+		for (int j = 0; map->map[i][j]; j++)
+			printf("%c", map->map[i][j]);
+		i++;
+		printf("\n");
+	}
 	printf("---------------------\n");
 }
