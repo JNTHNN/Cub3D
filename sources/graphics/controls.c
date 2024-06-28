@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/26 12:01:24 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:42:25 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,33 @@ int	ft_handle_key_events(int keycode, t_data *data)
 		printf("KEYCODE = %i OK\n", keycode);
 		if (keycode == M_UP)
 		{
-			data->map->player.position[Y] -= 1;
+			data->map->player.position[Y] += data->map->player.direction[Y];
+			data->map->player.position[X] += data->map->player.direction[X];
 			ft_set_black(data);
 			if (mlx_loop_hook(data->mlx, &ft_play, data))
 				return (ft_close_window(data));
 		}
 		if (keycode == M_DOWN)
 		{
-			data->map->player.position[Y] += 1;
+			data->map->player.position[Y] -= data->map->player.direction[Y];
+			data->map->player.position[X] -= data->map->player.direction[X];
 			ft_set_black(data);
 			if (mlx_loop_hook(data->mlx, &ft_play, data))
 				return (ft_close_window(data));
 		}
 		if (keycode == M_LEFT)
 		{
-			data->map->player.position[X] -= 1;
+			data->map->player.position[X] += data->map->player.direction[Y];
+			data->map->player.position[Y] -= data->map->player.direction[X];
 			ft_set_black(data);
 			if (mlx_loop_hook(data->mlx, &ft_play, data))
 				return (ft_close_window(data));
 		}
 			if (keycode == M_RIGHT)
 		{
-			data->map->player.position[X] += 1;
+			data->map->player.position[X] -= data->map->player.direction[Y];
+			data->map->player.position[Y] += data->map->player.direction[X];
+			
 			ft_set_black(data);
 			if (mlx_loop_hook(data->mlx, &ft_play, data))
 				return (ft_close_window(data));
