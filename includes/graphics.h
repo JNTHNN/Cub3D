@@ -30,12 +30,21 @@ enum e_mlx_macros
 	ESC = 53,
 };
 
+enum e_movements
+{
+	M_UP = 13,
+	M_DOWN = 1,
+	M_LEFT = 0,
+	M_RIGHT = 2
+};
+
 /* windows.c */
 int	    ft_handle_key_events(int keycode, t_data *data);
 int	    ft_handle_mouse_events(int button, int x, int y, t_data *data);
 int	    ft_close_window(t_data *data);
 int	    ft_play(t_data *data);
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
+void	ft_set_black(t_data *data);
 
 /*  init.c  */
 void	ft_init_mlx(t_data *data);

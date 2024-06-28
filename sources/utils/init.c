@@ -34,20 +34,20 @@ t_orientation_att	ft_init_o_attributes(void)
 
 	attributes.north.dir[X] = 0;
 	attributes.north.dir[Y] = -1;
-	attributes.north.pov[Y] = 0.66;
-	attributes.north.pov[X] = 0;
+	attributes.north.pov[1] = 0.71;
+	attributes.north.pov[0] = 0;
 	attributes.south.dir[X] = 0;
 	attributes.south.dir[Y] = 1;
-	attributes.south.pov[Y] = -0.66;
-	attributes.south.pov[X] = 0;
+	attributes.south.pov[1] = -0.71;
+	attributes.south.pov[0] = 0;
 	attributes.east.dir[X] = 1;
 	attributes.east.dir[Y] = 0;
-	attributes.east.pov[Y] = 0;
-	attributes.east.pov[X] = 0.66;
+	attributes.east.pov[1] = 0;
+	attributes.east.pov[0] = 0.71;
 	attributes.west.dir[X] = -1;
 	attributes.west.dir[Y] = 0;
-	attributes.west.pov[Y] = 0;
-	attributes.west.pov[X] = -0.66;
+	attributes.west.pov[1] = 0;
+	attributes.west.pov[0] = -0.71;
 	return (attributes);
 }
 

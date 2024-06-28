@@ -12,11 +12,52 @@
 
 #include "cub3d.h"
 
+/* Checks if the key pressed is for a player movement : W, A, S, D. */
+bool	ft_is_moving_key(int keycode)
+{
+	if (keycode == M_UP || (keycode >= M_LEFT && keycode <= M_RIGHT))
+		return (true);
+	return (false);
+}
+
 /* Handles key press events */
 int	ft_handle_key_events(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		ft_close_window(data);
+	if (ft_is_moving_key(keycode))
+	{
+		// Function for movements handling here.
+		printf("KEYCODE = %i OK\n", keycode);
+		if (keycode == M_UP)
+		{
+			data->map->player.position[Y] -= 1;
+			ft_set_black(data);
+			if (mlx_loop_hook(data->mlx, &ft_play, data))
+				return (ft_close_window(data));
+		}
+		if (keycode == M_DOWN)
+		{
+			data->map->player.position[Y] += 1;
+			ft_set_black(data);
+			if (mlx_loop_hook(data->mlx, &ft_play, data))
+				return (ft_close_window(data));
+		}
+		if (keycode == M_LEFT)
+		{
+			data->map->player.position[X] -= 1;
+			ft_set_black(data);
+			if (mlx_loop_hook(data->mlx, &ft_play, data))
+				return (ft_close_window(data));
+		}
+			if (keycode == M_RIGHT)
+		{
+			data->map->player.position[X] += 1;
+			ft_set_black(data);
+			if (mlx_loop_hook(data->mlx, &ft_play, data))
+				return (ft_close_window(data));
+		}
+	}
 	return (EXIT_SUCCESS);
 }
 

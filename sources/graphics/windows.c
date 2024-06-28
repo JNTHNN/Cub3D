@@ -12,6 +12,25 @@
 
 #include "cub3d.h"
 
+/* Sets the entire image to black by iterating over each pixel */
+void	ft_set_black(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		y = 0;
+		while (y < WIN_HEIGHT)
+		{
+			ft_img_pix_put(data->img, x, y, 0);
+			y++;
+		}
+		x++;
+	}
+}
+
 /* Closes the MLX window and frees all allocated resources */
 int	ft_close_window(t_data *data)
 {
@@ -43,17 +62,25 @@ void	ft_img_pix_put(t_img *img, int x, int y, int color)
 	}
 }
 
-void	ft_draw_frame(t_img *img)
+void	ft_draw_background(t_img *img, t_map *map)
 {
 	int	i;
 	int	j;
 
-	i = WIN_HEIGHT - (WIN_HEIGHT / 5);
+	i = WIN_HEIGHT - (WIN_HEIGHT / 2);
 	while (i < WIN_HEIGHT)
 	{
 		j = 0;
 		while (j < WIN_WIDTH)
-			ft_img_pix_put(img, j++, i, 0x0800A6);
+			ft_img_pix_put(img, j++, i, map->floor.s_value);
+		i++;
+	}
+	i = 0;
+	while (i < WIN_HEIGHT / 2)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+			ft_img_pix_put(img, j++, i, map->ceiling.s_value);
 		i++;
 	}
 }
@@ -78,8 +105,8 @@ void	ft_raycasting(t_data *data)
 	player = data->map->player;
 
 	// Pour chaque colonne de l'écran
-	x = -1;
-	while (++x < WIN_WIDTH)
+	x = 0;
+	while (x < WIN_WIDTH)
 	{
 		// Calcul de la position du rayon et de sa direction
 		camera = 2 * x / (double)WIN_WIDTH - 1;
@@ -91,8 +118,11 @@ void	ft_raycasting(t_data *data)
 		cell[Y] = (int)player.position[Y];
 
 		// Calcul de la longueur du rayon de sa position actuelle jusque la prochaine ligne de grille (x et y)
-		delta[X] = fabs(1 / raydir_x);
-		delta[Y] = fabs(1 / raydir_y);
+		const double EPSILON = 1e-30;
+		delta[X] = fabs(1 / (raydir_x == 0 ? EPSILON : raydir_x));
+		delta[Y] = fabs(1 / (raydir_y == 0 ? EPSILON : raydir_y));
+		// delta[X] = fabs(1 / raydir_x);
+		// delta[Y] = fabs(1 / raydir_y);
 		
 		if (raydir_x < 0)
 		{
@@ -133,22 +163,20 @@ void	ft_raycasting(t_data *data)
 			}
 			// Le rayon a-t-il touché un mur ?
 			if (data->mtx[cell[Y]][cell[X]] > 0)
-			{
 				hit = 1;
-				printf("VALEUR = %i et HIT == %i\n", data->mtx[cell[Y]][cell[X]], hit);
-			}
+				//printf("VALEUR = %i et HIT == %i\n", data->mtx[cell[Y]][cell[X]], hit);
 		}
 		// Correction de la distance perpendiculaire pour corriger la perspective
 		if (side == 0)
-			perp_wall_dist = (cell[X] - player.position[X] + (1 - step[X]) / 2) / raydir_x;
+			perp_wall_dist = (cell[X] - player.position[X] + (1 - step[X]) / 2) / (raydir_x == 0 ? EPSILON : raydir_x);
 		else
-			perp_wall_dist = (cell[Y] - player.position[Y] + (1 - step[Y]) / 2) / raydir_y;
+			perp_wall_dist = (cell[Y] - player.position[Y] + (1 - step[Y]) / 2) / (raydir_y == 0 ? EPSILON : raydir_y);
 		// Vérification de perp_wall_dist pour éviter la division par zéro
 		if (perp_wall_dist == 0)
 			perp_wall_dist = 0.0001;
 		// Calcul de la hauteur de la ligne a dessiner a l'ecran
 		line_height = (int)(WIN_HEIGHT) / perp_wall_dist;
-		 // Calcul des points de début et de fin pour dessiner la ligne
+		// Calcul des points de début et de fin pour dessiner la ligne
 		drawline[START] = -line_height / 2 + WIN_HEIGHT / 2;
 		if (drawline[START] < 0)
 			drawline[START] = 0;
@@ -157,12 +185,26 @@ void	ft_raycasting(t_data *data)
 			drawline[END] = WIN_HEIGHT - 1;
 		
 		// Dessiner la ligne sur l'image
-		printf("PLAYER POSITION [%f][%f] ORIENTATION [%c] \n AND DIRECTION [%f][%f] AND POV [%f][%f]\n", player.position[X], player.position[Y], player.orientation, player.direction[X], player.direction[Y], player.pov[x], player.pov[Y]);
-		printf("RAYDIR = [%f][%f]\n", raydir_x, raydir_y);
-		printf("PERP : %f\n", perp_wall_dist);
-		printf("DRAWLINE[%i][%i]\n", drawline[START], drawline[END]);
-		printf("cell = [%d, %d], step = [%d, %d], ray_length = [%f, %f], delta = [%f, %f]\n",
-       cell[X], cell[Y], step[X], step[Y], ray_length[X], ray_length[Y], delta[X], delta[Y]);
+		int	i = drawline[START];
+
+		while (i < drawline[END])
+		{
+			ft_img_pix_put(data->img, x, i, 0xFF0000);
+			i++;
+		}
+
+		printf("-- RAYCASTING INFO --\n");
+		printf("PLAYER POSITION (X, Y) [%f][%f]\nPlAYER DIRECTION (X, Y) [%f][%f]\nPLAYER POV (X,Y) [%f][%f]\n", player.position[X], player.position[Y], player.direction[X], player.direction[Y], player.pov[X], player.pov[Y]);
+		printf("CAMERA = %f\n", camera);
+		printf("x = %d\n", x);
+		printf("RAYDIR (X, Y) = [%f][%f]\n", raydir_x, raydir_y);
+	// 	printf("PERP : %f\n", perp_wall_dist);
+	// 	printf("DRAWLINE (START, END) [%i][%i]\n", drawline[START], drawline[END]);
+	// 	printf("cell (X, Y) = [%d, %d], step (X, Y) = [%d, %d], ray_length (X, Y) = [%f, %f], delta (X, Y) = [%f, %f]\n",
+    //    cell[X], cell[Y], step[X], step[Y], ray_length[X], ray_length[Y], delta[X], delta[Y]);
+		printf("---------------------------\n\n");
+
+		x++;
 	}
 }
 
@@ -176,7 +218,7 @@ int	ft_create_img(t_data *data)
 		return (EXIT_FAILURE);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 		&img->line_len, &img->endian);
-	ft_draw_frame(img);
+	ft_draw_background(img, data->map);
 	ft_raycasting(data);
 	//ft_apply_blur(img, 5);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->mlx_img, 0, 0);
