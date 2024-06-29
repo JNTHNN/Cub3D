@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 03:08:21 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:35:09 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static t_map	*ft_init_map(t_data *data, char *file)
     map = (t_map *)malloc(sizeof(t_map));
     if (!map)
         ft_errno(MEM, data);
-	map->file = NULL;
 	map->fd = -1;
     map->floor = ft_init_color();
     map->ceiling = ft_init_color();

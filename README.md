@@ -65,11 +65,15 @@ A voir si error si plusieurs lignes de la meme info
 
 ## TO-DO
 
-atoi uint8_t pour les couleurs + check wrong input
-erreur si une donnee en trop quand le reste est init ?
-atoi actuellement accepte les negatifs et les refacto entre 0 et 255
-pb quand la 1ere ligne commence par 0
+atoi uint8_t pour les couleurs + check wrong input -> DONE
+erreur si une donnee en trop quand le reste est init ? -> DONE
+atoi actuellement accepte les negatifs et les refacto entre 0 et 255 -> DONE
+pb quand la 1ere ligne commence par 0 -> DONE
 ajouter info dans data ?
+verifier les .h
+normer
+check leaks
+static
 
 ## Parsing
 

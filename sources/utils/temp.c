@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 01:24:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:27:59 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,44 @@ void	ft_print_struct(t_data *data)
 	// printf("C'EST QUOI [%s]\n", "�");
 	printf("---------------------\n");
 }
+
+
+// SAVE POUR LES PRINTF HIHI
+// void	ft_square_map(t_data *data)
+// {
+// 	int		x_max;
+// 	int		y_max;
+// 	int		x;
+// 	int		y;
+// 	char	**square_map;
+	
+// 	y = 0;
+// 	x_max = data->map->x_size;
+// 	y_max = data->map->y_size;
+// 	data->map->square_map = (char **)malloc(sizeof(char *) * y_max + 1); // a proteger
+// 	square_map = data->map->square_map;
+// 	while (y < y_max)
+// 	{
+// 		square_map[y] = (char *)malloc(sizeof(char) * x_max + 1); // a proteger
+// 		ft_memset(square_map[y], EMPTY, x_max);
+// 		ft_memset(square_map[y] + (x_max), 0, 1);
+// 		printf("SQUARE [%d]\t[%s]\n",y, square_map[y]);
+// 		y++;
+// 	}
+// 	y = 0;
+// 	while (y < y_max && data->map->map[y])
+// 	{
+// 		x = 0;
+// 		while (x < x_max && data->map->map[y][x])
+// 		{
+// 			if (data->map->map[y][x] != '\0' && data->map->map[y][x] != SPACE)
+// 				square_map[y][x] = data->map->map[y][x];
+// 			x++;
+// 		}
+// 		printf("SQUARE2[%d]\t[%s]\n", y, square_map[y]);
+// 		y++;
+// 	}
+// 	square_map[y] = NULL;
+// 	for(int u=0 ; square_map[u]; u++)
+// 		printf("OK [%s]\n",square_map[u]);
+// }

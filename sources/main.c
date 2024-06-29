@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:22:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:37:19 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	ft_setup_map(data);
 	// ft_init_mlx(data);
 	// ft_mlx_settings(data);
+	ft_free_data(data);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,31 +6,11 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 02:32:32 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 12:29:41 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_check_arg(int argc, char **argv)
-{
-	char	*file_extension;
-
-	if (argc > 2)
-		ft_errno(TOO_MANY, NULL);
-	else if (argc < 2)
-		ft_errno(NO_MAP, NULL);
-	else
-	{
-		file_extension = ft_strrchr(MAP, DOT);
-		if (!file_extension
-			|| (ft_strlen(file_extension) != 4
-				|| ft_strncmp(file_extension, CUB, ft_strlen(CUB))))
-			ft_errno(WRONG_EXT, NULL);
-		// else
-		// 	printf("good = %s\n", file_extension); // checker l.extension
-	}
-}
 
 static void	ft_print_error(int err_code)
 {
@@ -74,6 +54,6 @@ void	ft_errno(int err_code, t_data *data)
 {
 	ft_print_error(err_code);
 	if (data)
-		free(data);
+		ft_free_data(data);
 	exit(err_code); // EXIT_FAILURE 
 }

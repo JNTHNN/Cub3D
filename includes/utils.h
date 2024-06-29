@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 03:08:44 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 20:06:36 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 /*	free.c	*/
 void	    *ft_free_array(char **arr);
+void        ft_free_data(t_data *data);
 
 /*	info.c	*/
-void	    ft_save_map(t_data *data);
 void	    ft_get_map(t_data *data);
 void        ft_check_map(t_data *data);
 void		ft_check_player(t_data *data);

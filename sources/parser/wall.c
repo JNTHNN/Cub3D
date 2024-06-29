@@ -6,12 +6,15 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 02:39:13 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:22:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+**	Check the walls around the map
+*/
 void	ft_check_walls(t_data *data)
 {
 	char	**map;
@@ -32,6 +35,9 @@ void	ft_check_walls(t_data *data)
 			ft_errno(MAP_NOT_CLOSE, data);
 }
 
+/*
+**	Check if ground (0) boxes are not surrounded by empty (2) boxes
+*/
 void	ft_backtrack_wall(t_data *data)
 {
 	int		y;
@@ -54,16 +60,18 @@ void	ft_backtrack_wall(t_data *data)
 	}
 }
 
+/*
+**	Check that the player square (N-S-W-D) is not surrounded by empty (2) squares
+*/
 void	ft_backtrack_player(t_data *data)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
 	char	**map;
 	
-	y = data->map->player.position[0];
-	x = data->map->player.position[1];
+	y = data->map->player.position[Y];
+	x = data->map->player.position[X];
 	map = data->map->square_map;
-
 	if (map[y][x - 1] == EMPTY || map[y][x + 1] == EMPTY || map[y - 1][x] == EMPTY || map[y + 1][x] == EMPTY)
 		ft_errno(AMB_PLAYER, data);
 }

@@ -6,48 +6,35 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/28 23:39:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 21:10:35 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+**	Check if it's a wall | return 0 if true
+*/
 int	ft_wall(char c, int flag)
 {
-	if ((flag == TOP || flag == BOT) && c != 49 && c != 32)
+	if ((flag == TOP || flag == BOT) && c != WALL && c != SPACE)
 		return (1);
-	if ((flag == LEFT || flag == RIGHT) && c != 49)
+	if ((flag == LEFT || flag == RIGHT) && c != WALL)
 		return (1);
 	return (0);
 }
 
+/*
+**	Check if player orientation is valid
+*/
 int	ft_orientation_player(char c)
 {
 	return (c == N || c == S || c == W || c == E);
 }
 
-void	ft_get_size_map(t_data *data)
-{
-	int		y;
-	char	**map;
-
-	// ligne la plus longue -> x_size
-	y = -1;
-	map = data->map->map;
-	while (map[++y])
-	{
-		if (ft_strlen(map[y]) > (size_t)data->map->x_size)
-		{
-			printf("la taille %zu\n", ft_strlen(map[y]));
-			data->map->x_size = ft_strlen(map[y]); // a corriger
-		}
-	}
-	// printf("laligne ici est [%s]\n", map[y]);
-	while (!map[y] || (!ft_strchr(map[y], WALL) && !ft_strchr(map[y], GROUND)))
-		y--;
-	data->map->y_size = y + 1; // a corriger
-}
-
+/*
+**	Check for other inaccurate characters
+*/
 void	ft_basic_check(t_data *data)
 {
 	int		y;
@@ -67,9 +54,11 @@ void	ft_basic_check(t_data *data)
 	}
 }
 
+/*
+**	Check if the line is the datas line
+*/
 int	ft_notmap(char *s, t_data *data)
 {
-	// printf("RRR [%s][%d]\n", s, ft_strncmp(s, "\n", ft_strlen(s)));
 	if (!ft_strncmp(s, data->info->ceiling, ft_strlen(s))
 		|| !ft_strncmp(s, data->info->floor, ft_strlen(s))
 		|| !ft_strncmp(s, data->info->texture_north, ft_strlen(s))
@@ -81,6 +70,9 @@ int	ft_notmap(char *s, t_data *data)
 	return (0);
 }
 
+/*
+**	Delimits the map
+*/
 int	ft_delimiter_map(t_data *data, int flag)
 {
 	int	y;
@@ -97,27 +89,23 @@ int	ft_delimiter_map(t_data *data, int flag)
 	return (y);
 }
 
+/*
+**	Extract data from raw file and find map coordinates
+*/
 void	ft_parsing_raw_map(t_data *data)
 {
-	// maintenant j'ai un char ** qui rpz le file cub
-	// a partir de ce dernier, je dois recup les lignes contenant les infos
-	// je dois comparer ligne par ligne
 	int	y;
 	int	flag;
 
 	y = -1;
 	flag = 0;
 	while (data->file->raw_file[++y])
-	{
 		ft_check_data(data->file->raw_file[y], data, &flag);
-	}
 	if (flag != 6)
 		ft_errno(MISSING, data);
-	data->file->start = ft_delimiter_map(data, 0); // faire flag START
-	data->file->end = ft_delimiter_map(data, 1); // faire flag END
+	data->file->start = ft_delimiter_map(data, START);
+	data->file->end = ft_delimiter_map(data, END);
 	y = data->file->start;
-	printf("%s\n", data->info->texture_north);
 	ft_fill_color(data);
 	ft_get_info_texture(data);
-
 }
