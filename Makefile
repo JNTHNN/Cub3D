@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/26 11:32:47 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/06/29 02:47:43 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ MLX   			:= libmlx.a
 
 SRC_FILES			:= main
 UTILS_SRC			:= error free size atoi init temp
-PARSER_SRC			:= parsing info colors textures map player wall
-PARSER_UTILS_SRC	:= map_utils
+PARSER_SRC			:= parsing data colors textures map player wall
+PARSER_UTILS_SRC	:= map_utils fd_utils
 GRAPHICS_SRC		:= windows controls 
 GRAPHICS_UTILS_SRC	:= init settings
 

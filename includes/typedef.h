@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/26 10:37:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 02:31:48 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_player	t_player;
 typedef enum e_err_code	t_err_code;
 typedef enum e_wall		t_wall;
 typedef enum e_orientation	t_orientation;
-
+typedef struct s_file	t_file;
 
 
 
@@ -100,8 +100,18 @@ struct	s_map
 	int		x_size;
 	// map brute
 	char	**map;
-	int		start;
+	// map spaces remplacé par 2
+	char	**square_map;
 	t_player	player; // TEST: position du player
+};
+
+struct s_file
+{
+	char	**raw_file;
+	int		fd;
+	int		size;
+	int		start;
+	int		end;
 };
 
 struct s_data
@@ -111,6 +121,7 @@ struct s_data
 	t_info	*info;
 	t_img	*img;
 	t_map	*map;
+	t_file	*file;
 };
 
 enum e_err_code
@@ -130,7 +141,8 @@ enum e_err_code
 	MAP_NOT_CLOSE = -13,
 	NO_PLAYER = -14,
 	MANY_PLAYERS = -15,
-	WRONG_CHAR = -16
+	WRONG_CHAR = -16,
+	AMB_PLAYER = -17
 };
 
 enum e_wall

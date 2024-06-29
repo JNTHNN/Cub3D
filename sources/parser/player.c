@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 10:40:30 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/28 23:40:18 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	ft_check_player(t_data *data)
 	if (data->map->player.orientation == NONE)
 		ft_errno(NO_PLAYER, data);
 	else
-		printf("PLAYER IS %c\n", data->map->player.orientation);
+		printf("PLAYER IS %c\n", data->map->player.orientation); // a enlever
 }

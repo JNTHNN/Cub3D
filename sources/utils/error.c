@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 19:32:29 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 02:32:32 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void	ft_print_error(int err_code)
 		ft_putendl_fd(STR_MANY_PLAYERS, STDERR_FILENO);
 	else if (err_code == WRONG_CHAR)
 		ft_putendl_fd(STR_WRONG_CHAR, STDERR_FILENO);
+	else if (err_code == AMB_PLAYER)
+		ft_putendl_fd(STR_AMB_PLAYER, STDERR_FILENO);
 }
 
 void	ft_errno(int err_code, t_data *data)

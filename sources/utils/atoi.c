@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:53:43 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 13:32:10 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 02:59:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ u_int8_t ft_atoi_color(char *s, int *flag)
 	if (s[i] == '-' || s[i] == '+')
 		if (s[i++] == '-')
 			sign = -1;
-		// return ((*flag)++);
 	while (s[i])
 	{
 		if (ft_isdigit(s[i]))

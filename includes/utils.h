@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/25 22:17:11 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 03:08:44 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	    *ft_free_array(char **arr);
 
 /*	info.c	*/
-void	    ft_get_info(t_data *data);
+void	    ft_save_map(t_data *data);
 void	    ft_get_map(t_data *data);
 void        ft_check_map(t_data *data);
 void		ft_check_player(t_data *data);
@@ -29,10 +29,9 @@ int	        ft_arrlen(char **tab);
 u_int8_t    ft_atoi_color(char *s, int *flag);
 
 /*  init.c  */
-t_map	    *ft_init_map(t_data *data, char *file);
 t_data	    *ft_init_data(char *file);
 
 /*  temp.c  */
-void	    ft_print_struct(t_map *map);
+void	    ft_print_struct(t_data *data);
 
 #endif

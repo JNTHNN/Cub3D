@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/24 15:40:36 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/06/29 02:32:36 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define STR_NO_PLAYER "Error\nNo player in the map, omagad"
 # define STR_MANY_PLAYERS "Error\nStay cool, too many players in ze map"
 # define STR_WRONG_CHAR "Error\nForbidden character in ze map, mayday mayday"
+# define STR_AMB_PLAYER "Error\nAmbigious player's position. Please try again"
 # define CUB ".cub"
 # define DOT 46
 # define MAP argv[1]
