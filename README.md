@@ -62,3 +62,27 @@ MinilibX
 y = ordonée / x = abscisse -> map[y][x]
 Bug traduction ou de la mer*e -> "error\n" puis msg
 A voir si error si plusieurs lignes de la meme info
+
+## TO-DO
+
+atoi uint8_t pour les couleurs + check wrong input -> DONE
+erreur si une donnee en trop quand le reste est init ? -> DONE
+atoi actuellement accepte les negatifs et les refacto entre 0 et 255 -> DONE
+pb quand la 1ere ligne commence par 0 -> DONE
+ajouter info dans data ?
+verifier les .h
+normer
+check leaks
+static
+
+## Parsing
+
+Checker la premiere ligne n'a que des 1(murs)
+les lignes suivantes doivent commencer/finir par 1
+Si la ligne est plus grande que prev et suiv -> verifier aux niveaux des 0 si au dessus/dessous il y a des murs ou 0
+Remplacer les vides par 2 pour differencier avec les murs
+
+
+## Liens utiles
+https://harm-smits.github.io/42docs/projects/cub3d
+http://www.proftnj.com/RGB3.htm

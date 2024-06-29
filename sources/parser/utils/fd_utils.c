@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 14:45:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 10:37:19 by jgasparo         ###   ########.fr       */
+/*   Created: 2024/06/26 14:49:53 by jgasparo          #+#    #+#             */
+/*   Updated: 2024/06/29 21:11:31 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+/*
+**  Open the file into file descriptor
+*/
+void    ft_open_fd(t_data *data)
 {
-	t_data *data;
-	
-	ft_check_arg(argc, argv);
-	data = ft_init_data(MAP);
-	// now le fichier cub est bon
-	ft_setup_map(data);
-	// ft_init_mlx(data);
-	// ft_mlx_settings(data);
-	ft_free_data(data);
-	return (EXIT_SUCCESS);
+    data->file->fd = open(data->map->file, O_RDONLY);
+	if (data->file->fd == -1)
+		ft_errno(ERR_FD, data);
 }
 
-// pour la longueur -> calculer chaque ligne avec un buff qui sauve la +longue et change si >*
+/*
+**  Close the file descriptor
+*/
+void    ft_close_fd(t_data *data)
+{
+    if (close(data->file->fd) == -1)
+        ft_errno(ERR_FD, data);
+    data->file->fd = -1;
+}

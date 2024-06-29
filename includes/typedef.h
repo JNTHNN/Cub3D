@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/21 13:23:14 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/06/29 02:31:48 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
+
+# define WALL 49
+# define GROUND 48
+# define EMPTY 50
+# define SPACE 32
 
 # include <stdio.h>
 
@@ -19,7 +24,28 @@ typedef struct s_data	t_data;
 typedef struct s_img	t_img;
 typedef struct s_map	t_map;
 typedef struct s_info	t_info;
+typedef struct s_player	t_player;
 typedef enum e_err_code	t_err_code;
+typedef enum e_wall		t_wall;
+typedef enum e_orientation	t_orientation;
+typedef struct s_file	t_file;
+
+
+
+enum e_orientation
+{
+	N = 78,
+	E = 69,
+	S = 83,
+	W = 87,
+	NONE = -1
+};
+
+struct s_player
+{
+	int				position[2];
+	t_orientation	orientation;
+};
 
 struct s_img
 {
@@ -72,15 +98,30 @@ struct	s_map
 	int		y_size;
 	// longueur / abscisse / x
 	int		x_size;
+	// map brute
+	char	**map;
+	// map spaces remplacé par 2
+	char	**square_map;
+	t_player	player; // TEST: position du player
+};
 
+struct s_file
+{
+	char	**raw_file;
+	int		fd;
+	int		size;
+	int		start;
+	int		end;
 };
 
 struct s_data
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
-	t_map	map;
+	t_info	*info;
+	t_img	*img;
+	t_map	*map;
+	t_file	*file;
 };
 
 enum e_err_code
@@ -94,6 +135,22 @@ enum e_err_code
 	ERR_COLOR = -7,
 	MLX = -8,
 	WIN = -9,
+	MISSING = -10,
+	NOT_NB = -11,
+	NO_MAP_CONTENT = -12,
+	MAP_NOT_CLOSE = -13,
+	NO_PLAYER = -14,
+	MANY_PLAYERS = -15,
+	WRONG_CHAR = -16,
+	AMB_PLAYER = -17
+};
+
+enum e_wall
+{
+	TOP,
+	BOT,
+	LEFT,
+	RIGHT
 };
 
 #endif
