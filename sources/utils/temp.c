@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   temp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 19:27:59 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:44:20 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void ft_raw_map_to_mtx(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->mtx = (int **)malloc(data->map->y_size * sizeof(int *));
+	if (!data->mtx)
+		ft_errno(MEM, data);
+	i = 0;
+	while (data->map->map[i])
+	{
+		data->mtx[i] = (int *)malloc(data->map->x_size * sizeof(int));
+		j = 0;
+		while (data->map->map[i][j])
+		{
+			if (ft_isdigit(data->map->map[i][j]))
+				data->mtx[i][j] = data->map->map[i][j] - '0';
+			else
+				data->mtx[i][j] = 9;
+			j++;
+		}
+		i++;
+	}
+}	
 
 
 void	ft_print_struct(t_data *data)
@@ -34,6 +59,17 @@ void	ft_print_struct(t_data *data)
 	printf("SIZE MAX Y [%d] MAX X [%d]\n", data->map->y_size, data->map->x_size);
 	// printf("DEBUT DE LA MAP : [%p]\n", map->start);
 	// printf("C'EST QUOI [%s]\n", "�");
+	printf("LA MAP\n");
+	int i = 0;
+	while (map->map[i])
+	{
+		for (int j = 0; map->map[i][j]; j++)
+			printf("%c", map->map[i][j]);
+		i++;
+		printf("\n");
+	}
+	printf("X_SIZE %i, Y_SIZE %i\n", map->x_size, map->y_size);
+	
 	printf("---------------------\n");
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 10:35:09 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:46:26 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,41 @@
 
 static t_info	*ft_init_info(t_data *data)
 {
-    t_info  *info;
+	t_info	*info;
 
-    info = (t_info *)malloc(sizeof(t_info));
-    if (!info)
-        ft_errno(MEM, data);
+	info = (t_info *)malloc(sizeof(t_info));
+	if (!info)
+		ft_errno(MEM, data);
 	info->floor = NULL;
 	info->ceiling = NULL;
 	info->texture_north = NULL;
 	info->texture_south = NULL;
 	info->texture_west = NULL;
 	info->texture_east = NULL;
-    return (info);
+	return (info);
+}
+
+t_orientation_att	ft_init_o_attributes(void)
+{
+	t_orientation_att	attributes;
+
+	attributes.north.dir[X] = 0;
+	attributes.north.dir[Y] = -1;
+	attributes.north.pov[X] = 0.66;
+	attributes.north.pov[Y] = 0;
+	attributes.south.dir[X] = 0;
+	attributes.south.dir[Y] = 1;
+	attributes.south.pov[X] = -0.66;
+	attributes.south.pov[Y] = 0;
+	attributes.east.dir[X] = 1;
+	attributes.east.dir[Y] = 0;
+	attributes.east.pov[X] = 0;
+	attributes.east.pov[Y] = 0.66;
+	attributes.west.dir[X] = -1;
+	attributes.west.dir[Y] = 0;
+	attributes.west.pov[X] = 0;
+	attributes.west.pov[Y] = -0.66;
+	return (attributes);
 }
 
 static u_color ft_init_color(void)
@@ -81,8 +104,8 @@ static t_file  *ft_init_file(t_data *data)
 
 t_data	*ft_init_data(char *file)
 {
-	t_data  *data;
-	
+	t_data	*data;
+
 	data = (t_data *)malloc(sizeof(t_data));
     if (!data)
 		ft_errno(MEM, data);

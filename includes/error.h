@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 02:32:36 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:42:42 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
+
+# define STR_ERR_MLX "Error\nUnable to initialize graphics. Please try again."
+# define STR_ERR_WIN "Error\nUnable to open graphic window. Please try again."
+# define STR_ERR_IMG "Error\nCouldn't renderer the image."
 
 # define STR_MEM "Error\nMemory allocation goes wrong"
 # define STR_TOO_MANY "Error\nToo many arguments"
@@ -19,8 +23,6 @@
 # define STR_WRONG_EXT "Error\nWrong file extension"
 # define STR_DUP_INFO "Error\nDuplicate info in map"
 # define STR_ERR_COLOR "Error\nWrong color's value"
-# define STR_ERR_MLX "Error\nUnable to initialize graphics. Please try again."
-# define STR_ERR_WIN "Error\nUnable to open graphic window. Please try again."
 # define STR_MISSING "Error\nMissing data"
 # define STR_NOT_NB "Error\nNot a number in color"
 # define STR_NO_MAP_CONTENT "Error\nNo Map Content, No Party"

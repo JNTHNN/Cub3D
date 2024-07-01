@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:55:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 20:04:30 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:48:38 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ void	ft_setup_map(t_data *data)
 	ft_save_map(data);
 	ft_check_player(data);
 	ft_check_map(data);	
-	ft_print_struct(data);
+	ft_print_struct(data->map);
+	ft_raw_map_to_mtx(data);
 }
