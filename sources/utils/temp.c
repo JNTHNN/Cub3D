@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:44:20 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:10:02 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,11 @@ void	ft_print_struct(t_data *data)
 	printf("TEXTURE SOUTH : [%s]\n", map->texture_south);
 	printf("TEXTURE WEST : [%s]\n", map->texture_west);
 	printf("TEXTURE EAST : [%s]\n", map->texture_east);
-	printf("PLAYER POSITION [%d][%d] ORIENTATION [%c]\n", map->player.position[0], map->player.position[1], map->player.orientation);
+	printf("PLAYER POSITION [%f][%f] ORIENTATION [%c]\n", map->player.position[0], map->player.position[1], map->player.orientation);
 	printf("MAP START : [%d] END : [%d] TOTAL : [%d]\n", data->file->start, data->file->end, data->file->end - data->file->start);
 	printf("SIZE MAX Y [%d] MAX X [%d]\n", data->map->y_size, data->map->x_size);
 	// printf("DEBUT DE LA MAP : [%p]\n", map->start);
 	// printf("C'EST QUOI [%s]\n", "�");
-	printf("LA MAP\n");
-	int i = 0;
-	while (map->map[i])
-	{
-		for (int j = 0; map->map[i][j]; j++)
-			printf("%c", map->map[i][j]);
-		i++;
-		printf("\n");
-	}
-	printf("X_SIZE %i, Y_SIZE %i\n", map->x_size, map->y_size);
-	
 	printf("---------------------\n");
 }
 

@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/01 11:54:28 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/07/01 12:06:19 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,10 @@ MLX   			:= libmlx.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
-UTILS_SRC			:= error free size atoi init temp
 PARSER_SRC			:= parsing data colors textures map player wall
 PARSER_UTILS_SRC	:= map_utils fd_utils
 GRAPHICS_SRC		:= windows controls 
-UTILS_SRC			:= error free  size  atoi init temp
-PARSER_SRC			:= parsing info colors textures map player
-PARSER_UTILS_SRC	:= map_utils
+UTILS_SRC			:= error free size atoi init temp
 GRAPHICS_SRC		:= windows controls blur
 GRAPHICS_UTILS_SRC	:= init settings
 

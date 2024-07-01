@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:46:26 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:20:22 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ static u_color ft_init_color(void)
     return (rgb);
 }
 
+void	ft_init_player(t_player *player)
+{
+	player->position[0] = NONE;
+	player->position[1] = NONE;
+	player->direction[0] = UNSET;
+	player->direction[1] = UNSET;
+	player->pov[0] = UNSET;
+	player->pov[1] = UNSET;
+	player->orientation = NONE;
+}
 
 static t_map	*ft_init_map(t_data *data, char *file)
 {
@@ -77,14 +87,13 @@ static t_map	*ft_init_map(t_data *data, char *file)
     map->texture_south = NULL;
     map->texture_west = NULL;
     map->texture_east = NULL;
-	map->player.orientation = NONE;
-    map->player.position[0] = -1;
-    map->player.position[1] = -1;
     map->y_size = 0;
 	map->x_size = 0;
     map->file = file;
     map->map = NULL;
     map->square_map = NULL;
+	ft_init_player(&map->player);
+	data->o_attributes = ft_init_o_attributes();
     return (map);
 }
 

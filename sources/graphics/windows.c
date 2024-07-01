@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/28 16:21:28 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:14:43 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,8 @@ void	ft_raycasting(t_data *data)
 		cell[Y] = (int)player.position[Y];
 
 		// Calcul de la longueur du rayon de sa position actuelle jusque la prochaine ligne de grille (x et y)
-		const double EPSILON = 1e-30;
-		delta[X] = fabs(1 / (raydir_x == 0 ? EPSILON : raydir_x));
-		delta[Y] = fabs(1 / (raydir_y == 0 ? EPSILON : raydir_y));
-		// delta[X] = fabs(1 / raydir_x);
-		// delta[Y] = fabs(1 / raydir_y);
+		delta[X] = fabs(1 / raydir_x);
+		delta[Y] = fabs(1 / raydir_y);
 		
 		if (raydir_x < 0)
 		{
@@ -168,9 +165,9 @@ void	ft_raycasting(t_data *data)
 		}
 		// Correction de la distance perpendiculaire pour corriger la perspective
 		if (side == 0)
-			perp_wall_dist = (cell[X] - player.position[X] + (1 - step[X]) / 2) / (raydir_x == 0 ? EPSILON : raydir_x);
+			perp_wall_dist = (cell[X] - player.position[X] + (1 - step[X]) / 2) / raydir_x;
 		else
-			perp_wall_dist = (cell[Y] - player.position[Y] + (1 - step[Y]) / 2) / (raydir_y == 0 ? EPSILON : raydir_y);
+			perp_wall_dist = (cell[Y] - player.position[Y] + (1 - step[Y]) / 2) / raydir_y;
 		// Vérification de perp_wall_dist pour éviter la division par zéro
 		if (perp_wall_dist == 0)
 			perp_wall_dist = 0.0001;

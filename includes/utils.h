@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:43:17 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:08:18 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ u_int8_t    ft_atoi_color(char *s, int *flag);
 t_data	    *ft_init_data(char *file);
 
 /*  temp.c  */
-void	    ft_print_struct(t_map *map);
+void	    ft_print_struct(t_data *data);
 void		ft_raw_map_to_mtx(t_data *data);
 
 #endif
