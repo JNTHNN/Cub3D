@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 15:11:02 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:15:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_wall(char c, int flag)
 {
 	if ((flag == TOP || flag == BOT) && c != WALL && c != SPACE && c != '\t')
 		return (1);
-	if ((flag == LEFT || flag == RIGHT) && c != WALL)
+	if ((flag == LEFT || flag == RIGHT) && c != WALL && c != SPACE && c != '\t')
 		return (1);
 	return (0);
 }
