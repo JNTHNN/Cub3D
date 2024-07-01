@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:00:44 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 12:10:02 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:28:49 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void ft_raw_map_to_mtx(t_data *data)
 			if (ft_isdigit(data->map->map[i][j]))
 				data->mtx[i][j] = data->map->map[i][j] - '0';
 			else
-				data->mtx[i][j] = 9;
+				data->mtx[i][j] = 0;
 			j++;
 		}
 		i++;

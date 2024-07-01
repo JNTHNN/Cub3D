@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:14:51 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/06/26 16:56:10 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:05:01 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,35 @@ enum e_mlx_macros
 	ESC = 53,
 };
 
+enum e_move_keys
+{
+	KEY_UP = 13,
+	KEY_DOWN = 1,
+	KEY_LEFT = 0,
+	KEY_RIGHT = 2,
+	ARROW_LEFT = 123,
+	ARROW_RIGHT = 124,
+	ARROW_DOWN = 125,
+	ARROW_UP = 126,
+};
+
 enum e_movements
 {
-	M_UP = 13,
-	M_DOWN = 1,
-	M_LEFT = 0,
-	M_RIGHT = 2
+	M_LEFT = 1U,
+	M_RIGHT = 2U,
+	M_UP = 4U,
+	M_DOWN = 8U
 };
 
 /* windows.c */
-int	    ft_handle_key_events(int keycode, t_data *data);
+int	    ft_handle_keydown_events(int keycode, t_data *data);
+int	    ft_handle_keyup_events(int keycode, t_data *data);
 int	    ft_handle_mouse_events(int button, int x, int y, t_data *data);
 int	    ft_close_window(t_data *data);
 int	    ft_play(t_data *data);
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
 void	ft_set_black(t_data *data);
+int		ft_player_moving(t_data *data);
 
 /*  init.c  */
 void	ft_init_mlx(t_data *data);

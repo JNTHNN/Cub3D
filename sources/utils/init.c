@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 12:20:22 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:06:57 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_init_player(t_player *player)
 	player->pov[0] = UNSET;
 	player->pov[1] = UNSET;
 	player->orientation = NONE;
+	player->move = 0U;
 }
 
 static t_map	*ft_init_map(t_data *data, char *file)

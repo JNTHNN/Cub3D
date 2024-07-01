@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 12:14:43 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:55:59 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	ft_raycasting(t_data *data)
 			perp_wall_dist = (cell[Y] - player.position[Y] + (1 - step[Y]) / 2) / raydir_y;
 		// Vérification de perp_wall_dist pour éviter la division par zéro
 		if (perp_wall_dist == 0)
-			perp_wall_dist = 0.0001;
+			perp_wall_dist = 0.01;
 		// Calcul de la hauteur de la ligne a dessiner a l'ecran
 		line_height = (int)(WIN_HEIGHT) / perp_wall_dist;
 		// Calcul des points de début et de fin pour dessiner la ligne
@@ -215,7 +215,9 @@ int	ft_create_img(t_data *data)
 		return (EXIT_FAILURE);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 		&img->line_len, &img->endian);
+
 	ft_draw_background(img, data->map);
+	ft_player_moving(data);
 	ft_raycasting(data);
 	//ft_apply_blur(img, 5);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->mlx_img, 0, 0);

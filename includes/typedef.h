@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/01 11:42:30 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:52:18 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ struct s_player
 	double			position[2];
 	double			direction[2];
 	double			pov[2];
+	int				move;
 };
 
 struct s_img
