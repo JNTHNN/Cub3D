@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/01 17:01:12 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:30:10 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int ft_player_moving(t_data *data)
 	
 	if ((player->move & M_UP) != 0)
 	{
-		player->position[Y] += player->direction[Y] * 0.069;
-		player->position[X] += player->direction[X] * 0.069;
+		if(data->mtx[(int)round(player->position[Y])][(int)round(player->position[X])] != 1)
+		{
+			player->position[Y] += player->direction[Y] * 0.069;
+			player->position[X] += player->direction[X] * 0.069;
+		}
 	}
 	if ((player->move & M_DOWN) != 0)
 	{
