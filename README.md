@@ -81,6 +81,7 @@ Checker la premiere ligne n'a que des 1(murs)
 les lignes suivantes doivent commencer/finir par 1
 Si la ligne est plus grande que prev et suiv -> verifier aux niveaux des 0 si au dessus/dessous il y a des murs ou 0
 Remplacer les vides par 2 pour differencier avec les murs
+prendre en compte les \t et les espaces apres la ligne
 
 
 ## Liens utiles

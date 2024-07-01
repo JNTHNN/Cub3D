@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:55:36 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 10:35:29 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:20:51 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_free_info(t_info *info)
 		if (info->texture_north)
 			free(info->texture_north);
 		if (info->texture_south)
+			free(info->texture_south);
+		if (info->texture_west)
 			free(info->texture_west);
 		if (info->texture_east)
 			free(info->texture_east);
@@ -90,6 +92,7 @@ void	ft_free_data(t_data *data)
 		if (data->info)
 			ft_free_info(data->info);
 		if (data->img)
+			free(data->img);
 			// faire free_img
 		if (data->map)
 			ft_free_map(data->map);

@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 19:22:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:20:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ void	ft_check_walls(t_data *data)
 	while (map[0][x] && map[0][++x])
 		if (ft_wall(map[0][x], TOP))
 				ft_errno(MAP_NOT_CLOSE, data);
-	while (map[data->map->y_size - 1][x] && map[data->map->y_size - 1][++x])
+	x = 0;
+	while (map[data->map->y_size-1][x] && map[data->map->y_size-1][++x])
 		if (ft_wall(map[data->map->y_size - 1][x], BOT))
-				ft_errno(MAP_NOT_CLOSE, data);
+			ft_errno(MAP_NOT_CLOSE, data);
 	y = 0;
 	while (map[y] && map[++y])
-		if (ft_wall(map[y][0], LEFT) || ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT))
-			ft_errno(MAP_NOT_CLOSE, data);
+	{
+		x = 0;
+		while (ft_wall(map[y][x++], LEFT))
+			if (ft_wall(map[y][x], LEFT))
+				ft_errno(MAP_NOT_CLOSE, data);
+	}
 }
 
 /*
