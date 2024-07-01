@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/06/29 10:37:14 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/07/01 13:27:57 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
 READL			:= -L/usr/local/lib -I/usr/local/include
 MLX_FLAGS		:= -lm -lft -lmlx -framework OpenGL -framework AppKit
-DEBUG			:= -fsanitize=address
+DEBUG			:= #-fsanitize=address
 
 # **************************************************************************** #
 # 							  	   Colors	    							   #

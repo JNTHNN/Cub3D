@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 20:07:53 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:55:32 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ static char	**ft_fill_square_map(t_data *data)
 	y = 0;
 	y_max = data->map->y_size;
 	x_max = data->map->x_size;
-	square_map = (char **)malloc(sizeof(char *) * y_max + 1);
+	square_map = (char **)malloc(sizeof(char *) * (y_max + 1));
 	if (!square_map)
 		ft_errno(MEM, data);
 	while (y < y_max)
 	{
-		square_map[y] = (char *)malloc(sizeof(char) * x_max + 1);
+		square_map[y] = (char *)malloc(sizeof(char) * (x_max + 1));
 		if (!square_map[y])
 			ft_errno(MEM, data); // voir si je rajoute ft_free_array(square_map)
 		ft_memset(square_map[y], EMPTY, x_max);
 		ft_memset(square_map[y] + (x_max), 0, 1);
 		y++;
 	}
+	square_map[y] = NULL;
 	return (square_map);
 }	
 
@@ -70,7 +71,7 @@ void	ft_square_map(t_data *data)
 		}
 		y++;
 	}
-	square_map[y] = NULL;
+	// square_map[y] = NULL;
 }
 
 /*

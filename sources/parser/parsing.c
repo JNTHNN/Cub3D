@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:55:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 20:04:30 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:28:21 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_save_map(t_data *data)
 	y = 0;
 	start = data->file->start;
 	size = data->file->end - data->file->start;
-	data->map->map = (char **)malloc(sizeof(char *) * (size));
+	data->map->map = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!data->map->map)
 		ft_errno(MEM, data);
 	while (y < size)
@@ -75,6 +75,7 @@ void	ft_get_size_file(t_data *data)
 		line = get_next_line(data->file->fd);
 		if (!line)
 			break ;
+		free(line);
 	}
 	ft_close_fd(data);
 }
@@ -99,6 +100,7 @@ void	ft_save_file(t_data *data)
 		if (!line)
 			break ;
 		data->file->raw_file[y] = ft_strdup(line);
+		free(line);
 		y++;
 	}
 	data->file->raw_file[y] = NULL;

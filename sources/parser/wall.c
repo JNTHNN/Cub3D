@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 19:22:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:12:52 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,26 @@ void	ft_check_walls(t_data *data)
 				ft_errno(MAP_NOT_CLOSE, data);
 	while (map[data->map->y_size - 1][x] && map[data->map->y_size - 1][++x])
 		if (ft_wall(map[data->map->y_size - 1][x], BOT))
-				ft_errno(MAP_NOT_CLOSE, data);
-	y = 0;
-	while (map[y] && map[++y])
-		if (ft_wall(map[y][0], LEFT) || ft_wall(map[y][ft_strlen(map[y]) - 1], RIGHT))
 			ft_errno(MAP_NOT_CLOSE, data);
+	y = 0;
+	// je ne dois pas checker le char 0 mais parcourir jusqu'au 1er char qui doit etre un 1 sinon error
+	while (map[y] && map[++y])
+	{
+		x = 0;
+		while (ft_wall(map[y][x++], LEFT))
+			if (ft_wall(map[y][x], LEFT))
+				ft_errno(MAP_NOT_CLOSE, data);
+		// printf("ici [%d][%d]\n", y ,x);
+		// printf("le pb [%c]\n", map[y][x]);
+		// x = ft_strlen(map[y]);
+		// while (ft_wall(map[y][--x], RIGHT))
+		// {
+		// 	printf("le char [%c]", map[y][x]);
+		// 	if (ft_wall(map[y][x], RIGHT))
+		// 		ft_errno(MAP_NOT_CLOSE, data);
+		// /!\ NEED TO FIX FOR RIGHT SIDE OF MAP /!\
+		}
+	}
 }
 
 /*
