@@ -15,6 +15,8 @@
 
 // Title of the graphic window
 # define TITLE "Cub3D - By Jojo & Gigi"
+# define STRIDE 0.05
+# define ANGLE 0.05
 
 enum e_mlx_macros
 {
@@ -47,7 +49,9 @@ enum e_movements
 	M_LEFT = 1U,
 	M_RIGHT = 2U,
 	M_UP = 4U,
-	M_DOWN = 8U
+	M_DOWN = 8U,
+	M_ROTATE_LEFT = 16U,
+	M_ROTATE_RIGHT = 32U
 };
 
 /* windows.c */

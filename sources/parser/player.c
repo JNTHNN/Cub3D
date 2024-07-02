@@ -22,8 +22,8 @@ void	ft_cpy_attr(double dest[2], double src[2])
 void	ft_set_player_attributes(t_data *data, char orientation, int x, int y)
 {
 	data->map->player.orientation = orientation;
-	data->map->player.position[Y] = y;
-	data->map->player.position[X] = x;
+	data->map->player.position[Y] = y + OFFSET;
+	data->map->player.position[X] = x + OFFSET;
 	if (orientation == N)
 	{
 		ft_cpy_attr(data->map->player.direction, data->o_attributes.north.dir);

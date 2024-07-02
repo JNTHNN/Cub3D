@@ -163,8 +163,11 @@ struct s_data
 	t_img				*img;
 	t_map				*map;
 	int					**mtx;
+	int					*row_widths;
 	t_file				*file;
 	t_orientation_att	o_attributes;
+	// Remove after test
+	FILE 				*fd;
 };
 
 enum e_err_code

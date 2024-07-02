@@ -190,15 +190,16 @@ void	ft_raycasting(t_data *data)
 			i++;
 		}
 
-		// printf("-- RAYCASTING INFO --\n");
-		// printf("PLAYER POSITION (X, Y) [%f][%f]\nPlAYER DIRECTION (X, Y) [%f][%f]\nPLAYER POV (X,Y) [%f][%f]\n", player.position[X], player.position[Y], player.direction[X], player.direction[Y], player.pov[X], player.pov[Y]);
+		//printf("-- RAYCASTING INFO --\n");
+		//printf("PLAYER POSITION (X, Y) [%f][%f]\n", player.position[X], player.position[Y]);
+		//printf("PLAYER POSITION (X, Y) [%f][%f]\nPlAYER DIRECTION (X, Y) [%f][%f]\nPLAYER POV (X,Y) [%f][%f]\n", player.position[X], player.position[Y], player.direction[X], player.direction[Y], player.pov[X], player.pov[Y]);
 		// printf("CAMERA = %f\n", camera);
 		// printf("x = %d\n", x);
 		// printf("RAYDIR (X, Y) = [%f][%f]\n", raydir_x, raydir_y);
 	// 	printf("PERP : %f\n", perp_wall_dist);
 	// 	printf("DRAWLINE (START, END) [%i][%i]\n", drawline[START], drawline[END]);
 	// 	printf("cell (X, Y) = [%d, %d], step (X, Y) = [%d, %d], ray_length (X, Y) = [%f, %f], delta (X, Y) = [%f, %f]\n",
-    //    cell[X], cell[Y], step[X], step[Y], ray_length[X], ray_length[Y], delta[X], delta[Y]);
+    //  cell[X], cell[Y], step[X], step[Y], ray_length[X], ray_length[Y], delta[X], delta[Y]);
 	//	printf("---------------------------\n\n");
 
 		x++;

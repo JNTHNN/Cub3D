@@ -25,6 +25,10 @@
 # include "parser.h"
 # include "graphics.h"
 
+/* Remove after testing */
+# include <errno.h>
+# include <string.h>
+
 # define FLOOR "F "
 # define CEILING "C "
 # define NORTH "NO "
