@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:50:59 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:15:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 */
 int	ft_wall(char c, int flag)
 {
-	if ((flag == TOP || flag == BOT) && c != WALL && c != SPACE)
+	if ((flag == TOP || flag == BOT) && c != WALL && c != SPACE && c != '\t')
 		return (1);
-	if ((flag == LEFT || flag == RIGHT) && c != WALL)
+	if ((flag == LEFT || flag == RIGHT) && c != WALL && c != SPACE && c != '\t')
 		return (1);
 	return (0);
 }
@@ -48,7 +48,14 @@ void	ft_basic_check(t_data *data)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (map[y][x] != WALL && map[y][x] != GROUND && map[y][x] != SPACE && map[y][x] != N && map[y][x] != S && map[y][x] != W && map[y][x] != E)
+			if (map[y][x] != WALL
+				&& map[y][x] != GROUND
+				&& map[y][x] != SPACE
+				&& map[y][x] != N
+				&& map[y][x] != S
+				&& map[y][x] != W
+				&& map[y][x] != E
+				&& map[y][x] != '\t')
 				ft_errno(WRONG_CHAR, data);
 		}
 	}
