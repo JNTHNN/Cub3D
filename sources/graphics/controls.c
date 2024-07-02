@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/01 20:30:10 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:55:41 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ void ft_rotate_player(t_player *player, double angle)
 bool	ft_check_collision(double *new_pos, t_data *data)
 {
 	int cell[2];
-	int	x_width;
 
 	cell[X] = (int)new_pos[X];
 	cell[Y] = (int)new_pos[Y];
 	if (cell[Y] < 1 || cell[Y] >= data->map->y_size - 1)
 		return (true);
-	x_width = data->row_widths[cell[Y]];
-	if (cell[X] < 1 || cell[X] >= x_width - 1)
+	if (cell[X] < 1 || cell[X] >= data->map->x_size - 1)
         return (true);
 	if (data->mtx[cell[Y]][cell[X]] == 1)
 		return (true);
