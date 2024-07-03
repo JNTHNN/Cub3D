@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 16:55:59 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:31:39 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,10 +183,21 @@ void	ft_raycasting(t_data *data)
 		
 		// Dessiner la ligne sur l'image
 		int	i = drawline[START];
-
 		while (i < drawline[END])
 		{
-			ft_img_pix_put(data->img, x, i, 0xFF0000);
+			// Find correspondant pixel color in xpm image
+			int tex_x = (int)(x * (double)data->textures->tex_north->width);
+			int step = 1.0 * data->textures->tex_north->height / line_height;
+			int tex_pos = (drawline[START] - WIN_HEIGHT / 2 + line_height / 2) * step;
+			if (side == 0 && raydir_x > 0) 
+				tex_x = data->textures->tex_north->width - tex_x - 1;
+			if (side == 1 && raydir_y < 0)
+				tex_x = data->textures->tex_north->width - tex_x - 1;
+			int tex_y = (int)(tex_pos) & (data->textures->tex_north->height - 1);
+			tex_pos += step;
+			int tex_color = *(int *)data->textures->tex_north->addr + (tex_y * data->textures->tex_north->line_len + tex_x * (data->textures->tex_north->bpp / 8));
+			
+			ft_img_pix_put(data->img, x, i, tex_color);
 			i++;
 		}
 
@@ -216,12 +227,18 @@ int	ft_create_img(t_data *data)
 		return (EXIT_FAILURE);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 		&img->line_len, &img->endian);
-
-	ft_draw_background(img, data->map);
 	ft_player_moving(data);
+	ft_draw_background(img, data->map);
 	ft_raycasting(data);
 	//ft_apply_blur(img, 5);
-	mlx_put_image_to_window(data->mlx, data->win, data->img->mlx_img, 0, 0);
+
+	// int		img_width = 64;
+	// int		img_height = 64;
+	//void *test_img = mlx_xpm_file_to_image(data->mlx, data->map->texture_north, &img_width, &img_height);
+	mlx_put_image_to_window(data->mlx, data->win, img->mlx_img, 0, 0);
+	//mlx_put_image_to_window(data->mlx, data->win, test_img, 0, 0);
+
+	
 	return (EXIT_SUCCESS);
 }
 

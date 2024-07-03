@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:14:51 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/01 16:05:01 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:51:18 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	ft_init_mlx(t_data *data);
 
 /*  settings.c  */
 int     ft_mlx_settings(t_data *data);
+
+/* textures.c */
+void	ft_set_textures(t_data *data);
 
 /* blur.c */
 void	ft_apply_blur(t_img *img, int radius);

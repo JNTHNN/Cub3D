@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/02 17:55:41 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:02:10 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int ft_player_moving(t_data *data)
 		player->position[Y] = new_pos[Y];
 		player->position[X] = new_pos[X];
 	}
-	printf("PLAYER POSITION (X,Y) = [%f][%f]\n", player->position[X], player->position[Y]);
 	return (EXIT_SUCCESS);
 }
 
@@ -134,11 +133,11 @@ int	ft_handle_keyup_events(int keycode, t_data *data)
 	{
 		if (keycode == KEY_UP)
 			player->move &= ~M_UP;
-		else if (keycode == KEY_DOWN)
+		if (keycode == KEY_DOWN)
 			player->move &= ~M_DOWN;
-		else if (keycode == KEY_LEFT)
+		if (keycode == KEY_LEFT)
 			player->move &= ~M_LEFT;
-		else if (keycode == KEY_RIGHT)
+		if (keycode == KEY_RIGHT)
 			player->move &= ~M_RIGHT;
 		if (keycode == ARROW_LEFT)
 			player->move &= ~M_ROTATE_LEFT;

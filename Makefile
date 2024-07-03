@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/01 12:06:19 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/07/03 15:04:17 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,8 @@ MLX   			:= libmlx.a
 SRC_FILES			:= main
 PARSER_SRC			:= parsing data colors textures map player wall
 PARSER_UTILS_SRC	:= map_utils fd_utils
-GRAPHICS_SRC		:= windows controls 
+GRAPHICS_SRC		:= windows controls texturing blur
 UTILS_SRC			:= error free size atoi init temp
-GRAPHICS_SRC		:= windows controls blur
 GRAPHICS_UTILS_SRC	:= init settings
 
 
@@ -54,8 +53,6 @@ SRC				+= $(addprefix $(SRC_DIR)parser/utils/, $(addsuffix .c, $(PARSER_UTILS_SR
 SRC				+= $(addprefix $(SRC_DIR)utils/, $(addsuffix .c, $(UTILS_SRC)))
 SRC				+= $(addprefix $(SRC_DIR)graphics/, $(addsuffix .c, $(GRAPHICS_SRC)))
 SRC				+= $(addprefix $(SRC_DIR)graphics/utils/, $(addsuffix .c, $(GRAPHICS_UTILS_SRC)))
-
-
 
 # **************************************************************************** #
 # 							  	Object files								   #
@@ -73,7 +70,7 @@ CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
 READL			:= -L/usr/local/lib -I/usr/local/include
 MLX_FLAGS		:= -lm -lft -lmlx -framework OpenGL -framework AppKit
-DEBUG			:= #-fsanitize=address
+DEBUG			:= -fsanitize=address
 
 # **************************************************************************** #
 # 							  	   Colors	    							   #

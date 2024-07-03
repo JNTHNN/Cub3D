@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 15:06:57 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:34:08 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,33 @@ static t_file  *ft_init_file(t_data *data)
     return (file);
 }
 
+static t_xpm	*ft_init_tex_data(t_data *data)
+{
+	t_xpm	*xpm;
+	
+	xpm = (t_xpm *)malloc(sizeof(t_xpm));
+	if (!xpm)
+		ft_errno(MEM, data);
+	xpm = ft_memset(xpm, 0, sizeof(t_xpm));
+	return (xpm);
+}
+
+
+static t_textures	*ft_init_textures(t_data *data)
+{
+	t_textures	*textures;
+
+	textures = (t_textures *)malloc(sizeof(t_textures));
+	if (!textures)
+		ft_errno(MEM, data);
+	textures->tex_north = ft_init_tex_data(data);
+	textures->tex_south = ft_init_tex_data(data);
+	textures->tex_east = ft_init_tex_data(data);
+	textures->tex_west = ft_init_tex_data(data);
+	textures->sprite = ft_init_tex_data(data); 
+	return (textures);
+}
+
 t_data	*ft_init_data(char *file)
 {
 	t_data	*data;
@@ -124,13 +151,10 @@ t_data	*ft_init_data(char *file)
     data->img = (t_img *)malloc(sizeof(t_img));
     if (!data->img)
         ft_errno(MEM, data);
-    data->img->mlx_img = NULL;
-    data->img->addr = NULL;
-    data->img->bpp = 0;
-    data->img->line_len = 0;
-    data->img->endian = 0;
+    data->img = ft_memset(data->img, 0, sizeof(t_img));
 	data->map = ft_init_map(data, file);
     data->info = ft_init_info(data);
     data->file = ft_init_file(data);
+	data->textures = ft_init_textures(data);
 	return (data);
 }

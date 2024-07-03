@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/01 14:52:18 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:37:08 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,20 @@
 
 # include <stdio.h>
 
-typedef struct s_data	t_data;
-typedef struct s_img	t_img;
-typedef struct s_map	t_map;
-typedef struct s_info	t_info;
-typedef struct s_player	t_player;
-typedef enum e_err_code	t_err_code;
-typedef enum e_wall		t_wall;
-typedef enum e_orientation	t_orientation;
-typedef struct s_file	t_file;
-
-
 typedef struct s_data				t_data;
 typedef struct s_img				t_img;
 typedef struct s_map				t_map;
 typedef struct s_info				t_info;
 typedef struct s_orientation_att	t_orientation_att;
-typedef enum e_err_code				t_err_code;
-typedef enum e_wall					t_wall;
-typedef enum e_orientation			t_orientation;
+typedef struct s_file				t_file;
 typedef struct s_player				t_player;
 typedef struct s_p_orientation 		t_p_orientation;
 typedef struct s_orientation_att 	t_orientation_att;
+typedef struct s_textures			t_textures;
+typedef struct s_xpm				t_xpm;
+typedef enum e_err_code				t_err_code;
+typedef enum e_wall					t_wall;
+typedef enum e_orientation			t_orientation;
 
 enum e_orientation
 {
@@ -97,6 +89,26 @@ struct s_img
 	int		endian;
 };
 
+struct s_xpm
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+};
+
+struct s_textures
+{
+	t_xpm	*tex_north;
+	t_xpm	*tex_south;
+	t_xpm	*tex_east;
+	t_xpm	*tex_west;
+	t_xpm	*sprite;
+};
+
 typedef union
 {
 	u_int32_t	s_value;
@@ -140,9 +152,9 @@ struct	s_map
 	// longueur / abscisse / x
 	int			x_size;
 	// map brute
-	char	**map;
+	char		**map;
 	// map spaces remplacé par 2
-	char	**square_map;
+	char		**square_map;
 	t_player	player; // TEST: position du player
 };
 
@@ -166,6 +178,7 @@ struct s_data
 	int					*row_widths;
 	t_file				*file;
 	t_orientation_att	o_attributes;
+	t_textures			*textures;
 	// Remove after test
 	FILE 				*fd;
 };
@@ -193,7 +206,8 @@ enum e_mlx_err_code
 {
 	MLX = -400,
 	WIN = -401,
-	IMG = -402
+	IMG = -402,
+	ADD = -403
 };
 
 enum e_wall

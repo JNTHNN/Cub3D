@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/textures/bluestone.xpm
+SO ./assets/textures/bluestone.xpm
+WE ./assets/textures/bluestone.xpm
+EA ./assets/textures/bluestone.xpm
 F 110,110,110
 C 60,60,60
 

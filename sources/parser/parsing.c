@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:55:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 12:09:20 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:48:24 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,5 @@ void	ft_setup_map(t_data *data)
 	ft_check_map(data);	
 	ft_print_struct(data);
 	ft_raw_map_to_mtx(data);
+	ft_set_textures(data);
 }
