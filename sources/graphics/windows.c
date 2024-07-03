@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 17:19:59 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:09:32 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,15 +241,9 @@ int	ft_create_img(t_data *data)
 	ft_player_moving(data);
 	ft_draw_background(img, data->map);
 	ft_raycasting(data);
-	//ft_apply_blur(img, 5);
-
-	// int		img_width = 64;
-	// int		img_height = 64;
-	//void *test_img = mlx_xpm_file_to_image(data->mlx, data->map->texture_north, &img_width, &img_height);
 	mlx_put_image_to_window(data->mlx, data->win, img->mlx_img, 0, 0);
-	//mlx_put_image_to_window(data->mlx, data->win, test_img, 0, 0);
-
-	
+	mlx_destroy_image(data->mlx, data->img->mlx_img);
+	data->img->mlx_img = NULL;
 	return (EXIT_SUCCESS);
 }
 
