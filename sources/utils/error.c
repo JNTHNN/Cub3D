@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 14:38:47 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:21:16 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void ft_print_mlx_error(int err_code)
 		ft_putendl_fd(STR_ERR_IMG, STDERR_FILENO);
 	else if (err_code == ADD)
 		ft_putendl_fd(STR_ERR_ADD, STDERR_FILENO);
+	else if (err_code == OPEN)
+		ft_putendl_fd(STR_ERR_OPEN, STDERR_FILENO);
 }
 
 static void	ft_print_error(int err_code)

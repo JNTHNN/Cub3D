@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:36:43 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/03 15:36:44 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:43:59 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 static void	ft_set_tex_img(t_data *data, t_xpm *texture, char *filename)
 {
-	printf("XPM->IMG = %p, XPM->W = %i\n",texture->img, texture->width);
-	texture->img = mlx_xpm_file_to_image(data->mlx, filename,
+	int	fd;
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		ft_errno(OPEN, data);
+	close(fd);
+	texture->img = mlx_xpm_file_to_image(&data->mlx, filename,
 		&texture->width, &texture->height);
 	if (!texture->img)
 		ft_errno(IMG, data);

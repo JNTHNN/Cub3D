@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 14:31:39 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:19:59 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,22 +181,33 @@ void	ft_raycasting(t_data *data)
 		if (drawline[END] >= WIN_HEIGHT)
 			drawline[END] = WIN_HEIGHT - 1;
 		
+
+		// Définir les variables pour gérer la texture xpm
+		int tex_x;
+		if (side == 0) {
+			double impact = player.position[Y] + perp_wall_dist * raydir_y;
+			tex_x = (int)(impact * (double)data->textures->tex_north->width);
+		} else {
+			double impact = player.position[X] + perp_wall_dist * raydir_x;
+			tex_x = (int)(impact * (double)data->textures->tex_north->width);
+		}
+		tex_x = tex_x % data->textures->tex_north->width;
+
+		if (side == 0 && raydir_x > 0)
+			tex_x = data->textures->tex_north->width - tex_x - 1;
+		if (side == 1 && raydir_y < 0)
+			tex_x = data->textures->tex_north->width - tex_x - 1;
+
+		double step = 1.0 * data->textures->tex_north->height / line_height;
+		double tex_pos = (drawline[START] - WIN_HEIGHT / 2 + line_height / 2) * step;
+		
 		// Dessiner la ligne sur l'image
 		int	i = drawline[START];
 		while (i < drawline[END])
 		{
-			// Find correspondant pixel color in xpm image
-			int tex_x = (int)(x * (double)data->textures->tex_north->width);
-			int step = 1.0 * data->textures->tex_north->height / line_height;
-			int tex_pos = (drawline[START] - WIN_HEIGHT / 2 + line_height / 2) * step;
-			if (side == 0 && raydir_x > 0) 
-				tex_x = data->textures->tex_north->width - tex_x - 1;
-			if (side == 1 && raydir_y < 0)
-				tex_x = data->textures->tex_north->width - tex_x - 1;
-			int tex_y = (int)(tex_pos) & (data->textures->tex_north->height - 1);
-			tex_pos += step;
-			int tex_color = *(int *)data->textures->tex_north->addr + (tex_y * data->textures->tex_north->line_len + tex_x * (data->textures->tex_north->bpp / 8));
-			
+			int tex_y = (int)tex_pos & (data->textures->tex_north->height - 1);
+    		tex_pos += step;
+    		int tex_color = *(int *)(data->textures->tex_north->addr + (tex_y * data->textures->tex_north->line_len + tex_x * (data->textures->tex_north->bpp / 8)));
 			ft_img_pix_put(data->img, x, i, tex_color);
 			i++;
 		}
