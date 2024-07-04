@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/02 21:02:10 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:54:40 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ void ft_rotate_player(t_player *player, double angle)
 {
 		double old_dir_x;
 		double old_pov_x;
-		double cos_angle;
-		double sin_angle;
 
 		old_dir_x = player->direction[X];
 		old_pov_x = player->pov[X];
-		cos_angle = cos(angle);
-		sin_angle = sin(angle);
-		player->direction[X] = player->direction[X] * cos_angle - player->direction[Y] * sin_angle;
-		player->direction[Y] = old_dir_x * sin_angle + player->direction[Y] * cos_angle;
-		player->pov[X] = player->pov[X] * cos_angle - player->pov[Y] * sin_angle;
-		player->pov[Y] = old_pov_x * sin_angle + player->pov[Y] * cos_angle;
+		player->direction[X] = player->direction[X] * cos(angle) - player->direction[Y] * sin(angle);
+		player->direction[Y] = old_dir_x * sin(angle) + player->direction[Y] * cos(angle);
+		player->pov[X] = player->pov[X] * cos(angle) - player->pov[Y] * sin(angle);
+		player->pov[Y] = old_pov_x * sin(angle) + player->pov[Y] * cos(angle);
 }
 
 
@@ -95,7 +91,7 @@ int ft_player_moving(t_data *data)
 }
 
 /* Handles key press events */
-int	ft_handle_keydown_events(int keycode, t_data *data)
+int	ft_on_keydown(int keycode, t_data *data)
 {
 	t_player	*player;
 	
@@ -122,7 +118,7 @@ int	ft_handle_keydown_events(int keycode, t_data *data)
 }
 
 /* Handles key release events */
-int	ft_handle_keyup_events(int keycode, t_data *data)
+int	ft_on_keyup(int keycode, t_data *data)
 {
 	t_player	*player;
 	
@@ -147,13 +143,61 @@ int	ft_handle_keyup_events(int keycode, t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-/* Handles mouse events */
-int	ft_handle_mouse_events(int button, int x, int y, t_data *data)
+bool	ft_cursor_is_in_window(int mouse_x, int mouse_y)
 {
-	// dumb code to silence compilation warnings
-	(void)x;
-	(void)y;
-	if (data && button == 5)
-		return (5);
+	if (mouse_x > 0 && mouse_x < WIN_WIDTH 
+		&& mouse_y > 0 && mouse_y < WIN_HEIGHT)
+		return (true);
+	return (false);
+}
+
+/* Handles mouse events */
+int	ft_on_mousemove(int x, int y, t_data *data)
+{
+	t_player	*player;
+	double 		delta[2];
+	double		old_mouse_pos[2];
+	double 		old_pov_x;
+	double 		old_dir_x;
+	double		angle;
+
+	if (data->left_click && ft_cursor_is_in_window(x, y))
+	{
+		player = &data->map->player;
+		old_mouse_pos[X] = WIN_WIDTH / 2;
+		old_mouse_pos[Y] = WIN_HEIGHT / 2;
+		old_dir_x = player->direction[X];
+		old_pov_x = player->pov[X];
+		delta[X] = x - old_mouse_pos[X];
+		delta[Y] = y - old_mouse_pos[Y];
+		angle = delta[X] * MOUSE_SPEED;
+		player->direction[X] = player->direction[X] * cos(angle) - player->direction[Y] * sin(angle);
+		player->direction[Y] = old_dir_x * sin(angle) + player->direction[Y] * cos(angle);
+		player->pov[X] = player->pov[X] * cos(angle) - player->pov[Y] * sin(angle);
+		player->pov[Y] = old_pov_x * sin(angle) + player->pov[Y] * cos(angle);
+		old_mouse_pos[X] = x;
+		old_mouse_pos[Y] = y;
+		mlx_mouse_move(data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int 	ft_on_mousedown(int button, int x, int y, t_data *data)
+{	
+	if (button == 1 && ft_cursor_is_in_window(x, y))
+	{
+		data->left_click = true;
+		mlx_mouse_hide();
+	}
+	return (EXIT_SUCCESS);
+}
+
+int 	ft_on_mouseup(int button, int x, int y, t_data *data)
+{	
+	if (button == 1 && ft_cursor_is_in_window(x, y))
+	{
+		data->left_click = false;
+		mlx_mouse_show();
+	}
 	return (EXIT_SUCCESS);
 }

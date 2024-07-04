@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/03 16:19:11 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:35:30 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ struct s_data
 	t_file				*file;
 	t_orientation_att	o_attributes;
 	t_textures			*textures;
+	bool				left_click;
 	// Remove after test
 	FILE 				*fd;
 };

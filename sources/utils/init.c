@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 15:34:08 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:35:21 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,6 @@ t_data	*ft_init_data(char *file)
     data->info = ft_init_info(data);
     data->file = ft_init_file(data);
 	data->textures = ft_init_textures(data);
+	data->left_click = false;
 	return (data);
 }

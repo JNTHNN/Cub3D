@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:14:51 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/03 14:51:18 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:57:44 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 // Title of the graphic window
 # define TITLE "Cub3D - By Jojo & Gigi"
-# define STRIDE 0.05
-# define ANGLE 0.05
+# define STRIDE 0.042
+# define ANGLE 0.042
+# define MOUSE_SPEED 0.0015
 
 enum e_mlx_macros
 {
@@ -55,11 +56,13 @@ enum e_movements
 };
 
 /* windows.c */
-int	    ft_handle_keydown_events(int keycode, t_data *data);
-int	    ft_handle_keyup_events(int keycode, t_data *data);
-int	    ft_handle_mouse_events(int button, int x, int y, t_data *data);
-int	    ft_close_window(t_data *data);
-int	    ft_play(t_data *data);
+int		ft_on_keydown(int keycode, t_data *data);
+int		ft_on_keyup(int keycode, t_data *data);
+int		ft_on_mousemove(int x, int y, t_data *data);
+int		ft_on_mousedown(int button, int x, int y, t_data *data);
+int		ft_on_mouseup(int button, int x, int y, t_data *data);
+int		ft_close_window(t_data *data);
+int		ft_play(t_data *data);
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
 void	ft_set_black(t_data *data);
 int		ft_player_moving(t_data *data);
