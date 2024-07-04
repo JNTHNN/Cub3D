@@ -6,20 +6,21 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 15:52:05 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:49:00 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void	ft_cpy_attr(double dest[2], double src[2])
+static void	ft_cpy_attr(double dest[2], double src[2])
 {
 	dest[0] = src[0];
 	dest[1] = src[1];
 }
 
-void	ft_set_player_attributes(t_data *data, char orientation, int x, int y)
+static void	ft_set_player_attributes(t_data *data,
+	char orientation, int x, int y)
 {
 	data->map->player.orientation = orientation;
 	data->map->player.position[Y] = y + OFFSET;
@@ -46,7 +47,7 @@ void	ft_set_player_attributes(t_data *data, char orientation, int x, int y)
 	}
 }
 
-bool	ft_check_orientation(char c)
+static bool	ft_check_orientation(char c)
 {
 	if (c == N || c == S || c == E || c == W)
 		return (true);

@@ -6,13 +6,23 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/04 16:03:50 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:06:13 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
 
+# define FLOOR "F "
+# define CEILING "C "
+# define NORTH "NO "
+# define SOUTH "SO "
+# define WEST "WE "
+# define EAST "EA "
+# define NO 1
+# define SO 2
+# define WE 3
+# define EA 4
 # define WALL 49
 # define GROUND 48
 # define EMPTY 50
@@ -31,8 +41,8 @@ typedef struct s_info				t_info;
 typedef struct s_orientation_att	t_orientation_att;
 typedef struct s_file				t_file;
 typedef struct s_player				t_player;
-typedef struct s_p_orientation 		t_p_orientation;
-typedef struct s_orientation_att 	t_orientation_att;
+typedef struct s_p_orientation		t_p_orientation;
+typedef struct s_orientation_att	t_orientation_att;
 typedef struct s_textures			t_textures;
 typedef struct s_xpm				t_xpm;
 typedef enum e_wall					t_wall;
@@ -63,16 +73,16 @@ enum e_draw_pos
 
 struct s_p_orientation
 {
-    double dir[2];
-   	double fov[2];
+	double	dir[2];
+	double	fov[2];
 };
 
-struct s_orientation_att 
+struct s_orientation_att
 {
-    t_p_orientation north;
-    t_p_orientation south;
-    t_p_orientation east;
-    t_p_orientation west;
+	t_p_orientation	north;
+	t_p_orientation	south;
+	t_p_orientation	east;
+	t_p_orientation	west;
 };
 
 struct s_player
@@ -113,20 +123,20 @@ struct s_textures
 	t_xpm	*sprite;
 };
 
-typedef union
+typedef union u_color
 {
 	u_int32_t	s_value;
 	struct
 	{
-		u_int8_t b;
-		u_int8_t g;
-		u_int8_t r;
+		u_int8_t	b;
+		u_int8_t	g;
+		u_int8_t	r;
 	} s_rgb;
-} u_color;
+}	t_color;
 
 struct	s_info
 {
-	char 	*floor;
+	char	*floor;
 	char	*ceiling;
 	char	*texture_north;
 	char	*texture_south;
@@ -138,8 +148,8 @@ struct	s_map
 {
 	char		*file;
 	int			fd;
-	u_color		floor;
-	u_color		ceiling;
+	t_color		floor;
+	t_color		ceiling;
 	char		*texture_north;
 	char		*texture_south;
 	char		*texture_west;
@@ -199,7 +209,7 @@ enum e_mlx_err_code
 	MLX = -400,
 	WIN = -401,
 	IMG = -402,
-	ADD = -403, 
+	ADD = -403,
 	OPEN = -404
 };
 

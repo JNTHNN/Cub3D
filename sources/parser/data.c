@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 14:17:22 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:41:38 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-**	Fill in the data and check if it already exists
+**	Fills in the data and checks if it already exists
 */
-void	ft_fill_data(char **type, char *line, int *flag, t_data *data)
+static void	ft_fill_data(char **type, char *line, int *flag, t_data *data)
 {
 	if (!*type)
 		*type = ft_strdup(line);
@@ -25,7 +25,7 @@ void	ft_fill_data(char **type, char *line, int *flag, t_data *data)
 }
 
 /*
-**	Check that the data corresponds to what we need
+**	Checks that the data corresponds to what we need
 */
 void	ft_check_data(char *line, t_data *data, int *flag)
 {

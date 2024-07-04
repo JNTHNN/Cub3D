@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 17:03:07 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:01:33 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_info	*ft_init_info(t_data *data)
 	return (info);
 }
 
-u_color	ft_init_color(void)
+t_color	ft_init_color(void)
 {
-	u_color	rgb;
+	t_color	rgb;
 
 	rgb.s_value = 0;
 	rgb.s_rgb.b = 0;

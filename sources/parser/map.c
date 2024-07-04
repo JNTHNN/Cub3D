@@ -6,12 +6,40 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:53:39 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:16:55 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+**	Checks for other inaccurate characters
+*/
+static void	ft_basic_check(t_data *data)
+{
+	int		y;
+	int		x;
+	char	**map;
+
+	y = -1;
+	map = data->map->map;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] != WALL
+				&& map[y][x] != GROUND
+				&& map[y][x] != SPACE
+				&& map[y][x] != N
+				&& map[y][x] != S
+				&& map[y][x] != W
+				&& map[y][x] != E
+				&& map[y][x] != '\t')
+				ft_errno(WRONG_CHAR, data);
+		}
+	}
+}
 
 /*
 **	Create square map with (2) in place of empty cells
@@ -33,27 +61,27 @@ static char	**ft_fill_square_map(t_data *data)
 	{
 		square_map[y] = (char *)malloc(sizeof(char) * (x_max + 1));
 		if (!square_map[y])
-			ft_errno(MEM, data); // voir si je rajoute ft_free_array(square_map)
+			ft_errno(MEM, data);
 		ft_memset(square_map[y], EMPTY, x_max);
 		ft_memset(square_map[y] + (x_max), 0, 1);
 		y++;
 	}
 	square_map[y] = NULL;
 	return (square_map);
-}	
+}
 
 /*
 **	Duplicates the original map to make one,
 **	that is square and empty cells are replaced by (2)
 */
-void	ft_square_map(t_data *data)
+static void	ft_square_map(t_data *data)
 {
 	int		x_max;
 	int		y_max;
 	int		x;
 	int		y;
-	char	**square_map; // surement a enlever a cause de la norme
-	
+	char	**square_map;
+
 	y = 0;
 	x_max = data->map->x_size;
 	y_max = data->map->y_size;
@@ -71,7 +99,6 @@ void	ft_square_map(t_data *data)
 		}
 		y++;
 	}
-	// square_map[y] = NULL;
 }
 
 /*

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:29:43 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/29 20:21:51 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:01:33 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-**	Fill in the rgb values
+**	Fills in the rgb values
 */
-void	ft_fill_rgb(char *color, u_color *rgb, t_data *data)
+static void	ft_fill_rgb(char *color, t_color *rgb, t_data *data)
 {
 	char	**rgb_values;
 	int		flag;
@@ -38,7 +38,7 @@ void	ft_fill_rgb(char *color, u_color *rgb, t_data *data)
 }
 
 /*
-**	Fill in the colors according to the data
+**	Fills in the colors according to the data
 */
 void	ft_fill_color(t_data *data)
 {

@@ -6,13 +6,13 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:50:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 16:21:16 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:55:13 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void ft_print_mlx_error(int err_code)
+static void	ft_print_mlx_error(int err_code)
 {
 	if (err_code == MLX)
 		ft_putendl_fd(STR_ERR_MLX, STDERR_FILENO);
@@ -67,5 +67,5 @@ void	ft_errno(int err_code, t_data *data)
 	ft_print_error(err_code);
 	if (data)
 		ft_free_data(data);
-	exit(err_code); // EXIT_FAILURE 
+	exit(err_code);
 }
