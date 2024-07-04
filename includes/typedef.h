@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/04 11:35:30 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:03:50 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # define GROUND 48
 # define EMPTY 50
 # define SPACE 32
-
-# include <stdio.h>
+# define FOV_0 0
+# define FOV_66 0.66
+# define FOV_M66 -0.66
+# define DIR_0 0
+# define DIR_1 1
+# define DIR_M1 -1
 
 typedef struct s_data				t_data;
 typedef struct s_img				t_img;
@@ -31,9 +35,9 @@ typedef struct s_p_orientation 		t_p_orientation;
 typedef struct s_orientation_att 	t_orientation_att;
 typedef struct s_textures			t_textures;
 typedef struct s_xpm				t_xpm;
-typedef enum e_err_code				t_err_code;
 typedef enum e_wall					t_wall;
 typedef enum e_orientation			t_orientation;
+typedef enum e_err_code				t_err_code;
 
 enum e_orientation
 {
@@ -60,7 +64,7 @@ enum e_draw_pos
 struct s_p_orientation
 {
     double dir[2];
-   	double pov[2];
+   	double fov[2];
 };
 
 struct s_orientation_att 
@@ -76,7 +80,7 @@ struct s_player
 	t_orientation	orientation;
 	double			position[2];
 	double			direction[2];
-	double			pov[2];
+	double			fov[2];
 	int				move;
 };
 
@@ -132,30 +136,19 @@ struct	s_info
 
 struct	s_map
 {
-	// voir si on stocke ici les textures/chemin
 	char		*file;
 	int			fd;
-	// couleur sol
 	u_color		floor;
-	// couleur plafond
 	u_color		ceiling;
-	// texture nord
-	char		*texture_north; // a voir si je peux utiliser FILE
-	// texture sud
-	char		*texture_south; // a voir si je peux utiliser FILE
-	// texture ouest
-	char		*texture_west; // a voir si je peux utiliser FILE
-	// texture est
-	char		*texture_east; // a voir si je peux utiliser FILE
-	// hauteur / ordonee / y
+	char		*texture_north;
+	char		*texture_south;
+	char		*texture_west;
+	char		*texture_east;
 	int			y_size;
-	// longueur / abscisse / x
 	int			x_size;
-	// map brute
 	char		**map;
-	// map spaces remplacé par 2
 	char		**square_map;
-	t_player	player; // TEST: position du player
+	t_player	player;
 };
 
 struct s_file
@@ -180,8 +173,6 @@ struct s_data
 	t_orientation_att	o_attributes;
 	t_textures			*textures;
 	bool				left_click;
-	// Remove after test
-	FILE 				*fd;
 };
 
 enum e_err_code

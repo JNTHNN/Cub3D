@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/03 15:04:17 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/07/04 17:11:02 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,11 @@ MLX   			:= libmlx.a
 # **************************************************************************** #
 
 SRC_FILES			:= main
+UTILS_SRC			:= error free size atoi init init2
 PARSER_SRC			:= parsing data colors textures map player wall
 PARSER_UTILS_SRC	:= map_utils fd_utils
 GRAPHICS_SRC		:= windows controls texturing blur
-UTILS_SRC			:= error free size atoi init temp
 GRAPHICS_UTILS_SRC	:= init settings
-
 
 SRC				:= $(addprefix $(SRC_DIR),$(addsuffix .c, $(SRC_FILES)))
 SRC 			+= $(addprefix $(SRC_DIR)parser/, $(addsuffix .c, $(PARSER_SRC)))
@@ -84,7 +83,6 @@ WHITE 			= \033[0m
 # **************************************************************************** #
 # 							  	   Rules	    							   #
 # **************************************************************************** #
-
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:09:13 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/04 11:54:40 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:52:05 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ bool	ft_is_moving_key(int keycode)
 void ft_rotate_player(t_player *player, double angle)
 {
 		double old_dir_x;
-		double old_pov_x;
+		double old_fov_x;
 
 		old_dir_x = player->direction[X];
-		old_pov_x = player->pov[X];
+		old_fov_x = player->fov[X];
 		player->direction[X] = player->direction[X] * cos(angle) - player->direction[Y] * sin(angle);
 		player->direction[Y] = old_dir_x * sin(angle) + player->direction[Y] * cos(angle);
-		player->pov[X] = player->pov[X] * cos(angle) - player->pov[Y] * sin(angle);
-		player->pov[Y] = old_pov_x * sin(angle) + player->pov[Y] * cos(angle);
+		player->fov[X] = player->fov[X] * cos(angle) - player->fov[Y] * sin(angle);
+		player->fov[Y] = old_fov_x * sin(angle) + player->fov[Y] * cos(angle);
 }
 
 
@@ -57,7 +57,6 @@ int ft_player_moving(t_data *data)
 	double		new_pos[2];
 	
 	player = &data->map->player;
-	
 	if ((player->move & M_UP) != 0)
 	{
 		new_pos[Y] = player->position[Y] + player->direction[Y] * STRIDE;
@@ -157,7 +156,7 @@ int	ft_on_mousemove(int x, int y, t_data *data)
 	t_player	*player;
 	double 		delta[2];
 	double		old_mouse_pos[2];
-	double 		old_pov_x;
+	double 		old_fov_x;
 	double 		old_dir_x;
 	double		angle;
 
@@ -167,14 +166,14 @@ int	ft_on_mousemove(int x, int y, t_data *data)
 		old_mouse_pos[X] = WIN_WIDTH / 2;
 		old_mouse_pos[Y] = WIN_HEIGHT / 2;
 		old_dir_x = player->direction[X];
-		old_pov_x = player->pov[X];
+		old_fov_x = player->fov[X];
 		delta[X] = x - old_mouse_pos[X];
 		delta[Y] = y - old_mouse_pos[Y];
 		angle = delta[X] * MOUSE_SPEED;
 		player->direction[X] = player->direction[X] * cos(angle) - player->direction[Y] * sin(angle);
 		player->direction[Y] = old_dir_x * sin(angle) + player->direction[Y] * cos(angle);
-		player->pov[X] = player->pov[X] * cos(angle) - player->pov[Y] * sin(angle);
-		player->pov[Y] = old_pov_x * sin(angle) + player->pov[Y] * cos(angle);
+		player->fov[X] = player->fov[X] * cos(angle) - player->fov[Y] * sin(angle);
+		player->fov[Y] = old_fov_x * sin(angle) + player->fov[Y] * cos(angle);
 		old_mouse_pos[X] = x;
 		old_mouse_pos[Y] = y;
 		mlx_mouse_move(data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);

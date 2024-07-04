@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:09:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/06/26 11:39:00 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:14:45 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 # include "graphics.h"
 # include "parser.h"
 # include "graphics.h"
-
-/* Remove after testing */
-# include <errno.h>
-# include <string.h>
 
 # define FLOOR "F "
 # define CEILING "C "

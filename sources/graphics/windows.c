@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 20:42:16 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:52:05 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void	ft_raycasting(t_data *data)
 	{
 		// Calcul de la position du rayon et de sa direction
 		camera = 2 * x / (double)WIN_WIDTH - 1;
-		raydir_x = player.direction[X] + player.pov[X] * camera;
-		raydir_y = player.direction[Y] + player.pov[Y] * camera;
+		raydir_x = player.direction[X] + player.fov[X] * camera;
+		raydir_y = player.direction[Y] + player.fov[Y] * camera;
 
 		// Position du joueur dans la map (cellule ou case)
 		cell[X] = (int)player.position[X];
@@ -228,7 +228,7 @@ void	ft_raycasting(t_data *data)
 
 		//printf("-- RAYCASTING INFO --\n");
 		//printf("PLAYER POSITION (X, Y) [%f][%f]\n", player.position[X], player.position[Y]);
-		//printf("PLAYER POSITION (X, Y) [%f][%f]\nPlAYER DIRECTION (X, Y) [%f][%f]\nPLAYER POV (X,Y) [%f][%f]\n", player.position[X], player.position[Y], player.direction[X], player.direction[Y], player.pov[X], player.pov[Y]);
+		//printf("PLAYER POSITION (X, Y) [%f][%f]\nPlAYER DIRECTION (X, Y) [%f][%f]\nPLAYER fov (X,Y) [%f][%f]\n", player.position[X], player.position[Y], player.direction[X], player.direction[Y], player.fov[X], player.fov[Y]);
 		// printf("CAMERA = %f\n", camera);
 		// printf("x = %d\n", x);
 		// printf("RAYDIR (X, Y) = [%f][%f]\n", raydir_x, raydir_y);

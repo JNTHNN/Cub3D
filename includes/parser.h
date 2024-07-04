@@ -20,7 +20,6 @@
 # define OFFSET 0.5
 
 /*  parsing.c   */
-void    ft_check_arg(int argc, char **argv);
 void	ft_setup_map(t_data *data);
 void	ft_parsing_raw_map(t_data *data);
 

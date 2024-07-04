@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:55:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 16:42:23 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:23:29 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 */
 static void	ft_save_map(t_data *data)
 {
-	// ici on sauve la map
 	int	y;
 	int	size;
 	int	start;
@@ -32,39 +31,18 @@ static void	ft_save_map(t_data *data)
 	{
 		data->map->map[y] = ft_strdup(data->file->raw_file[start++]);
 		if (data->map->map[y][(ft_strlen(data->map->map[y]) - 1)] == 10)
-			ft_memset(data->map->map[y] + (ft_strlen(data->map->map[y]) - 1), 0, 1); // remove le \n
+			ft_memset(data->map->map[y]
+				+ (ft_strlen(data->map->map[y]) - 1), 0, 1);
 		y++;
 	}
 	data->map->map[y] = NULL;
-	// besoin de connaitre le y_max y et y_max x
 	ft_get_y_x_max(data);
-}
-
-/*
-**	Check if file extension is .cub
-*/
-void	ft_check_arg(int argc, char **argv)
-{
-	char	*file_extension;
-
-	if (argc > 2)
-		ft_errno(TOO_MANY, NULL);
-	else if (argc < 2)
-		ft_errno(NO_MAP, NULL);
-	else
-	{
-		file_extension = ft_strrchr(MAP, DOT);
-		if (!file_extension
-			|| (ft_strlen(file_extension) != 4
-				|| ft_strncmp(file_extension, CUB, ft_strlen(CUB))))
-			ft_errno(WRONG_EXT, NULL);
-	}
 }
 
 /*
 **	Counts the number of lines in the file
 */
-void	ft_get_size_file(t_data *data)
+static void	ft_get_size_file(t_data *data)
 {
 	char	*line;
 
@@ -83,7 +61,7 @@ void	ft_get_size_file(t_data *data)
 /*
 **	Save the .cub file into char **raw_file
 */
-void	ft_save_file(t_data *data)
+static void	ft_save_file(t_data *data)
 {
 	char	*line;
 	int		y;
@@ -105,17 +83,41 @@ void	ft_save_file(t_data *data)
 	}
 	data->file->raw_file[y] = NULL;
 	ft_close_fd(data);
-	// for (int u = 0; data->file->raw_file[u]; u++) // pour voir la save du fd -> raw_file
-	// 	printf("[%d][%s]\n", u, data->file->raw_file[u]);
+}
+
+static void	ft_raw_map_to_mtx(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->mtx = (int **)malloc(data->map->y_size * sizeof(int *));
+	if (!data->mtx)
+		ft_errno(MEM, data);
+	i = 0;
+	while (i < data->map->y_size)
+	{
+		data->mtx[i] = (int *)malloc(data->map->x_size * sizeof(int));
+		j = 0;
+		while (j < data->map->x_size)
+		{
+			if (ft_isdigit(data->map->square_map[i][j]))
+				data->mtx[i][j] = data->map->square_map[i][j] - '0';
+			else
+				data->mtx[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
 }
 
 /*
-**	Configure the map with these steps:
-**	- Transform the .cub fd into a raw_file
-**	- Parse raw_file to get textures/colors + map delimitation
-**	- Save map
-**	- Check if there's a player in the map
+**	Configures the map with these steps:
+**	- Transforms the .cub fd into a raw_file
+**	- Parses raw_file to get textures/colors + map delimitation
+**	- Saves map
+**	- Checks if there's a player in the map
 **	- Checks if map is enclosed by walls
+**	- Converts raw map (char) into a integer matrix for raycasting
 */
 void	ft_setup_map(t_data *data)
 {
@@ -123,7 +125,6 @@ void	ft_setup_map(t_data *data)
 	ft_parsing_raw_map(data);
 	ft_save_map(data);
 	ft_check_player(data);
-	ft_check_map(data);	
-	ft_print_struct(data);
+	ft_check_map(data);
 	ft_raw_map_to_mtx(data);
 }

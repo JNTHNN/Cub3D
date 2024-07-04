@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/03 16:18:46 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:16:00 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,5 @@
 # define STR_AMB_PLAYER "Error\nAmbigious player's position. Please try again"
 # define CUB ".cub"
 # define DOT 46
-# define MAP argv[1]
-
-/*	error.c	*/
-void	ft_check_arg(int argc, char **argv);
 
 #endif

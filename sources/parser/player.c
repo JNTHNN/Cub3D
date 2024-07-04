@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/01 11:53:05 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:52:05 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ void	ft_set_player_attributes(t_data *data, char orientation, int x, int y)
 	if (orientation == N)
 	{
 		ft_cpy_attr(data->map->player.direction, data->o_attributes.north.dir);
-		ft_cpy_attr(data->map->player.pov, data->o_attributes.north.pov);
+		ft_cpy_attr(data->map->player.fov, data->o_attributes.north.fov);
 	}
 	else if (orientation == S)
 	{
 		ft_cpy_attr(data->map->player.direction, data->o_attributes.south.dir);
-		ft_cpy_attr(data->map->player.pov, data->o_attributes.south.pov);
+		ft_cpy_attr(data->map->player.fov, data->o_attributes.south.fov);
 	}
 	else if (orientation == E)
 	{
 		ft_cpy_attr(data->map->player.direction, data->o_attributes.east.dir);
-		ft_cpy_attr(data->map->player.pov, data->o_attributes.east.pov);
+		ft_cpy_attr(data->map->player.fov, data->o_attributes.east.fov);
 	}
 	else
 	{
 		ft_cpy_attr(data->map->player.direction, data->o_attributes.west.dir);
-		ft_cpy_attr(data->map->player.pov, data->o_attributes.west.pov);
+		ft_cpy_attr(data->map->player.fov, data->o_attributes.west.fov);
 	}
 }
 
