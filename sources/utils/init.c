@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:37:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 22:01:33 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:54:22 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_info	*ft_init_info(t_data *data)
 
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	info->floor = NULL;
 	info->ceiling = NULL;
 	info->texture_north = NULL;
@@ -57,7 +57,7 @@ t_map	*ft_init_map(t_data *data, char *file)
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	map->fd = -1;
 	map->floor = ft_init_color();
 	map->ceiling = ft_init_color();
@@ -80,7 +80,7 @@ t_file	*ft_init_file(t_data *data)
 
 	file = (t_file *)malloc(sizeof(t_file));
 	if (!file)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	file->raw_file = NULL;
 	file->fd = -1;
 	file->size = 0;

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 22:00:58 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:12:52 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void			ft_free_data(t_data *data);
 
 /*	size.c	*/
 int				ft_arrlen(char **tab);
-
 
 /*  init.c  */
 t_info			*ft_init_info(t_data *data);

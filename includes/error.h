@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 22:09:10 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:53:12 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define STR_ERR_WIN "Error\nUnable to open graphic window. Please try again."
 # define STR_ERR_IMG "Error\nCouldn't renderer the image."
 # define STR_ERR_ADD "Error\nCouldn't get image data."
-# define STR_ERR_OPEN "Error\nUnable to find texture path."
-
+# define STR_ERR_OPEN "Error\nUnable to open the (.xpm) file."
 # define STR_MEM "Error\nMemory allocation goes wrong"
 # define STR_TOO_MANY "Error\nToo many arguments"
 # define STR_NO_MAP	"Error\nNo Map, No Game"
@@ -36,6 +35,6 @@
 # define CUB ".cub"
 # define DOT 46
 
-void	ft_errno(int err_code, t_data *data);
+void	ft_error(int code, char *err_msg, t_data *data);
 
 #endif

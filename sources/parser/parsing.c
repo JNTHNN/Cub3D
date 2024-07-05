@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:55:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 17:23:29 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:51:15 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_save_map(t_data *data)
 	size = data->file->end - data->file->start;
 	data->map->map = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!data->map->map)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	while (y < size)
 	{
 		data->map->map[y] = ft_strdup(data->file->raw_file[start++]);
@@ -70,7 +70,7 @@ static void	ft_save_file(t_data *data)
 	ft_get_size_file(data);
 	data->file->raw_file = (char **)malloc(sizeof(char *) * data->file->size);
 	if (!data->file->raw_file)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	ft_open_fd(data);
 	while (data->file->fd)
 	{
@@ -92,7 +92,7 @@ static void	ft_raw_map_to_mtx(t_data *data)
 
 	data->mtx = (int **)malloc(data->map->y_size * sizeof(int *));
 	if (!data->mtx)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	i = 0;
 	while (i < data->map->y_size)
 	{

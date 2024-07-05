@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:05:12 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:52:36 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	ft_check_walls(t_data *data)
 	map = data->map->map;
 	while (map[0][x] && map[0][++x])
 		if (ft_wall(map[0][x], TOP))
-			ft_errno(MAP_NOT_CLOSE, data);
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
 	x = 0;
 	while (map[data->map->y_size - 1][x] && map[data->map->y_size - 1][++x])
 		if (ft_wall(map[data->map->y_size - 1][x], BOT))
-			ft_errno(MAP_NOT_CLOSE, data);
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
 	y = 0;
 	while (map[y] && map[++y])
 	{
 		x = 0;
 		while (ft_wall(map[y][x++], LEFT))
 			if (ft_wall(map[y][x], LEFT))
-				ft_errno(MAP_NOT_CLOSE, data);
+				ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
 	}
 }
 
@@ -60,7 +60,7 @@ void	ft_backtrack_wall(t_data *data)
 			{
 				if (map[y][x - 1] == EMPTY || map[y][x + 1] == EMPTY
 					|| map[y - 1][x] == EMPTY || map[y + 1][x] == EMPTY)
-					ft_errno(MAP_NOT_CLOSE, data);
+					ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
 			}
 		}
 	}
@@ -80,5 +80,5 @@ void	ft_backtrack_player(t_data *data)
 	map = data->map->square_map;
 	if (map[y][x - 1] == EMPTY || map[y][x + 1] == EMPTY
 		|| map[y - 1][x] == EMPTY || map[y + 1][x] == EMPTY)
-		ft_errno(AMB_PLAYER, data);
+		ft_error(AMB_PLAYER, STR_AMB_PLAYER, data);
 }

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/04 22:06:13 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:00:41 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define DIR_0 0
 # define DIR_1 1
 # define DIR_M1 -1
+# define OFFSET 0.5
+# define TITLE "Cub3D - By Jojo & Gigi"
+# define STRIDE 0.042
+# define ANGLE 0.042
+# define MOUSE_SPEED 0.0015
 
 typedef struct s_data				t_data;
 typedef struct s_img				t_img;
@@ -48,6 +53,42 @@ typedef struct s_xpm				t_xpm;
 typedef enum e_wall					t_wall;
 typedef enum e_orientation			t_orientation;
 typedef enum e_err_code				t_err_code;
+
+enum e_mlx_macros
+{
+	WIN_WIDTH = 1280,
+	WIN_HEIGHT = 720,
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17,
+	ESC = 53,
+};
+
+enum e_move_keys
+{
+	KEY_UP = 13,
+	KEY_DOWN = 1,
+	KEY_LEFT = 0,
+	KEY_RIGHT = 2,
+	ARROW_LEFT = 123,
+	ARROW_RIGHT = 124,
+	ARROW_DOWN = 125,
+	ARROW_UP = 126,
+};
+
+enum e_movements
+{
+	M_LEFT = 1U,
+	M_RIGHT = 2U,
+	M_UP = 4U,
+	M_DOWN = 8U,
+	M_ROTATE_LEFT = 16U,
+	M_ROTATE_RIGHT = 32U
+};
 
 enum e_orientation
 {

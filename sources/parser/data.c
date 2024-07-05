@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:41:38 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:50:06 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_fill_data(char **type, char *line, int *flag, t_data *data)
 	if (!*type)
 		*type = ft_strdup(line);
 	else
-		ft_errno(DUP_INFO, data);
+		ft_error(DUP_INFO, STR_DUP_INFO, data);
 	(*flag)++;
 }
 

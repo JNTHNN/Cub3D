@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:02:56 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/04 17:08:49 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:54:46 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_xpm	*ft_init_tex_data(t_data *data)
 
 	xpm = (t_xpm *)malloc(sizeof(t_xpm));
 	if (!xpm)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	xpm = ft_memset(xpm, 0, sizeof(t_xpm));
 	return (xpm);
 }
@@ -29,7 +29,7 @@ t_textures	*ft_init_textures(t_data *data)
 
 	textures = (t_textures *)malloc(sizeof(t_textures));
 	if (!textures)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	textures->tex_north = ft_init_tex_data(data);
 	textures->tex_south = ft_init_tex_data(data);
 	textures->tex_east = ft_init_tex_data(data);

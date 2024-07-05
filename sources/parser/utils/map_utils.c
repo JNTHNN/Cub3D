@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:17:56 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:53:39 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_parsing_raw_map(t_data *data)
 	while (data->file->raw_file[++y])
 		ft_check_data(data->file->raw_file[y], data, &flag);
 	if (flag != 6)
-		ft_errno(MISSING, data);
+		ft_error(MISSING, STR_MISSING, data);
 	data->file->start = ft_delimiter_map(data, START);
 	data->file->end = ft_delimiter_map(data, END);
 	y = data->file->start;

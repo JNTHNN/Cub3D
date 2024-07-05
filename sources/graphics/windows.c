@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 15:52:05 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:48:32 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,8 +264,8 @@ int	ft_create_img(t_data *data)
 int	ft_play(t_data *data)
 {
 	if (!data->win)
-		ft_errno(WIN, data);
+		ft_error(WIN, STR_ERR_WIN, data);
 	if (ft_create_img(data))
-		ft_errno(IMG, data);
+		ft_error(IMG, STR_ERR_IMG, data);
 	return (EXIT_SUCCESS);
 }

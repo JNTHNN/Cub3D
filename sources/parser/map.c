@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:16:55 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:50:48 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_basic_check(t_data *data)
 				&& map[y][x] != W
 				&& map[y][x] != E
 				&& map[y][x] != '\t')
-				ft_errno(WRONG_CHAR, data);
+				ft_error(WRONG_CHAR, STR_WRONG_CHAR, data);
 		}
 	}
 }
@@ -56,12 +56,12 @@ static char	**ft_fill_square_map(t_data *data)
 	x_max = data->map->x_size;
 	square_map = (char **)malloc(sizeof(char *) * (y_max + 1));
 	if (!square_map)
-		ft_errno(MEM, data);
+		ft_error(MEM, STR_MEM, data);
 	while (y < y_max)
 	{
 		square_map[y] = (char *)malloc(sizeof(char) * (x_max + 1));
 		if (!square_map[y])
-			ft_errno(MEM, data);
+			ft_error(MEM, STR_MEM, data);
 		ft_memset(square_map[y], EMPTY, x_max);
 		ft_memset(square_map[y] + (x_max), 0, 1);
 		y++;

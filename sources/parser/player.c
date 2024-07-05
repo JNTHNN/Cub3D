@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:49:00 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:51:48 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	ft_check_player(t_data *data)
 			if (ft_check_orientation(map[y][x]))
 			{
 				if (data->map->player.orientation != NONE)
-					ft_errno(MANY_PLAYERS, data);
+					ft_error(MANY_PLAYERS, STR_MANY_PLAYERS, data);
 				else
 					ft_set_player_attributes(data, map[y][x], x, y);
 			}
 		}
 	}
 	if (data->map->player.orientation == NONE)
-		ft_errno(NO_PLAYER, data);
+		ft_error(NO_PLAYER, STR_NO_PLAYER, data);
 }

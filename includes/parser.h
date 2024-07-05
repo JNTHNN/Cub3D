@@ -13,12 +13,6 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define Y 0
-# define X 1
-# define START 0
-# define END 1
-# define OFFSET 0.5
-
 /*  utils/map_utils.c   */
 int		ft_wall(char c, int flag);
 int		ft_orientation_player(char c);
