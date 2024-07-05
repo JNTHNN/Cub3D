@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:10:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 16:29:44 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 22:25:15 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_create_img(t_data *data)
 		return (EXIT_FAILURE);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 			&img->line_len, &img->endian);
-	ft_player_moving(data);
+	ft_move_player(data);
 	ft_draw_background(img, data->map);
 	ft_raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, img->mlx_img, 0, 0);

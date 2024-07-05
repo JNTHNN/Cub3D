@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/05 16:23:58 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:44:13 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ struct s_ray_c
 	int		step[2];
 	int		hit;
 	int		side;
-	double	perp_wall_dist;
+	double	perp_dist;
 	int		line_height;
 	int		drawline[2];
 	t_xpm	*texture;

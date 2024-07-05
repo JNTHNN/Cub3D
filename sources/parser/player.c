@@ -6,12 +6,11 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 12:51:48 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 22:32:05 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static void	ft_cpy_attr(double dest[2], double src[2])
 {

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 17:02:23 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 22:33:54 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,63 +82,11 @@ void	ft_raycasting(t_data *data)
 	while (rc.x < WIN_WIDTH)
 	{
 		ft_set_rc_vars(&rc, player);
-		ft_get_point_of_impact(&rc, data);
-		if (rc.side == 0)
-			rc.perp_wall_dist = (rc.cell[X]
-					- player.position[X] + (1 - rc.step[X]) / 2) / rc.raydir_x;
-		else
-			rc.perp_wall_dist = (rc.cell[Y]
-					- player.position[Y] + (1 - rc.step[Y]) / 2) / rc.raydir_y;
-		if (rc.perp_wall_dist == 0)
-			rc.perp_wall_dist = 0.01;
-		rc.line_height = (int)(WIN_HEIGHT) / rc.perp_wall_dist;
-		rc.drawline[START] = -rc.line_height / 2 + WIN_HEIGHT / 2;
-		if (rc.drawline[START] < 0)
-			rc.drawline[START] = 0;
-		rc.drawline[END] = rc.line_height / 2 + WIN_HEIGHT / 2;
-		if (rc.drawline[END] >= WIN_HEIGHT)
-			rc.drawline[END] = WIN_HEIGHT - 1;
-		if (rc.side == 0)
-		{
-			if (rc.raydir_x < 0)
-				rc.texture = data->textures->tex_west;
-			else
-				rc.texture = data->textures->tex_east;
-		}
-		else
-		{
-			if (rc.raydir_y > 0)
-				rc.texture = data->textures->tex_south;
-			else
-				rc.texture = data->textures->tex_north;
-		}
-		if (rc.side == 0)
-		{
-			rc.impact = player.position[Y] + rc.perp_wall_dist * rc.raydir_y;
-			rc.tex_x = (int)(rc.impact * (double)rc.texture->width);
-		}
-		else
-		{
-			rc.impact = player.position[X] + rc.perp_wall_dist * rc.raydir_x;
-			rc.tex_x = (int)(rc.impact * (double)rc.texture->width);
-		}
-		rc.tex_x = rc.tex_x % rc.texture->width;
-		rc.tex_step = 1.0 * rc.texture->height / rc.line_height;
-		rc.tex_pos = (rc.drawline[START]
-				- WIN_HEIGHT / 2 + rc.line_height / 2) * rc.tex_step;
-
-		int	i = rc.drawline[START];
-		while (i < rc.drawline[END])
-		{
-			int tex_y = (int)rc.tex_pos & (rc.texture->height - 1);
-			rc.tex_pos += rc.tex_step;
-			rc.tex_color = *(int *)(rc.texture->addr
-					+ (tex_y * rc.texture->line_len
-						+ rc.tex_x * (rc.texture->bpp / 8)));
-			ft_img_pix_put(data->img, rc.x, i, rc.tex_color);
-			i++;
-		}
+		ft_get_point_of_impact(&rc, player, data);
+		ft_define_corrected_perp_dist(&rc, player);
+		ft_define_drawline_values(&rc);
+		ft_set_wall_textures(&rc, data);
+		ft_draw_walls(&rc, data);
 		rc.x++;
 	}
 }
-

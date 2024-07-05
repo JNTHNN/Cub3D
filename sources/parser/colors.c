@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:29:43 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 12:49:52 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 22:31:48 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	ft_fill_rgb(char *color, t_color *rgb, t_data *data)
 	if (flag)
 		ft_error(NOT_NB, STR_NOT_NB, data);
 	ft_free_array(rgb_values);
-
 }
 
 /*

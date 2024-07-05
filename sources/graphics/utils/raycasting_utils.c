@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 16:42:15 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/05 17:00:48 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:59:39 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_set_rc_vars(t_ray_c *rc, t_player player)
 	ft_get_ray_length_to_next_cell(rc, player);
 }
 
-void	ft_get_point_of_impact(t_ray_c *rc, t_data *data)
+void	ft_get_point_of_impact(t_ray_c *rc, t_player player, t_data *data)
 {
 	while (rc->hit == 0)
 	{
@@ -70,4 +70,31 @@ void	ft_get_point_of_impact(t_ray_c *rc, t_data *data)
 		if (data->mtx[rc->cell[Y]][rc->cell[X]] > 0)
 			rc->hit = 1;
 	}
+	if (rc->side == 0)
+		rc->impact = player.position[Y] + rc->perp_dist * rc->raydir_y;
+	else
+		rc->impact = player.position[X] + rc->perp_dist * rc->raydir_x;
+}
+
+void	ft_define_corrected_perp_dist(t_ray_c *rc, t_player player)
+{
+	if (rc->side == 0)
+		rc->perp_dist = (rc->cell[X] - player.position[X]
+				+ (1 - rc->step[X]) / 2) / rc->raydir_x;
+	else
+		rc->perp_dist = (rc->cell[Y] - player.position[Y]
+				+ (1 - rc->step[Y]) / 2) / rc->raydir_y;
+	if (rc->perp_dist == 0)
+		rc->perp_dist = 0.01;
+}
+
+void	ft_define_drawline_values(t_ray_c *rc)
+{
+	rc->line_height = (int)(WIN_HEIGHT) / rc->perp_dist;
+	rc->drawline[START] = -rc->line_height / 2 + WIN_HEIGHT / 2;
+	if (rc->drawline[START] < 0)
+		rc->drawline[START] = 0;
+	rc->drawline[END] = rc->line_height / 2 + WIN_HEIGHT / 2;
+	if (rc->drawline[END] >= WIN_HEIGHT)
+		rc->drawline[END] = WIN_HEIGHT - 1;
 }

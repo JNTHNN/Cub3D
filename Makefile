@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/05 16:48:14 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/07/05 22:29:08 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,9 @@ SRC_FILES			:= main
 UTILS_SRC			:= error free size atoi init init2
 PARSER_SRC			:= parsing data colors textures map player wall
 PARSER_UTILS_SRC	:= map_utils fd_utils
-GRAPHICS_SRC		:= drawings controls texturing blur
-GRAPHICS_UTILS_SRC	:= init settings raycasting_utils
+GRAPHICS_SRC		:= settings drawings key_events mouse_events texturing blur
+GRAPHICS_UTILS_SRC	:= init raycasting_utils raycasting_utils2 \
+					settings_utils mouse_events_utils
 
 SRC				:= $(addprefix $(SRC_DIR),$(addsuffix .c, $(SRC_FILES)))
 SRC 			+= $(addprefix $(SRC_DIR)parser/, $(addsuffix .c, $(PARSER_SRC)))
