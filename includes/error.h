@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:38 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 12:53:12 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:16:11 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define CUB ".cub"
 # define DOT 46
 
+/* error.c */
 void	ft_error(int code, char *err_msg, t_data *data);
 
 #endif

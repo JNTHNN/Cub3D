@@ -6,11 +6,53 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:10:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 11:42:57 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:29:44 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* Closes the MLX window and frees all allocated resources */
+int	ft_close_window(t_data *data)
+{
+	if (data)
+	{
+		if (data->img && data->img->mlx_img)
+			mlx_destroy_image(data->mlx, data->img->mlx_img);
+		mlx_destroy_window(data->mlx, data->win);
+		//free_map(&data->map);
+		free(data->mlx);
+	}
+	exit(EXIT_SUCCESS);
+}
+
+static int	ft_create_img(t_data *data)
+{
+	t_img	*img;
+
+	img = data->img;
+	img->mlx_img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (img->mlx_img == NULL)
+		return (EXIT_FAILURE);
+	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
+			&img->line_len, &img->endian);
+	ft_player_moving(data);
+	ft_draw_background(img, data->map);
+	ft_raycasting(data);
+	mlx_put_image_to_window(data->mlx, data->win, img->mlx_img, 0, 0);
+	mlx_destroy_image(data->mlx, data->img->mlx_img);
+	data->img->mlx_img = NULL;
+	return (EXIT_SUCCESS);
+}
+
+static int	ft_play(t_data *data)
+{
+	if (!data->win)
+		ft_error(WIN, STR_ERR_WIN, data);
+	if (ft_create_img(data))
+		ft_error(IMG, STR_ERR_IMG, data);
+	return (EXIT_SUCCESS);
+}
 
 int	ft_mlx_settings(t_data *data)
 {

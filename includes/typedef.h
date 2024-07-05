@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/05 15:00:41 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:23:58 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,21 @@
 # define ANGLE 0.042
 # define MOUSE_SPEED 0.0015
 
-typedef struct s_data				t_data;
-typedef struct s_img				t_img;
-typedef struct s_map				t_map;
-typedef struct s_info				t_info;
-typedef struct s_orientation_att	t_orientation_att;
-typedef struct s_file				t_file;
-typedef struct s_player				t_player;
-typedef struct s_p_orientation		t_p_orientation;
-typedef struct s_orientation_att	t_orientation_att;
-typedef struct s_textures			t_textures;
-typedef struct s_xpm				t_xpm;
 typedef enum e_wall					t_wall;
 typedef enum e_orientation			t_orientation;
 typedef enum e_err_code				t_err_code;
+typedef union u_color				t_color;
+typedef struct s_info				t_info;
+typedef struct s_file				t_file;
+typedef struct s_p_orientation		t_p_orientation;
+typedef struct s_orientation_att	t_orientation_att;
+typedef struct s_ray_c				t_ray_c;
+typedef struct s_player				t_player;
+typedef struct s_xpm				t_xpm;
+typedef struct s_textures			t_textures;
+typedef struct s_img				t_img;
+typedef struct s_map				t_map;
+typedef struct s_data				t_data;
 
 enum e_mlx_macros
 {
@@ -112,6 +113,68 @@ enum e_draw_pos
 	END = 1
 };
 
+enum e_err_code
+{
+	MEM = -1,
+	TOO_MANY = -2,
+	NO_MAP = -3,
+	WRONG_EXT = -4,
+	ERR_FD = -5,
+	DUP_INFO = -6,
+	ERR_COLOR = -7,
+	MISSING = -10,
+	NOT_NB = -11,
+	NO_MAP_CONTENT = -12,
+	MAP_NOT_CLOSE = -13,
+	NO_PLAYER = -14,
+	MANY_PLAYERS = -15,
+	WRONG_CHAR = -16,
+	AMB_PLAYER = -17,
+	MLX = -400,
+	WIN = -401,
+	IMG = -402,
+	ADD = -403,
+	OPEN = -404
+};
+
+enum e_wall
+{
+	TOP,
+	BOT,
+	LEFT,
+	RIGHT
+};
+
+union u_color
+{
+	u_int32_t	s_value;
+	struct
+	{
+		u_int8_t	b;
+		u_int8_t	g;
+		u_int8_t	r;
+	} s_rgb;
+};
+
+struct	s_info
+{
+	char	*floor;
+	char	*ceiling;
+	char	*texture_north;
+	char	*texture_south;
+	char	*texture_west;
+	char	*texture_east;
+};
+
+struct s_file
+{
+	char	**raw_file;
+	int		fd;
+	int		size;
+	int		start;
+	int		end;
+};
+
 struct s_p_orientation
 {
 	double	dir[2];
@@ -135,15 +198,6 @@ struct s_player
 	int				move;
 };
 
-struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-};
-
 struct s_xpm
 {
 	void	*img;
@@ -164,25 +218,36 @@ struct s_textures
 	t_xpm	*sprite;
 };
 
-typedef union u_color
+struct s_ray_c
 {
-	u_int32_t	s_value;
-	struct
-	{
-		u_int8_t	b;
-		u_int8_t	g;
-		u_int8_t	r;
-	} s_rgb;
-}	t_color;
+	int		x;
+	double	camera;
+	double	raydir_x;
+	double	raydir_y;
+	int		cell[2];
+	double	delta[2];
+	double	ray_length[2];
+	int		step[2];
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		drawline[2];
+	t_xpm	*texture;
+	int		tex_x;
+	double	tex_step;
+	double	tex_pos;
+	int		tex_color;
+	double	impact;
+};
 
-struct	s_info
+struct s_img
 {
-	char	*floor;
-	char	*ceiling;
-	char	*texture_north;
-	char	*texture_south;
-	char	*texture_west;
-	char	*texture_east;
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 };
 
 struct	s_map
@@ -202,15 +267,6 @@ struct	s_map
 	t_player	player;
 };
 
-struct s_file
-{
-	char	**raw_file;
-	int		fd;
-	int		size;
-	int		start;
-	int		end;
-};
-
 struct s_data
 {
 	void				*mlx;
@@ -224,42 +280,6 @@ struct s_data
 	t_orientation_att	o_attributes;
 	t_textures			*textures;
 	bool				left_click;
-};
-
-enum e_err_code
-{
-	MEM = -1,
-	TOO_MANY = -2,
-	NO_MAP = -3,
-	WRONG_EXT = -4,
-	ERR_FD = -5,
-	DUP_INFO = -6,
-	ERR_COLOR = -7,
-	MISSING = -10,
-	NOT_NB = -11,
-	NO_MAP_CONTENT = -12,
-	MAP_NOT_CLOSE = -13,
-	NO_PLAYER = -14,
-	MANY_PLAYERS = -15,
-	WRONG_CHAR = -16,
-	AMB_PLAYER = -17
-};
-
-enum e_mlx_err_code
-{
-	MLX = -400,
-	WIN = -401,
-	IMG = -402,
-	ADD = -403,
-	OPEN = -404
-};
-
-enum e_wall
-{
-	TOP,
-	BOT,
-	LEFT,
-	RIGHT
 };
 
 #endif
