@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:09:26 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:09 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:57:33 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,5 @@ void	ft_raycasting(t_data *data)
 		ft_set_wall_textures(&rc, data);
 		ft_draw_walls(&rc, data);
 		rc.x++;
-	}
-}
-
-void	ft_draw_minimap(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = WIN_HEIGHT - WIN_HEIGHT / 5;
-	while (i < WIN_HEIGHT - 10)
-	{
-		j = 10;
-		while (j < WIN_WIDTH / 4)
-			ft_img_pix_put(data->img, j++, i, 0xFFFFFF00);
-		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:10:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:20 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:57:53 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static int	ft_create_img(t_data *data)
 	ft_move_player(data);
 	ft_draw_background(img, data->map);
 	ft_raycasting(data);
-	ft_draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, img->mlx_img, 0, 0);
+	ft_create_minimap(data);
 	mlx_destroy_image(data->mlx, data->img->mlx_img);
 	data->img->mlx_img = NULL;
 	return (EXIT_SUCCESS);

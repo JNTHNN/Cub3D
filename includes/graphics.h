@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:14:51 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/08 16:48:30 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:23:19 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 void				ft_img_pix_put(t_img *img, int x, int y, int color);
 void				ft_draw_background(t_img *img, t_map *map);
 void				ft_raycasting(t_data *data);
-void				ft_draw_minimap(t_data *data);
+
+/* minimap.c */
+void				ft_create_minimap(t_data *data);
 
 /* key_events.c*/
 int					ft_on_keydown(int keycode, t_data *data);
@@ -57,8 +59,5 @@ int					ft_mlx_settings(t_data *data);
 
 /* textures.c */
 void				ft_set_textures(t_data *data);
-
-/* blur.c */
-void				ft_apply_blur(t_img *img, int radius);
 
 #endif
