@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:51:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 11:11:43 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:11:25 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ void	ft_get_info_texture(t_data *data)
 		&(data->map->texture_south));
 	ft_fill_info_texture(data->info->texture_west, &(data->map->texture_west));
 	ft_fill_info_texture(data->info->texture_east, &(data->map->texture_east));
+	if (data->info)
+		ft_free_info(data->info);
 }
