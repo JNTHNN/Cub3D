@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 15:12:52 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:05:39 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 u_int8_t		ft_atoi_color(char *s, int *flag);
 
 /*	free.c	*/
-void			*ft_free_array(char **arr);
+void			*ft_free_array(void **arr);
 void			ft_free_data(t_data *data);
+
+/* free2.c */
+void			ft_nullify_ptrs(void *structure, size_t num_members, ...);
 
 /*	size.c	*/
 int				ft_arrlen(char **tab);

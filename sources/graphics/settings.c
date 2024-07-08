@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:10:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 22:25:15 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:04:51 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 /* Closes the MLX window and frees all allocated resources */
 int	ft_close_window(t_data *data)
 {
-	if (data)
-	{
-		if (data->img && data->img->mlx_img)
-			mlx_destroy_image(data->mlx, data->img->mlx_img);
-		mlx_destroy_window(data->mlx, data->win);
-		//free_map(&data->map);
-		free(data->mlx);
-	}
+	ft_free_data(data);
 	exit(EXIT_SUCCESS);
 }
 
