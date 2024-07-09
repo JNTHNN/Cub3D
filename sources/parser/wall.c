@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 12:52:36 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:08:14 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	ft_space_letter(char c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
+
+static void	ft_check_top_bot(char **map, t_data *data)
+{
+	int	x;
+
+	x = 0;
+	while (map[0][x])
+	{
+		if (ft_wall(map[0][x], TOP))
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+		x++;
+	}
+	x = 0;
+	while (map[data->map->y_size - 1][x])
+	{
+		if (ft_wall(map[data->map->y_size - 1][x], BOT))
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+		x++;
+	}
+}
 
 /*
 **	Check the walls around the map
@@ -18,25 +45,22 @@
 void	ft_check_walls(t_data *data)
 {
 	char	**map;
-	int		x;
 	int		y;
+	int		last_char_index;
 
-	x = 0;
 	map = data->map->map;
-	while (map[0][x] && map[0][++x])
-		if (ft_wall(map[0][x], TOP))
-			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
-	x = 0;
-	while (map[data->map->y_size - 1][x] && map[data->map->y_size - 1][++x])
-		if (ft_wall(map[data->map->y_size - 1][x], BOT))
-			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+	ft_check_top_bot(map, data);
 	y = 0;
-	while (map[y] && map[++y])
+	while (map[y])
 	{
-		x = 0;
-		while (ft_wall(map[y][x++], LEFT))
-			if (ft_wall(map[y][x], LEFT))
-				ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+		if (ft_wall(map[y][0], LEFT))
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+		last_char_index = ft_strlen(map[y]) - 1;
+		while (last_char_index >= 0 && ft_space_letter(map[y][last_char_index]))
+			last_char_index--;
+		if (last_char_index >= 0 && ft_wall(map[y][last_char_index], RIGHT))
+			ft_error(MAP_NOT_CLOSE, STR_MAP_NOT_CLOSE, data);
+		y++;
 	}
 }
 

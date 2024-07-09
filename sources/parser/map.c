@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 16:44:18 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:09:09 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,27 @@ static char	**ft_fill_square_map(t_data *data)
 */
 static void	ft_square_map(t_data *data)
 {
-	int		x_max;
-	int		y_max;
 	int		x;
+	int		xx;
 	int		y;
 	char	**square_map;
 
 	y = 0;
-	x_max = data->map->x_size;
-	y_max = data->map->y_size;
 	data->map->square_map = ft_fill_square_map(data);
 	square_map = data->map->square_map;
 	y = 0;
-	while (y < y_max && data->map->map[y])
+	while (y < data->map->y_size && data->map->map[y])
 	{
 		x = 0;
-		while (x < x_max && data->map->map[y][x])
+		xx = 0;
+		while (x < data->map->x_size && data->map->map[y][x])
 		{
-			if (data->map->map[y][x] != '\0' && data->map->map[y][x] != SPACE
+			if (data->map->map[y][x] == '\t')
+				xx += 3;
+			else if (data->map->map[y][x] != '\0'
+				&& data->map->map[y][x] != SPACE
 				&& data->map->map[y][x] != '\t')
-				square_map[y][x] = data->map->map[y][x];
+				square_map[y][x + xx] = data->map->map[y][x];
 			x++;
 		}
 		y++;
@@ -114,8 +115,8 @@ void	ft_get_y_x_max(t_data *data)
 	temp = 0;
 	while (data->map->map[y])
 	{
-		if ((int)ft_strlen(data->map->map[y]) > temp)
-			temp = ft_strlen(data->map->map[y]);
+		if ((int)ft_strlen_cub3d(data->map->map[y]) > temp)
+			temp = ft_strlen_cub3d(data->map->map[y]);
 		y++;
 	}
 	data->map->y_size = y;

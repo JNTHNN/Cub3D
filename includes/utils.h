@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 08:39:51 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:10:18 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void			ft_free_textures(t_data *data);
 
 /*	size.c	*/
 int				ft_arrlen(char **tab);
+size_t			ft_strlen_cub3d(char *s);
 
 /*  init.c  */
 t_info			*ft_init_info(t_data *data);
