@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 15:53:24 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:37:12 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ static void	ft_fill_data(char **type, char *line, int *flag, t_data *data)
 	(*flag)++;
 }
 
+static int	ft_check_line(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] == ' ' || s[i] == '\t')
+			i++;
+		if (s[i] == '1')
+			return (1);
+	}
+	return (0);
+}
+
 /*
 **	Checks that the data corresponds to what we need
 */
@@ -36,6 +51,8 @@ void	ft_check_data(char *line, t_data *data, int *flag)
 	t_info	*info;
 
 	info = data->info;
+	if (ft_check_line(line) && *flag < 6)
+		ft_error(MISSING, STR_MISSING, data);
 	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR))
 		|| !ft_strncmp(line, FLOOR_TAB, ft_strlen(FLOOR_TAB)))
 		ft_fill_data(&(info->floor), line, flag, data);
@@ -54,6 +71,4 @@ void	ft_check_data(char *line, t_data *data, int *flag)
 	else if (!ft_strncmp(line, EAST, ft_strlen(EAST))
 		|| !ft_strncmp(line, EAST_TAB, ft_strlen(EAST_TAB)))
 		ft_fill_data(&(info->texture_east), line, flag, data);
-	else if (*flag < 6 && ft_strncmp(line, "1", ft_strlen(line)) == 32)
-		ft_error(MISSING, STR_MISSING, data);
 }

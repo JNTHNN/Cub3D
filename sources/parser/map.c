@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 12:55:10 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:44:18 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ static void	ft_square_map(t_data *data)
 		x = 0;
 		while (x < x_max && data->map->map[y][x])
 		{
-			if (data->map->map[y][x] != '\0' && data->map->map[y][x] != SPACE)
+			if (data->map->map[y][x] != '\0' && data->map->map[y][x] != SPACE
+				&& data->map->map[y][x] != '\t')
 				square_map[y][x] = data->map->map[y][x];
 			x++;
 		}

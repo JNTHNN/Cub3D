@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:17:01 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 12:03:48 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:59:35 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static int	ft_notmap(char *s, t_data *data)
 		|| !ft_strncmp(s, data->info->texture_south, ft_strlen(s))
 		|| !ft_strncmp(s, data->info->texture_east, ft_strlen(s))
 		|| !ft_strncmp(s, data->info->texture_west, ft_strlen(s))
-		|| !ft_strncmp(s, "\n", ft_strlen(s)))
+		|| !ft_strncmp(s, "\n", ft_strlen(s))
+		|| !ft_strncmp(s, "\t", ft_strlen(s))
+		|| !ft_strncmp(s, " ", ft_strlen(s)))
 		return (1);
 	return (0);
 }
