@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 17:14:35 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 08:39:51 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ft_free_info(t_info *info);
 void			ft_free_data(t_data *data);
 
 /* free2.c */
-void			ft_nullify_ptrs(void *structure, size_t num_members, ...);
+void			ft_free_int_array(int **arr, int y);
 
 /*	size.c	*/
 int				ft_arrlen(char **tab);
@@ -35,5 +35,7 @@ t_file			*ft_init_file(t_data *data);
 
 /* init2.c */
 t_textures		*ft_init_textures(t_data *data);
+t_img			*ft_init_img(t_data *data);
+t_minimap		*ft_init_minimap(t_data *data);
 
 #endif

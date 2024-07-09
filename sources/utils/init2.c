@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:02:56 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/05 12:54:46 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 08:41:55 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,28 @@ t_orientation_att	ft_init_o_attributes(void)
 	attributes.west.fov[X] = FOV_0;
 	attributes.west.fov[Y] = FOV_M66;
 	return (attributes);
+}
+
+t_img	*ft_init_img(t_data *data)
+{
+	t_img	*img;
+
+	img = (t_img *)malloc(sizeof(t_img));
+	if (!img)
+		ft_error(MEM, STR_MEM, data);
+	img = ft_memset(img, 0, sizeof(t_img));
+	return (img);
+}
+
+t_minimap	*ft_init_minimap(t_data *data)
+{
+	t_minimap	*minimap;
+
+	minimap = (t_minimap *)malloc(sizeof(t_minimap));
+	if (!minimap)
+		ft_error(MEM, STR_MEM, data);
+	minimap->img = ft_init_img(data);
+	minimap->width = 0;
+	minimap->height = 0;
+	return (minimap);
 }

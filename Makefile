@@ -6,7 +6,7 @@
 #    By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/08 17:56:47 by gdelvign         ###   ########.fr        #
+#    Updated: 2024/07/09 08:24:03 by gdelvign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ UTILS_SRC			:= error free free2 size atoi init init2
 PARSER_SRC			:= parsing data colors textures map player wall
 PARSER_UTILS_SRC	:= map_utils fd_utils
 GRAPHICS_SRC		:= settings drawings key_events mouse_events texturing \
-					blur minimap
+					minimap
 GRAPHICS_UTILS_SRC	:= init raycasting_utils raycasting_utils2 \
 					settings_utils mouse_events_utils
 

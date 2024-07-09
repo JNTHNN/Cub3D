@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/08 19:11:47 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 08:42:37 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,7 @@ struct	s_minimap
 {
 	t_img	*img;
 	int		width;
-	int 	height;
+	int		height;
 };
 
 struct s_data

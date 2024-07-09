@@ -6,7 +6,7 @@
 /*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:55:36 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 22:08:50 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 08:00:02 by gdelvign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,8 @@ void	ft_free_data(t_data *data)
 			mlx_destroy_window(data->mlx, data->win);
 		if (data->map)
 			ft_free_map(data->map);
-		// TODO: The array function isn't working properly with int array. Segfault on gmap
 		if (data->mtx)
-			ft_free_array((void **)data->mtx);
+			ft_free_int_array(data->mtx, data->map->y_size);
 		if (data->file)
 			ft_free_file(data->file);
 		if (data->mlx)
