@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 16:01:14 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:03:29 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	ft_check_data(char *line, t_data *data, int *flag)
 		ft_fill_data(&(info->texture_west), line, flag, data);
 	else if (!ft_strncmp(line, EAST, ft_strlen(EAST)))
 		ft_fill_data(&(info->texture_east), line, flag, data);
+	else if (*flag < 6 && ft_strncmp(line, "1", ft_strlen(line)) == 32)
+		ft_error(MISSING, STR_MISSING, data);
 }
