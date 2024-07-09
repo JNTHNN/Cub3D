@@ -23,6 +23,8 @@ void			ft_free_data(t_data *data);
 
 /* free2.c */
 void			ft_free_int_array(int **arr, int y);
+void			ft_free_minimap(t_data *data);
+void			ft_free_textures(t_data *data);
 
 /*	size.c	*/
 int				ft_arrlen(char **tab);

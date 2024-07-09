@@ -30,6 +30,8 @@ static void	ft_save_map(t_data *data)
 	while (y < size)
 	{
 		data->map->map[y] = ft_strdup(data->file->raw_file[start++]);
+		if (!data->map->map[y])
+			ft_error(MEM, STR_MEM, data);
 		if (data->map->map[y][(ft_strlen(data->map->map[y]) - 1)] == 10)
 			ft_memset(data->map->map[y]
 				+ (ft_strlen(data->map->map[y]) - 1), 0, 1);
@@ -78,6 +80,8 @@ static void	ft_save_file(t_data *data)
 		if (!line)
 			break ;
 		data->file->raw_file[y] = ft_strdup(line);
+		if (!data->file->raw_file[y])
+			ft_error(MEM, STR_MEM, data);
 		free(line);
 		y++;
 	}
@@ -97,6 +101,8 @@ static void	ft_raw_map_to_mtx(t_data *data)
 	while (i < data->map->y_size)
 	{
 		data->mtx[i] = (int *)malloc(data->map->x_size * sizeof(int));
+		if (!data->mtx[i])
+			ft_error(MEM, STR_MEM, data);
 		j = 0;
 		while (j < data->map->x_size)
 		{

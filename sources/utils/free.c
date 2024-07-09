@@ -95,6 +95,10 @@ void	ft_free_data(t_data *data)
 			ft_free_int_array(data->mtx, data->map->y_size);
 		if (data->file)
 			ft_free_file(data->file);
+		if (data->textures)
+			ft_free_textures(data);
+		if (data->minimap)
+			ft_free_minimap(data);
 		if (data->mlx)
 			free(data->mlx);
 		free(data);

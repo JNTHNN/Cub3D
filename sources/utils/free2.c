@@ -25,3 +25,35 @@ void	ft_free_int_array(int **arr, int y)
 	free(arr);
 	arr = NULL;
 }
+
+void	ft_free_minimap(t_data *data)
+{
+	if (data->minimap->img && data->minimap->img->mlx_img)
+		mlx_destroy_image(data->mlx, data->minimap->img->mlx_img);
+	free(data->minimap);
+}
+
+void	ft_free_textures(t_data *data)
+{
+	if (data->textures->tex_north)
+	{
+		mlx_destroy_image(data->mlx, data->textures->tex_north->img);
+		free(data->textures->tex_north);
+	}
+	if (data->textures->tex_south)
+	{
+		mlx_destroy_image(data->mlx, data->textures->tex_south->img);
+		free(data->textures->tex_south);
+	}
+	if (data->textures->tex_west)
+	{
+		mlx_destroy_image(data->mlx, data->textures->tex_west->img);
+		free(data->textures->tex_west);
+	}
+	if (data->textures->tex_east)
+	{
+		mlx_destroy_image(data->mlx, data->textures->tex_east->img);
+		free(data->textures->tex_east);
+	}
+	free(data->textures);
+}

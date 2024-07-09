@@ -34,7 +34,6 @@ t_textures	*ft_init_textures(t_data *data)
 	textures->tex_south = ft_init_tex_data(data);
 	textures->tex_east = ft_init_tex_data(data);
 	textures->tex_west = ft_init_tex_data(data);
-	textures->sprite = ft_init_tex_data(data);
 	return (textures);
 }
 

@@ -35,7 +35,7 @@
 # define DIR_M1 -1
 # define OFFSET 0.5
 # define TITLE "Cub3D - By Jojo & Gigi"
-# define STRIDE 0.042
+# define STRIDE 0.055
 # define ANGLE 0.042
 # define MOUSE_SPEED 0.0015
 
@@ -216,7 +216,6 @@ struct s_textures
 	t_xpm	*tex_south;
 	t_xpm	*tex_east;
 	t_xpm	*tex_west;
-	t_xpm	*sprite;
 };
 
 struct s_ray_c
