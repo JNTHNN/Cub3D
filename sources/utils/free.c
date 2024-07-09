@@ -91,7 +91,7 @@ void	ft_free_data(t_data *data)
 			mlx_destroy_window(data->mlx, data->win);
 		if (data->map)
 			ft_free_map(data->map);
-		if (data->mtx)
+		if (data->map && data->mtx)
 			ft_free_int_array(data->mtx, data->map->y_size);
 		if (data->file)
 			ft_free_file(data->file);

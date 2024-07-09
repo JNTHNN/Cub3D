@@ -71,7 +71,7 @@ CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
 READL			:= -L/usr/local/lib -I/usr/local/include
 MLX_FLAGS		:= -lm -lft -lmlx -framework OpenGL -framework AppKit
-DEBUG			:= #-fsanitize=address
+DEBUG			:= -fsanitize=address
 
 # **************************************************************************** #
 # 							  	   Colors	    							   #

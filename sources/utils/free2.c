@@ -19,8 +19,11 @@ void	ft_free_int_array(int **arr, int y)
 	i = -1;
 	while (++i < y)
 	{
-		free(arr[i]);
-		arr[i] = NULL;
+		if (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+		}
 	}
 	free(arr);
 	arr = NULL;
@@ -37,22 +40,26 @@ void	ft_free_textures(t_data *data)
 {
 	if (data->textures->tex_north)
 	{
-		mlx_destroy_image(data->mlx, data->textures->tex_north->img);
+		if (data->textures->tex_north->img)
+			mlx_destroy_image(data->mlx, data->textures->tex_north->img);
 		free(data->textures->tex_north);
 	}
 	if (data->textures->tex_south)
 	{
-		mlx_destroy_image(data->mlx, data->textures->tex_south->img);
+		if (data->textures->tex_south->img)
+			mlx_destroy_image(data->mlx, data->textures->tex_south->img);
 		free(data->textures->tex_south);
 	}
 	if (data->textures->tex_west)
 	{
-		mlx_destroy_image(data->mlx, data->textures->tex_west->img);
+		if (data->textures->tex_west->img)
+			mlx_destroy_image(data->mlx, data->textures->tex_west->img);
 		free(data->textures->tex_west);
 	}
 	if (data->textures->tex_east)
 	{
-		mlx_destroy_image(data->mlx, data->textures->tex_east->img);
+		if (data->textures->tex_east->img)
+			mlx_destroy_image(data->mlx, data->textures->tex_east->img);
 		free(data->textures->tex_east);
 	}
 	free(data->textures);

@@ -44,6 +44,7 @@ static t_data	*ft_init_data(char *file)
 	data->win = NULL;
 	data->img = ft_init_img(data);
 	data->map = ft_init_map(data, file);
+	data->mtx = NULL;
 	data->info = ft_init_info(data);
 	data->file = ft_init_file(data);
 	data->o_attributes = ft_init_o_attributes();
