@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/08 16:01:14 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:53:24 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,24 @@ void	ft_check_data(char *line, t_data *data, int *flag)
 	t_info	*info;
 
 	info = data->info;
-	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR)))
+	if (!ft_strncmp(line, FLOOR, ft_strlen(FLOOR))
+		|| !ft_strncmp(line, FLOOR_TAB, ft_strlen(FLOOR_TAB)))
 		ft_fill_data(&(info->floor), line, flag, data);
-	else if (!ft_strncmp(line, CEILING, ft_strlen(CEILING)))
+	else if (!ft_strncmp(line, CEILING, ft_strlen(CEILING))
+		|| !ft_strncmp(line, CEILING_TAB, ft_strlen(CEILING_TAB)))
 		ft_fill_data(&(info->ceiling), line, flag, data);
-	else if (!ft_strncmp(line, NORTH, ft_strlen(NORTH)))
+	else if (!ft_strncmp(line, NORTH, ft_strlen(NORTH))
+		|| !ft_strncmp(line, NORTH_TAB, ft_strlen(NORTH_TAB)))
 		ft_fill_data(&(info->texture_north), line, flag, data);
-	else if (!ft_strncmp(line, SOUTH, ft_strlen(SOUTH)))
+	else if (!ft_strncmp(line, SOUTH, ft_strlen(SOUTH))
+		|| !ft_strncmp(line, SOUTH_TAB, ft_strlen(SOUTH_TAB)))
 		ft_fill_data(&(info->texture_south), line, flag, data);
-	else if (!ft_strncmp(line, WEST, ft_strlen(WEST)))
+	else if (!ft_strncmp(line, WEST, ft_strlen(WEST))
+		|| !ft_strncmp(line, WEST_TAB, ft_strlen(WEST_TAB)))
 		ft_fill_data(&(info->texture_west), line, flag, data);
-	else if (!ft_strncmp(line, EAST, ft_strlen(EAST)))
+	else if (!ft_strncmp(line, EAST, ft_strlen(EAST))
+		|| !ft_strncmp(line, EAST_TAB, ft_strlen(EAST_TAB)))
 		ft_fill_data(&(info->texture_east), line, flag, data);
+	else if (*flag < 6 && ft_strncmp(line, "1", ft_strlen(line)) == 32)
+		ft_error(MISSING, STR_MISSING, data);
 }

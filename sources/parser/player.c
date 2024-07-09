@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/05 22:32:05 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:45:40 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,7 @@ void	ft_check_player(t_data *data)
 	}
 	if (data->map->player.orientation == NONE)
 		ft_error(NO_PLAYER, STR_NO_PLAYER, data);
+	if (data->map->player.position[X] + OFFSET
+		== (int)ft_strlen(data->map->map[(int)data->map->player.position[Y]]))
+		ft_error(AMB_PLAYER, STR_AMB_PLAYER, data);
 }

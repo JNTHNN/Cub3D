@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/09 08:42:37 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:53:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 # define TYPEDEF_H
 
 # define FLOOR "F "
+# define FLOOR_TAB "F\t"
 # define CEILING "C "
+# define CEILING_TAB "C\t"
 # define NORTH "NO "
+# define NORTH_TAB "NO\t"
 # define SOUTH "SO "
+# define SOUTH_TAB "SO\t"
 # define WEST "WE "
+# define WEST_TAB "WE\t"
 # define EAST "EA "
+# define EAST_TAB "EA\t"
 # define NO 1
 # define SO 2
 # define WE 3
