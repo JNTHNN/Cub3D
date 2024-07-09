@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:51:00 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 12:03:44 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:50:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@
 static void	ft_fill_info_texture(char *raw_texture, char **texture,
 	t_data *data)
 {
-	char	**texture_path;
+	char	*temp;
 
-	texture_path = ft_split(raw_texture, ' ');
-	*texture = ft_strdup(texture_path[1]);
+	temp = ft_strtrim(raw_texture + 2, " \t\n");
+	if (!temp || !temp[0])
+	{
+		free(temp);
+		ft_error(MISSING, STR_MISSING, data);
+	}
+	*texture = ft_strdup(temp);
+	free(temp);
 	if (!*texture)
 		ft_error(MEM, STR_MEM, data);
-	ft_memset(*texture + (ft_strlen(*texture) - 1), 0, 1);
-	ft_free_array((void **)texture_path);
 }
 
 /*
