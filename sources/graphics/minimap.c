@@ -12,14 +12,28 @@
 
 #include "cub3d.h"
 
-static void	ft_calculate_cell_size(t_data *data, int *cell_size, int *offsets)
+static void	ft_calculate_cell_size(t_data *data,
+	double *cell_size, double *offsets)
 {
 	cell_size[Y] = data->minimap->height / data->map->y_size;
 	cell_size[X] = data->minimap->width / data->map->x_size;
+	if (cell_size[Y] > cell_size[X])
+		cell_size[Y] = cell_size[X];
+	else
+		cell_size[X] = cell_size[Y];
+	if (cell_size[X] <= 1)
+	{
+		cell_size[X] = 1.1;
+		cell_size[Y] = 1.1;
+	}
 	offsets[X] = (data->minimap->width
 			- (cell_size[X] * data->map->x_size)) / 2;
 	offsets[Y] = (data->minimap->height
 			- (cell_size[Y] * data->map->y_size)) / 2;
+	if (offsets[X] < 0)
+		offsets[X] = 0;
+	if (offsets[Y] < 0)
+		offsets[Y] = 0;
 }
 
 static void	ft_define_color(t_data *data, int i, int j, int *color)
@@ -33,7 +47,7 @@ static void	ft_define_color(t_data *data, int i, int j, int *color)
 		*color = 0xA0A0A0;
 }
 
-static void	ft_draw_minimap(t_data *data, int *cell_size, int *offsets)
+static void	ft_draw_minimap(t_data *data, double *cell_size, double *offsets)
 {
 	int	i;
 	int	j;
@@ -63,9 +77,9 @@ static void	ft_draw_minimap(t_data *data, int *cell_size, int *offsets)
 
 void	ft_create_minimap(t_data *data)
 {
-	t_img	*img;
-	int		cell_size[2];
-	int		offsets[2];
+	t_img		*img;
+	double		cell_size[2];
+	double		offsets[2];
 
 	img = data->minimap->img;
 	data->minimap->width = WIN_WIDTH / 4;
