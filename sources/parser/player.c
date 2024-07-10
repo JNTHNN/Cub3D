@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:33:39 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 16:44:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:09:20 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ static bool	ft_check_orientation(char c)
 	return (false);
 }
 
+/*
+**	Check if only one player is in the map and his orientation
+*/
 void	ft_check_player(t_data *data)
 {
 	int			x;

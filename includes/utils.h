@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:56:27 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 23:10:18 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:05:59 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UTILS_H
 
 /*  atoi.c  */
+int				ft_space_letter(char c);
 u_int8_t		ft_atoi_color(char *s, int *flag);
 
 /*	free.c	*/

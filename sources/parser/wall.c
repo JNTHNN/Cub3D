@@ -6,19 +6,14 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:21:52 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 23:08:14 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:07:49 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	ft_space_letter(char c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
+/*
+**	Check top / bot wall
+*/
 static void	ft_check_top_bot(char **map, t_data *data)
 {
 	int	x;

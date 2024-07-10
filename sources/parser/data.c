@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:15:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 16:37:12 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:04:04 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_check_line(char *s)
 	i = 0;
 	if (s)
 	{
-		while (s[i] == ' ' || s[i] == '\t')
+		while (s[i] == SPACE || s[i] == TAB)
 			i++;
 		if (s[i] == '1')
 			return (1);

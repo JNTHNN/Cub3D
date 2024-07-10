@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelvign <gdelvign@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:53:43 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/04 21:53:40 by gdelvign         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:05:40 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_space_letter(char c)
+int	ft_space_letter(char c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))
 		return (1);

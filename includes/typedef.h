@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:19:30 by gdelvign          #+#    #+#             */
-/*   Updated: 2024/07/09 15:53:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:43:50 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define WEST_TAB "WE\t"
 # define EAST "EA "
 # define EAST_TAB "EA\t"
+# define WHITESPACES " \t\n"
+# define TAB 9
 # define NO 1
 # define SO 2
 # define WE 3

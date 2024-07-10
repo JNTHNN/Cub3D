@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 00:12:46 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/07/09 23:09:09 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:03:01 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_basic_check(t_data *data)
 				&& map[y][x] != S
 				&& map[y][x] != W
 				&& map[y][x] != E
-				&& map[y][x] != '\t')
+				&& map[y][x] != TAB)
 				ft_error(WRONG_CHAR, STR_WRONG_CHAR, data);
 		}
 	}
@@ -91,11 +91,11 @@ static void	ft_square_map(t_data *data)
 		xx = 0;
 		while (x < data->map->x_size && data->map->map[y][x])
 		{
-			if (data->map->map[y][x] == '\t')
+			if (data->map->map[y][x] == TAB)
 				xx += 3;
 			else if (data->map->map[y][x] != '\0'
 				&& data->map->map[y][x] != SPACE
-				&& data->map->map[y][x] != '\t')
+				&& data->map->map[y][x] != TAB)
 				square_map[y][x + xx] = data->map->map[y][x];
 			x++;
 		}
