@@ -1,7 +1,7 @@
 NO ./assets/textures/bluestone.xpm
-SO ./assets/textures/bluestone.xpm
-WE ./assets/textures/bluestone.xpm
-EA ./assets/textures/bluestone.xpm
+SO ./assets/textures/purplestone.xpm
+WE ./assets/textures/eagle.xpm
+EA ./assets/textures/wood.xpm
 F 110,110,110
 C 60,60,60
 

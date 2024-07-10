@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:06:04 by jgasparo          #+#    #+#              #
-#    Updated: 2024/07/10 11:11:40 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/07/10 23:26:15 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ CFLAGS 			:= -Wall -Wextra -Werror
 CPPFLAGS		:= -MMD -MP
 READL			:= -L/usr/local/lib -I/usr/local/include
 MLX_FLAGS		:= -lm -lft -lmlx -framework OpenGL -framework AppKit
+OPTI			:= -finline-functions -fvectorize -fslp-vectorize -ffast-math -falign-functions -funroll-loops -fstrict-aliasing -fomit-frame-pointer -flto -Ofast -O1 -O2 -Os -O3
 DEBUG			:= #-fsanitize=address
 
 # **************************************************************************** #
@@ -91,7 +92,7 @@ all : $(NAME)
 -include $(DEPS)
 $(BUILD_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ -I $(INC_DIR)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OPTI) -c $< -o $@ -I $(INC_DIR)
 
 $(LIBFT_BUILD)$(LIBFT):
 	@echo "\n$(CYAN)Generating Libft...$(WHITE)"
