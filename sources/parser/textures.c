@@ -46,5 +46,8 @@ void	ft_get_info_texture(t_data *data)
 	ft_fill_info_texture(data->info->texture_east,
 		&(data->map->texture_east), data);
 	if (data->info)
+	{
 		ft_free_info(data->info);
+		data->info = NULL;
+	}
 }

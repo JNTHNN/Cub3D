@@ -20,7 +20,7 @@ static void	ft_set_tex_img(t_data *data, t_xpm *texture, char *filename)
 	if (fd == -1)
 		ft_error(OPEN, STR_ERR_OPEN, data);
 	close(fd);
-	texture->img = mlx_xpm_file_to_image(&data->mlx, filename,
+	texture->img = mlx_xpm_file_to_image(data->mlx, filename,
 			&texture->width, &texture->height);
 	if (!texture->img)
 		ft_error(IMG, STR_ERR_IMG, data);

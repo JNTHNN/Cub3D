@@ -33,6 +33,8 @@ void	ft_free_minimap(t_data *data)
 {
 	if (data->minimap->img && data->minimap->img->mlx_img)
 		mlx_destroy_image(data->mlx, data->minimap->img->mlx_img);
+	if (data->minimap->img)
+		free(data->minimap->img);
 	free(data->minimap);
 }
 
