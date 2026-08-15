@@ -77,6 +77,8 @@ void	ft_free_file(t_file *file)
 	{
 		if (file->raw_file)
 			ft_free_array((void **)file->raw_file);
+		if (file->fd >= 0)
+			close(file->fd);
 		free(file);
 	}
 }
@@ -99,6 +101,10 @@ void	ft_free_data(t_data *data)
 			ft_free_textures(data);
 		if (data->minimap)
 			ft_free_minimap(data);
+		if (data->info)
+			ft_free_info(data->info);
+		if (data->img)
+			free(data->img);
 		if (data->mlx)
 			free(data->mlx);
 		free(data);
